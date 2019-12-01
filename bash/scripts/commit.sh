@@ -26,29 +26,13 @@
 
 branch_name=""
 should_push="false"
-should_push_force="false"
 should_open_pull_request="false"
 message=""
 ticket=""
 time=""
+push_flags=""
 commit_flags=""
 add_flags=""
-
-open_pull_request() {
-    branch=$(git rev-parse --abbrev-ref HEAD)
-    url=$(git config remote.origin.url)
-    email=$(git config user.email)
-    regex="https://${email%@*}@stash.payworks.ca/scm/(.*)/(.*).git"
-
-    if [[ $url =~ $regex ]]
-    then
-        proj=${BASH_REMATCH[1]}
-        cwd=${BASH_REMATCH[2]}
-        start https://stash.payworks.ca/projects/$proj/repos/$cwd/pull-requests?create=true\&sourceBranch=refs/heads/$branch
-    else
-        echo "Regex failed"
-    fi
-}
 
 while getopts "b:iaAem:pfrt:j:h" OPTION
 do
@@ -75,7 +59,8 @@ do
             should_push="true"
             ;;
         f)
-            should_push_force="true"
+            should_push="true"
+            push_flags="$push_flags -f"
             ;;
         r)
             should_open_pull_request="true"
@@ -101,7 +86,7 @@ commit: git commit with Jira extentions.
     -i    Add interactively (patch)
     -m <message>  Set the commit message
     -p    Push after committing
-    -f    Push (using --force-with-lease) after committing
+    -f    Push using --force-with-lease after committing
     -r    Open a pull request from the current branch to the repository's default branch
     -t <time>  Log time to the Jira ticket (use with -j to set the Jira ticket)
     -h    Print this help message
@@ -133,16 +118,13 @@ else
 fi
 
 
-if [[ "$should_push_force" == "true" ]]; then
-    echo "git push --force-with-lease"
-    git push --force-with-lease
-elif [[ "$should_push" == "true" ]]; then
-    echo "git push"
-    git push
+if [[ "$should_push" == "true" ]]; then
+    echo "pushing branch"
+    ./push.sh $push_flags
 fi
 if [[ "$should_open_pull_request" == "true" ]]; then
-    echo "open_pull_request"
-    open_pull_request
+    echo "opening a pull request"
+    ./pull_request.sh
 fi
 if [[ -n "$time" && -n "$ticket" ]]; then
     echo "jira worklog add --noedit -T $time $ticket"
