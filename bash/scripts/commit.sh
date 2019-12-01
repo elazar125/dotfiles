@@ -117,14 +117,17 @@ else
     git commit $commit_flags
 fi
 
+# Get this file's parent directory's full path
+# Allows us to reference other scripts in the same directory
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if [[ "$should_push" == "true" ]]; then
     echo "pushing branch"
-    ./push.sh $push_flags
+    $script_dir/push.sh $push_flags
 fi
 if [[ "$should_open_pull_request" == "true" ]]; then
     echo "opening a pull request"
-    ./pull_request.sh
+    $script_dir/pull_request.sh
 fi
 if [[ -n "$time" && -n "$ticket" ]]; then
     echo "jira worklog add --noedit -T $time $ticket"
