@@ -1,4 +1,15 @@
 # --------------------------------------------------
+# VS Code
+# --------------------------------------------------
+
+# Get this file's directory so that we can find .extensions
+tools_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+alias save-ext='code --list-extensions | xargs -L 1 echo code --install-extension > $tools_dir/../../vscode/.extensions'
+alias see-ext='bat $tools_dir/../../vscode/.extensions'
+alias install-ext='source $tools_dir/../../vscode/.extensions'
+
+# --------------------------------------------------
 # websites
 # --------------------------------------------------
 

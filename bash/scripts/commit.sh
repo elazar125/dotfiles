@@ -90,8 +90,11 @@ else
     git commit $commit_flags
 fi
 
+# Get this file's parent directory's full path
+# Allows us to reference other scripts in the same directory
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if [[ "$should_push" == "true" ]]; then
     echo "pushing branch"
-    ./push.sh $push_flags
+    $script_dir/push.sh $push_flags
 fi

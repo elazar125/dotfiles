@@ -1,5 +1,11 @@
 HISTCONTROL=ignoreboth
-. ./bash/aliases/
+# Get this file's parent directory's full path
+# Then source every file in ./bash/aliases
+bashrc_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+for alias_file in $bashrc_dir/aliases/*;
+do
+    . $alias_file
+done
 
 # --------------------------------------------------
 # git
