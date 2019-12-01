@@ -7,15 +7,27 @@ do
     . $alias_file
 done
 
+alias edit='code "$bashrc_dir/.bashrc"'
+alias reload='source $bashrc_dir/.bashrc'
+
 # --------------------------------------------------
 # git
 # --------------------------------------------------
 
-# Gitting Started
-# ------------------------------------------------------
 alias g='echo "branches:" && git branch && echo "status:" && git status --short'
 
-# Remote Stuff
+# Tag a commit & push the tag
+gtp() {
+    git tag $1 && git push $1
+}
+
+# Git Edit Commit, pass in a hash and it'll let you revert whatever part of the commit you shouldn't have made
+gec() {
+    commit_hash=${1:-$(git log -n 1 --pretty=format:"%H")}
+    git revert --no-commit $commit_hash && git reset
+}
+
+# To Clean Up
 # ------------------------------------------------------
 
 alias gf='git fetch -p'
@@ -23,19 +35,7 @@ alias gpl='git pull --rebase'
 
 # Switch branches while keeping your current changes
 goto() {
-    old_stash=$(git stash list --pretty="%H")
-    git stash
-    new_stash=$(git stash list --pretty="%H")
-
-    git fetch -p &&
-    git checkout $1 &&
-    git pull --rebase
-
-    if [[ "$old_stash" != "$new_stash" ]]; then
-        git stash pop
-    fi
-    
-    echo Done
+    $bashrc_dir/script/rebase.sh -s $1
 }
 __git_complete goto _git_checkout
 
@@ -50,10 +50,6 @@ develop() {
     goto develop
 }
 
-
-# Rebase
-# ------------------------------------------------------
-
 alias gr='git rebase -i' # interactive
 alias grc='git rebase --continue' # after fixing any conflicts, use this to continue
 alias gra='git rebase --abort'
@@ -61,23 +57,7 @@ __git_complete gr _git_rebase
 
 # Git ReBase ON. Rebase your branch on another. WARNING: Watch out for that force-push part!
 grbon() {
-    old_stash=$(git stash list --pretty="%H")
-    git stash
-    new_stash=$(git stash list --pretty="%H")
-
-    git fetch -p &&
-    git checkout $1 &&
-    git pull --rebase &&
-    git checkout $2 &&
-    git pull --rebase &&
-    git rebase -i $1 &&
-    git push --force-with-lease
-
-    if [[ "$old_stash" != "$new_stash" ]]; then
-        git stash pop
-    fi
-    
-    echo Done
+    $bashrc_dir/script/rebase.sh -s $1 -t $2
 }
 __git_complete grbon _git_rebase
 
@@ -95,24 +75,3 @@ pom() {
     git branch -d $branch
 }
 __git_complete pom _git_checkout
-
-
-
-# Tagging
-# ------------------------------------------------------
-
-# Tag a commit & push the tag
-gtp() {
-    git tag $1 && git push $1
-}
-
-
-
-# Modifying History
-# ------------------------------------------------------
-
-# Git Edit Commit, pass in a hash and it'll let you revert whatever part of the commit you shouldn't have made
-gec() {
-    commit_hash=${1:-$(git log -n 1 --pretty=format:"%H")}
-    git revert --no-commit $commit_hash && git reset
-}
