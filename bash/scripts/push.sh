@@ -43,6 +43,8 @@ push: git push with defaults.
     esac
 done
 
+# TODO: Handle case when tracking is already set up & non-default
+
 if [[ -z "$branch_name" ]]; then
 	branch_name=$(git rev-parse --abbrev-ref HEAD)
 fi

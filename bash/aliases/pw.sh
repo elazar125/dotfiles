@@ -2,6 +2,8 @@
 # PW - work-specific stuff
 # ------------------------------------------------------
 
+alias todo='code "/u/todo.md"'
+
 # I don't remember why I called this glr, but I think it's used for SRED logging. Gets everything I've done for a given time frame.
 glr() {
     git log --date=short --pretty=format:"%h %ad %an %s" --graph --author=ezra.lazar --before=$2 --after=$1
