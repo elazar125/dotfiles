@@ -43,8 +43,6 @@ push: git push with defaults.
     esac
 done
 
-# TODO: Handle case when tracking is already set up & non-default
-
 if [[ -z "$branch_name" ]]; then
 	branch_name=$(git rev-parse --abbrev-ref HEAD)
 fi
@@ -52,5 +50,10 @@ if [[ -z "$remote_name" ]]; then
 	remote_name=origin
 fi
 
-echo "git push --set-upstream $remote_name $branch_name $flags"
-git push --set-upstream $remote_name $branch_name $flags
+if [[ -z "$(git config branch.$branch_name.remote)" ]]; then
+    echo "git push --set-upstream $remote_name $branch_name $flags"
+    git push --set-upstream $remote_name $branch_name $flags
+else
+    echo "git push $flags"
+    git push $flags
+fi
