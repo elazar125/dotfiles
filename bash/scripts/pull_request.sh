@@ -1,9 +1,10 @@
+#!/bin/bash
 # ------------------------------------------------------------------------
 # pull_request: Open a PR in Stash
 # ------------------------------------------------------------------------
 #
 # Open your browser to the "create pull request" page in Stash
-# Pre-sets the source branch to your currently-checked-out branch, 
+# Pre-sets the source branch to your currently-checked-out branch,
 # and the target to the project's default branch
 
 branch=$(git rev-parse --abbrev-ref HEAD)

@@ -9,49 +9,80 @@ glr() {
     git log --date=short --pretty=format:"%h %ad %an %s" --graph --author=ezra.lazar --before=$2 --after=$1
 }
 
-alias rs='cd /c/Code/root-site'
-alias pwn='cd /c/Code/payworks-next/payworks-next'
-alias nv2='cd /c/Code/payworks-next-v2'
-alias aei='cd /c/Code/ascentis-imports'
-alias dni='cd /c/Code/payworks-dotnet-internal'
-alias fin='cd /c/Code/web-interface'
-alias jgcomp='cd /c/Code/payworks-benefits-setup'
+# Mine is probably different to yours, please set appropriately
+path_to_code='/c/Code'
 
-# For running various projects
-alias netr='dotnet watch -v run'
-alias grnt='grunt dev-watch'
-alias grntr='grunt dev'
-alias nrd='npm run dev'
+alias rs='cd ${path_to_code}/root-site'
+alias pwn='cd ${path_to_code}/payworks-next/payworks-next'
+alias nv2='cd ${path_to_code}/payworks-next-v2'
+alias aei='cd ${path_to_code}/ascentis-imports'
+alias dni='cd ${path_to_code}/payworks-dotnet-internal'
+alias fin='cd ${path_to_code}/web-interface'
+alias jgcomp='cd ${path_to_code}/payworks-benefits-setup'
 
-# DotNet Build - first make sure file paths are valid (there are issues with MicroServices) then build. Reset paths afterwards.
-dnb() {
-    find . -type f -iname *.sfproj | xargs sed -i -b 's/sysnative/system32/g'
-    dotnet build
-    find . -type f -iname *.sfproj | xargs sed -i -b 's/system32/sysnative/g'
+# DotNet Build Internal
+dnbi() {
+    initial_folder=$(pwd)
+    cd ${path_to_code}/payworks-dotnet-internal
+    build_csprojs
+    build_microservices
+    build_to_iis src/Payworks.WebServices.Internal Payworks.Intranet.Core core
+    cd $initial_folder
+}
+alias bapi='build_to_iis ${path_to_code}/payworks-dotnet-internal/src/Payworks.WebServices.Internal Payworks.Intranet.Core core'
+
+# DotNet Build next v2
+dnb2() {
+    initial_folder=$(pwd)
+    cd ${path_to_code}/payworks-next-v2
+    build_csprojs
+    build_microservices
+    # Setting this up "normally" has issues I can't figure out yet,
+    # don't set these up in IIS unless you want to do a bunch of work
+    build_to_iis src/Payworks.Web.Core Payworks.Web.Core NextV2Web
+    build_to_iis src/Payworks.WebServices.Core Payworks.WebServices.Core NextV2API
+    cd $initial_folder
 }
 
-alias appcmd='/c/Windows/System32/inetsrv/appcmd.exe'
+build_csprojs() {
+    # Find everything but the SyncPB MicroService, it has weird issues
+    projects=$(find . -type f -iname *.csproj -not -iname *SyncPB*)
+    for proj in $projects
+    do
+        cd $(dirname "$proj")
+        dotnet build
+        cd -
+    done
+}
 
-alias msbuild1='/c/Windows/Microsoft.NET/Framework/v1.0.3705/msbuild.exe'
-alias msbuild1_1='/c/Windows/Microsoft.NET/Framework/v1.1.4322/msbuild.exe'
-alias msbuild2='/c/Windows/Microsoft.NET/Framework/v2.0.50727/msbuild.exe'
-alias msbuild3='/c/Windows/Microsoft.NET/Framework/v3.0/msbuild.exe'
-alias msbuild3_5='/c/Windows/Microsoft.NET/Framework/v3.5/msbuild.exe'
-alias msbuild4='/c/Windows/Microsoft.NET/Framework/v4.0.30319/msbuild.exe'
+build_microservices() {
+    # Find everything but the SyncPB MicroService, it has weird issues
+    projects=$(find . -type f -iname *.sfproj -not -iname *SyncPB*)
+    for proj in $projects
+    do
+        # Replace sysnative with system32 to run on a 64-bit terminal rather than in a 32-bit environment
+        sed -i -b 's/sysnative/system32/g' $proj
+        cd $(dirname "$proj")
+        dotnet build
+        cd -
+        # Switch it back to not leave a diff in git
+        sed -i -b 's/system32/sysnative/g' $proj
+    done
+}
 
-# DotNet Build Internal - first make sure file paths are valid (there are issues with MicroServices) then build. Reset paths afterwards.
-dnbi() {
-    cd /c/Code/payworks-dotnet-internal
-    find . -type f -iname *.sfproj | xargs sed -i -b 's/sysnative/system32/g'
-    dotnet build
-    find . -type f -iname *.sfproj | xargs sed -i -b 's/system32/sysnative/g'
-    cd -
-    cd /c/Code/payworks-dotnet-internal/src/Payworks.WebServices.Internal
-    appcmd stop site Payworks.Intranet.Core
-    appcmd stop apppool core
+build_to_iis() {
+    folder=$1
+    site_name=$2
+    app_pool_name=$3
+
+    cd $folder
+
+    /c/Windows/System32/inetsrv/appcmd.exe stop site $site_name
+    /c/Windows/System32/inetsrv/appcmd.exe stop apppool $app_pool_name
     dotnet build
     dotnet publish
-    appcmd start apppool core
-    appcmd start site Payworks.Intranet.Core
+    /c/Windows/System32/inetsrv/appcmd.exe start apppool $app_pool_name
+    /c/Windows/System32/inetsrv/appcmd.exe start site $site_name
+
     cd -
 }
