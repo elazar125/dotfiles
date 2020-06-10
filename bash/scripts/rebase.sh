@@ -1,3 +1,12 @@
+#!/bin/bash
+# ------------------------------------------------------------------------
+# rebase: Update branches
+# ------------------------------------------------------------------------
+#
+# Give a source branch to update by pulling with rebase,
+# provide a target too to rebase the source onto the target.
+# Baoth branches will get updated before rebasing.
+
 source_branch=""
 target_branch=""
 

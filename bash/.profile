@@ -4,7 +4,7 @@
 
 yellow="\[\033[0;33m\]"
 cyan="\[\033[0;36m\]"
-magenta="\[\033[1;35m\]"
+magenta="\[\033[0;35m\]"
 white="\[\033[0;37m\]"
 
 prompt="${white}\n$ " # Display a traditional $ on the next line as the prompt for commands

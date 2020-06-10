@@ -1,3 +1,4 @@
+#!/bin/bash
 # ------------------------------------------------------------------------
 # commit: Git commit extended
 # ------------------------------------------------------------------------
@@ -33,7 +34,7 @@ do
             add_flags="$add_flags -p"
             ;;
         a)
-            commit_flags="$commit_flags -a"
+            add_flags="$add_flags -u"
             ;;
         A)
             add_flags="$add_flags -A"
