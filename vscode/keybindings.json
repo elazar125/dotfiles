@@ -66,11 +66,11 @@
         "when": "editorTextFocus"
     },
     {
-        "command": "incrementor.incByOne",
+        "command": "incrementor.incrementByOne",
         "key": "ctrl+up"
     },
     {
-        "command": "incrementor.decByOne",
+        "command": "incrementor.decrementByOne",
         "key": "ctrl+down"
     },
     {
@@ -161,7 +161,7 @@
                     "breadcrumbs.enabled": false,
                     "csharp.referencesCodeLens.enabled": false,
                     "editor.folding": false,
-                    "editor.fontFamily": "Fantasque Sans Mono",
+                    "editor.fontFamily": "Gabriele Ribbon FG",
                     "editor.fontSize": 14,
                     "editor.hideCursorInOverviewRuler": true,
                     "editor.highlightActiveIndentGuide": false,
@@ -179,7 +179,7 @@
                     "extensions.ignoreRecommendations": true,
                     "window.menuBarVisibility": "toggle",
                     "workbench.activityBar.visible": false,
-                    "workbench.colorTheme": "Darcula",
+                    "workbench.colorTheme": "Bear Theme",
                     "workbench.iconTheme": "material-icon-theme",
                     "workbench.statusBar.visible": false,
                     "workbench.tips.enabled": false,
@@ -238,6 +238,10 @@
                     "editor.fontFamily": "Fantasque Sans Mono",
                     "editor.fontSize": 14
                 },
+                {
+                    "editor.fontFamily": "Gabriele Ribbon FG",
+                    "editor.fontSize": 14
+                },
             ]
         }
     },
@@ -255,6 +259,14 @@
                 },
             ]
         }
+    },
+    {
+        "key": "ctrl+q s",
+        "command": "editor.newFile.withLanguageMode.sql"
+    },
+    {
+        "key": "ctrl+j s",
+        "command": "editor.newFile.withLanguageMode.json"
     },
     {
         "key": "ctrl+i",
@@ -279,5 +291,9 @@
     {
         "key": "ctrl+alt+down",
         "command": "-incrementor.decByTenth"
+    },
+    {
+        "key": "ctrl+shift+/",
+        "command": "search.action.openNewEditor"
     }
 ]

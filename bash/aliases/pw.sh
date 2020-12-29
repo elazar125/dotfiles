@@ -20,13 +20,16 @@ alias dni='cd ${path_to_code}/payworks-dotnet-internal'
 alias fin='cd ${path_to_code}/web-interface'
 alias jgcomp='cd ${path_to_code}/payworks-benefits-setup'
 
+alias crm_log='curl -k https://crm.payworks.ca/implementation_log > /c/implementation_log'
+alias crm_test='curl -k https://crm.testweb.payworks.ca/implementation_log > /c/test_implementation_log'
+
 # DotNet Build Internal
 dnbi() {
     initial_folder=$(pwd)
     cd ${path_to_code}/payworks-dotnet-internal
     build_csprojs
     build_microservices
-    build_to_iis src/Payworks.WebServices.Internal Payworks.Intranet.Core core
+    # build_to_iis src/Payworks.WebServices.Internal Payworks.Intranet.Core core
     cd $initial_folder
 }
 alias bapi='build_to_iis ${path_to_code}/payworks-dotnet-internal/src/Payworks.WebServices.Internal Payworks.Intranet.Core core'
