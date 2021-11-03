@@ -94,11 +94,11 @@
             "id": "ShowWhiteSpace",
             "value": [
                 {
-                    "editor.renderIndentGuides": true,
+                    "editor.guides.indentation": true,
                     "editor.renderWhitespace": "all",
                 },
                 {
-                    "editor.renderIndentGuides": false,
+                    "editor.guides.indentation": false,
                     "editor.renderWhitespace": "none",
                 },
             ]

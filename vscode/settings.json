@@ -1,10 +1,10 @@
 {
-    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.ignoreTrimWhitespace": true,
     "diffEditor.renderSideBySide": true,
     "editor.acceptSuggestionOnEnter": "off",
     "editor.cursorSurroundingLines": 5,
     "editor.detectIndentation": false,
-    "editor.folding": false,
+    "editor.folding": true,
     "editor.formatOnPaste": true,
     "editor.glyphMargin": true,
     "editor.hideCursorInOverviewRuler": true,
@@ -34,11 +34,9 @@
     "workbench.activityBar.visible": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.statusBar.visible": false,
     "workbench.tips.enabled": false,
     "extensions.ignoreRecommendations": true,
     "csharp.referencesCodeLens.enabled": false,
-    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
     "terminal.integrated.rendererType": "dom",
     "files.associations": {
         "*.asp": "vbs",
@@ -77,14 +75,86 @@
         "suppressGitDisabledWarning": true
     },
     "workbench.editor.enablePreview": false,
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "Andromeda",
     "editor.fontSize": 14,
     "mochaExplorer.files": "tests/**/*.js",
-    "explorer.autoReveal": "focusNoScroll",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "default",
-            "filenamePattern": "git-rebase-todo"
+    "explorer.autoReveal": false,
+    "workbench.editorAssociations": {
+        "git-rebase-todo": "default"
+    },
+    "search.mode": "newEditor",
+    "workbench.colorCustomizations": {
+        "[Popping and Locking Black Theme]": {
+            "sideBar.border": "#000000",
+            "tab.border": "#000000",
+            "tab.lastPinnedBorder": "#000000",
+            "panel.border": "#000000"
+        },
+        "[Andromeda]": {
+            "sideBar.background": "#000000",
+            "editor.background": "#000000",
+            "tab.inactiveBackground": "#000000",
+            "tab.activeBackground": "#000000",
+            "tab.border": "#000000",
+            "tab.lastPinnedBorder": "#000000",
+            "panel.background": "#000000",
+            "panel.border": "#000000",
+            "editorGroupHeader.tabsBackground": "#000000"
         }
-    ],
+    },
+    "workbench.editor.decorations.badges": false,
+    "gitlens.menus": {
+        "editor": {
+            "blame": false,
+            "clipboard": false,
+            "compare": false,
+            "history": false,
+            "remote": false
+        },
+        "editorGroup": {
+            "blame": false,
+            "compare": false
+        },
+        "editorTab": {
+            "clipboard": false,
+            "compare": false,
+            "history": false,
+            "remote": false
+        },
+        "explorer": {
+            "clipboard": false,
+            "compare": false,
+            "history": false,
+            "remote": false
+        },
+        "scm": {
+            "authors": false
+        },
+        "scmGroupInline": {
+            "stash": false
+        },
+        "scmGroup": {
+            "compare": false,
+            "openClose": false,
+            "stash": false
+        },
+        "scmItem": {
+            "clipboard": false,
+            "compare": false,
+            "history": false,
+            "remote": false,
+            "stash": false
+        }
+    },
+    "workbench.editor.untitled.hint": "hidden",
+    "cSpell.enabled": false,
+    "workbench.statusBar.visible": false,
+    "terminal.integrated.tabs.enabled": false,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.profiles.windows": {
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe (migrated)": {
+            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args": []
+        }
+    }
 }
