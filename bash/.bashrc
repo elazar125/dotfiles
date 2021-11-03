@@ -35,4 +35,3 @@ alias grc='git rebase --continue'
 alias gra='git rebase --abort'
 __git_complete gr _git_rebase
 alias gchp='git cherry-pick'
-__git_complete gchp _git_cherry-pick
