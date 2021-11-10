@@ -10,6 +10,12 @@ alias see-ext='bat $tools_dir/../../vscode/.extensions'
 alias install-ext='source $tools_dir/../../vscode/.extensions'
 
 # --------------------------------------------------
+# C# Interactive
+# --------------------------------------------------
+
+alias csi='/c/Program\ Files\ \(x86\)/Microsoft\ Visual\ Studio/2019/Professional/MSBuild/Current/Bin/Roslyn/csi.exe'
+
+# --------------------------------------------------
 # websites
 # --------------------------------------------------
 
@@ -47,3 +53,7 @@ alias pi='http'
 # Other tools
 # --------------------------------------------------
 # bat: https://github.com/sharkdp/bat (cat but better)
+
+function bl() {
+    bat $1 --color=always | less -r
+}

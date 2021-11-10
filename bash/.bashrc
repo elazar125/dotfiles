@@ -9,8 +9,9 @@ done
 
 . $bashrc_dir/.profile
 
-alias edit='code "$bashrc_dir"'
-alias reload='source $bashrc_dir/.bashrc'
+alias nv='SHELL= nvim'
+alias edit='nv "$bashrc_dir"'
+alias vimrc='nv "$bashrc_dir/../vim/.vimrc"'
 
 # To Clean Up
 # ------------------------------------------------------
