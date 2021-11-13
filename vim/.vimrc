@@ -45,9 +45,9 @@ nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
 nnoremap <Leader>h <C-w>h
 nnoremap <Leader>l <C-w>l
-nnoremap J ^ 
-nnoremap K <C-f>
-nnoremap H <C-b>
+nnoremap H ^
+nnoremap J <C-f>
+nnoremap K <C-b>
 nnoremap L $
 nnoremap Y y$
 nnoremap <silent><Esc><Esc> :nohls<CR>
