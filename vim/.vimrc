@@ -56,6 +56,7 @@ nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>p "+p
 nnoremap <Leader>y "+y
 nnoremap <Leader>v <C-v>
+nnoremap <Leader>q :.,$norm! @
 
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
