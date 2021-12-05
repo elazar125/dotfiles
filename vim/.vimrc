@@ -29,6 +29,8 @@ set fillchars+=vert:\
 call plug#begin('~/AppData/Local/nvim/plugged')
 
 Plug 'preservim/nerdtree'
+Plug 'tveskag/nvim-blame-line'
+Plug 'itchyny/vim-gitbranch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
@@ -37,14 +39,41 @@ Plug 'junegunn/fzf.vim'
 Plug 'mg979/vim-visual-multi'
 Plug 'itchyny/lightline.vim'
 Plug 'myusuf3/numbers.vim'
+Plug 'chaoren/vim-wordmotion'
+Plug 'kamykn/CCSpellCheck.vim'
 
 call plug#end()
+
+let g:wordmotion_prefix = '<Leader>'
+
+let g:lightline = {
+            \ 'colorscheme': 'deus',
+            \ 'active': {
+            \   'right': [['branch'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+            \   },
+            \ 'component_function': {
+            \   'branch': 'gitbranch#name'
+            \   }
+            \ }
+
+function! KeywordNvim()
+    if &keywordprg == ':Man'
+        let l:man = 'man'
+    else
+        let l:man = &keywordprg
+    endif
+    let l:word = expand("<cword>")
+    vsplit | enew
+    exe 'terminal ' . l:man l:word
+endfunction
 
 let mapleader = " "
 nnoremap <Leader>j <C-w>j
 nnoremap <Leader>k <C-w>k
 nnoremap <Leader>h <C-w>h
 nnoremap <Leader>l <C-w>l
+nnoremap <C-j> J
+nnoremap <silent><C-k> :call KeywordNvim()<CR>
 nnoremap H ^
 nnoremap J <C-f>
 nnoremap K <C-b>
@@ -53,8 +82,13 @@ nnoremap Y y$
 nnoremap <silent><Esc><Esc> :nohls<CR>
 nnoremap <Leader>m :NERDTreeToggle<CR>
 nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>b :ToggleBlameLine<CR>
 nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
 nnoremap <Leader>y "+y
+nnoremap <Leader>Y "+Y
+nnoremap <Leader>d "_d
+nnoremap <Leader>D "_D
 nnoremap <Leader>v <C-v>
 nnoremap <Leader>q :.,$norm! @
 

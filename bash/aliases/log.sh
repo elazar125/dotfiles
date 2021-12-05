@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 alias gl='git log  --pretty=format:"%C(auto) %h %C(green) %an %C(magenta) %ar %C(auto) %s %D" --graph'
+alias glv="nv -R -c ':terminal git log --oneline --graph' -c 'set filetype=git'"
 alias gla='gl --all'
 alias gl20='gl -n 20'
 alias gla20='gla -n 20'
