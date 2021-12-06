@@ -29,7 +29,6 @@ set fillchars+=vert:\
 call plug#begin('~/AppData/Local/nvim/plugged')
 
 Plug 'preservim/nerdtree'
-Plug 'tveskag/nvim-blame-line'
 Plug 'itchyny/vim-gitbranch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -41,6 +40,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'chaoren/vim-wordmotion'
 Plug 'kamykn/CCSpellCheck.vim'
+Plug 'APZelos/blamer.nvim'
+" Plug 'chentau/marks.nvim'
 
 call plug#end()
 
@@ -79,10 +80,12 @@ nnoremap J <C-f>
 nnoremap K <C-b>
 nnoremap L $
 nnoremap Y y$
+nnoremap <silent><BS> :b#<CR>
+nnoremap <silent><Leader><BS> :bn<CR>
 nnoremap <silent><Esc><Esc> :nohls<CR>
-nnoremap <Leader>m :NERDTreeToggle<CR>
+nnoremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>b :ToggleBlameLine<CR>
+nnoremap <Leader>b :BlamerToggle<CR>
 nnoremap <Leader>p "+p
 nnoremap <Leader>P "+P
 nnoremap <Leader>y "+y

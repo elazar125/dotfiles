@@ -4,7 +4,7 @@
 
 dir_colour="\[\e[38;5;0m\]\[\e[48;5;14m\]"
 branch_colour="\[\e[38;5;0m\]\[\e[48;5;3m\]"
-message_colour="\[\e[38;5;15m\]\[\e[48;5;8m\]"
+message_colour="\[\e[38;5;0m\]\[\e[48;5;8m\]"
 time_colour="\[\e[38;5;0m\]\[\e[48;5;10m\]"
 reset="\[\e[0m\]"
 
