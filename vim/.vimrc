@@ -21,6 +21,7 @@ set pastetoggle=<F2>
 set nowrap
 set splitbelow
 set splitright
+set mouse=a
 
 highlight LineNr ctermfg=8
 highlight VertSplit cterm=NONE
@@ -42,10 +43,45 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'kamykn/CCSpellCheck.vim'
 Plug 'APZelos/blamer.nvim'
 " Plug 'chentau/marks.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
+lua << EOF
+-- put LSP config here
+EOF
+
 let g:wordmotion_prefix = '<Leader>'
+
+function! ModeColor()
+  let l:prefix="%#Comment#%=%#"
+  let l:mode = mode()
+  if l:mode == 'n'
+    let l:prefix .= 'Character#'
+  elseif l:mode == 'i'
+    let l:prefix .= 'Function#'
+  elseif l:mode == 'v'
+    let l:prefix .= 'Boolean#'
+  elseif l:mode == 'V'
+    let l:prefix .= 'Boolean#'
+  elseif l:mode == ''
+    let l:prefix .= 'Boolean#'
+  elseif l:mode == 't'
+    let l:prefix .= 'Constant#'
+  elseif l:mode == 'r'
+    let l:prefix .= 'Identifier#'
+  elseif l:mode == 'c'
+    let l:prefix .= 'Conditional#'
+  else
+    let l:prefix .= 'Comment#'
+  endif
+
+  return l:prefix . '%f%#Comment#%='
+endfunction
+
+set laststatus=2
+" set statusline=%{%ModeColor()%}
 
 let g:lightline = {
             \ 'colorscheme': 'deus',
@@ -83,9 +119,9 @@ nnoremap Y y$
 nnoremap <silent><BS> :b#<CR>
 nnoremap <silent><Leader><BS> :bn<CR>
 nnoremap <silent><Esc><Esc> :nohls<CR>
-nnoremap <Leader>t :NERDTreeToggle<CR>
-nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>b :BlamerToggle<CR>
+nnoremap <silent><Leader>t :NERDTreeToggle<CR>
+nnoremap <silent><Leader>f :Files<CR>
+nnoremap <silent><Leader>b :BlamerToggle<CR>
 nnoremap <Leader>p "+p
 nnoremap <Leader>P "+P
 nnoremap <Leader>y "+y
@@ -94,6 +130,10 @@ nnoremap <Leader>d "_d
 nnoremap <Leader>D "_D
 nnoremap <Leader>v <C-v>
 nnoremap <Leader>q :.,$norm! @
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1

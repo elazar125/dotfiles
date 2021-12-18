@@ -57,3 +57,6 @@ alias pi='http'
 function bl() {
     bat $1 --color=always | less -r
 }
+
+# fzf
+alias fp='fzf --preview "bat --color=always --line-range :100 {}"'
