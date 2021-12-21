@@ -10,7 +10,7 @@ done
 . $bashrc_dir/.profile
 
 alias nv='SHELL= nvim'
-alias fv='nv $(fzf)'
+alias fv='nv $(fzf --preview "bat --color=always --line-range :100 {}")'
 alias edit='nv "$bashrc_dir"'
 alias vimrc='nv "$bashrc_dir/../vim/.vimrc"'
 
