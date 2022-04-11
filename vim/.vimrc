@@ -45,12 +45,25 @@ Plug 'APZelos/blamer.nvim'
 " Plug 'chentau/marks.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'justinmk/vim-sneak'
+" Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
 
 lua << EOF
 -- put LSP config here
 EOF
+
+" let g:PaperColor_Theme_Options = {
+"     \   'theme': {
+"     \     'default.dark': {
+"     \       'transparent_background': 1
+"     \     }
+"     \   }
+"     \ }
+" set background=dark
+" colorscheme PaperColor
+
+highlight CCSpellBad cterm=undercurl
 
 let g:wordmotion_prefix = '<Leader>'
 
@@ -84,7 +97,7 @@ set laststatus=2
 " set statusline=%{%ModeColor()%}
 
 let g:lightline = {
-            \ 'colorscheme': 'deus',
+            \ 'colorscheme': 'one',
             \ 'active': {
             \   'right': [['branch'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
             \   },
@@ -137,3 +150,18 @@ map T <Plug>Sneak_T
 
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1
+
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }

@@ -2,29 +2,37 @@
 # PS1 Setup
 # ---------------------------------------------------------
 
-dir_colour="\[\e[38;5;0m\]\[\e[48;5;14m\]"
-branch_colour="\[\e[38;5;0m\]\[\e[48;5;13m\]"
-message_colour="\[\e[38;5;0m\]\[\e[48;5;8m\]"
-time_colour="\[\e[38;5;0m\]\[\e[48;5;10m\]"
+font_black="\[\e[38;5;0m\]"
+font_teal="\[\e[38;5;14m\]"
+font_pink="\[\e[38;5;13m\]"
+font_green="\[\e[38;5;10m\]"
+font_grey="\[\e[38;5;8m\]"
+back_teal="\[\e[48;5;14m\]"
+back_pink="\[\e[48;5;13m\]"
+back_green="\[\e[48;5;10m\]"
+back_grey="\[\e[48;5;8m\]"
+back_default="\[\e[49m\]"
 reset="\[\e[0m\]"
-
-background="$message_colour\$spaces\e[1G"
-directory="${dir_colour} \w "
-git_branch="${branch_colour}\`__git_ps1\`"
+save="\[\e[s\]"
+restore="\[\e[u\]"
+right_char=""
+left_char=""
 
 messages=("Have a great day!" "You rock, don't ever change!" "This is a wonderful day, I have never seen this one before." "Make each day your masterpiece." "Today is your day, your mountain is waiting. So get on your way." "The only secret behind a good day is a good attitude." "This is a wonderful day waiting for you to enjoy." "Wishing you a day full of sunshine." "I just wanted to say I hope you have a wonderful day." "Start each day with a grateful heart." "Today is a good day to have a good day!" "May your worries be light and your joy be great." "Don’t forget to be awesome today!" "Good morning, have an awesome day!" "Life is beautiful; enjoy the ride." "Have a ridiculously amazing day!" "Good morning – it’s coffee time." "The world always looks brighter from behind a smile." "Every smile makes you a day younger." "Hey, I’ve got nothing to do today but smile." "Leave something good in every day." "Someday, everything will make sense!" "Make today an amazing day!")
-message="${message_colour} \${messages[\$RANDOM % \${#messages[@]} ]} "
 
-time_position="\e[\${cols}G\e[10D"
-time="$time_colour [ \A ] "
-prompt="${reset}\n$ "
+# GIT_PS1_SHOWDIRTYSTATE=y
+# GIT_PS1_SHOWUNTRACKEDFILES=y
+# GIT_PS1_SHOWUPSTREAM="git verbose"
 
-GIT_PS1_SHOWDIRTYSTATE=y
-GIT_PS1_SHOWUNTRACKEDFILES=y
-GIT_PS1_SHOWUPSTREAM=y
+directory="$back_default$font_teal$left_char$font_black$back_tealﱮ \w$font_teal"
+time="$font_green$left_char$back_green$font_black\A  $font_green$back_default$right_char"
+prompt="${reset}\n\$ "
+message="$back_grey$right_char$font_black \${messages[\$RANDOM % \${#messages[@]} ]} "
+time_position="\e[\${COLUMNS}G\e[9D"
+background="$back_grey\$spaces\e[1G"
 
-PROMPT_COMMAND='\
-    cols=$(tput cols);\
-    spaces=$(printf "%*s" $cols)'
+right="\n$background$directory"
+left="$message$time_position$time$prompt"
+format="$back_pink$right_char$font_black  %s$font_pink"
 
-PS1="\n$background$directory$git_branch$message$time_position$time$prompt"
+PROMPT_COMMAND='spaces="$(printf "%*s" $COLUMNS)"; __git_ps1 "$right" "$left" "$format"'
