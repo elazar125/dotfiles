@@ -60,3 +60,4 @@ function bl() {
 
 # fzf
 alias fp='fzf --preview "bat --color=always --line-range :100 {}"'
+export FZF_DEFAULT_COMMAND='fd --type f'

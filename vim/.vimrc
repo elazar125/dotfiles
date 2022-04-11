@@ -139,6 +139,8 @@ nnoremap <Leader>p "+p
 nnoremap <Leader>P "+P
 nnoremap <Leader>y "+y
 nnoremap <Leader>Y "+Y
+nnoremap <Leader>c "_c
+nnoremap <Leader>C "_C
 nnoremap <Leader>d "_d
 nnoremap <Leader>D "_D
 nnoremap <Leader>v <C-v>
