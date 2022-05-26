@@ -93,17 +93,20 @@ function! ModeColor()
   return l:prefix . '%f%#Comment#%='
 endfunction
 
-set laststatus=2
+set laststatus=3
 " set statusline=%{%ModeColor()%}
 
 let g:lightline = {
             \ 'colorscheme': 'one',
             \ 'active': {
+            \   'left' : [['mode', 'paste'], ['readonly', 'filename', 'modified'], ['cwd']],
             \   'right': [['branch'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
             \   },
             \ 'component_function': {
-            \   'branch': 'gitbranch#name'
-            \   }
+            \   'branch': 'gitbranch#name',
+            \   'cwd': 'getcwd'
+            \   },
+            \ 'separator': { 'left': '', 'right': '' }
             \ }
 
 function! KeywordNvim()
@@ -134,6 +137,7 @@ nnoremap <silent><Leader><BS> :bn<CR>
 nnoremap <silent><Esc><Esc> :nohls<CR>
 nnoremap <silent><Leader>t :NERDTreeToggle<CR>
 nnoremap <silent><Leader>f :Files<CR>
+nnoremap <silent><Leader>l :Buf<CR>
 nnoremap <silent><Leader>b :BlamerToggle<CR>
 nnoremap <Leader>p "+p
 nnoremap <Leader>P "+P
@@ -145,10 +149,6 @@ nnoremap <Leader>d "_d
 nnoremap <Leader>D "_D
 nnoremap <Leader>v <C-v>
 nnoremap <Leader>q :.,$norm! @
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
 
 let NERDTreeChDirMode=2
 let NERDTreeShowHidden=1

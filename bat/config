@@ -1,0 +1,5 @@
+--theme=ansi
+--map-syntax "*.csproj:XML"
+--map-syntax "*.config:XML"
+--map-syntax "*.vb:ASP"
+--style "numbers,changes"
