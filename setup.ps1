@@ -42,7 +42,7 @@ $folderPath = "C:\code"
 nvim -c ":PlugInstall"
 
 Expand-Archive -Path './font/gabriele.zip' -DestinationPath './font/gabriele'
-foreach ($font in Get-ChildItem -Path './font/gabriele' -Exclude '*.txt' -File) {
+foreach ($font in Get-ChildItem -Path './font/gabriele/gabriele_ribbon_fg' -Exclude '*.txt' -File) {
     $dest = "C:\Windows\Fonts\$font"
     if (Test-Path -Path $dest) {
         "Font $font already installed."
