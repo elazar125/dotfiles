@@ -14,8 +14,9 @@
 branch_name=""
 remote_name=""
 flags=""
+push_tags=""
 
-while getopts "b:fr:" OPTION
+while getopts "b:fr:t" OPTION
 do
     case "$OPTION" in
         f)
@@ -31,12 +32,16 @@ do
             echo "Error: -${OPTARG} requires an argument."
             exit 1
             ;;
+        t)
+            push_tags="true"
+            ;;
         ?)
             echo "
 push: git push with defaults.
     -b    Specify the remote branch name to track
     -f    Push using --force-with-lease
     -r    Specify the remote repository to push to
+    -t    Also push tags
     -h    Print this help message
 "
             exit 1
@@ -57,4 +62,8 @@ if [[ -z "$(git config branch.$branch_name.remote)" ]]; then
 else
     echo "git push $flags"
     git push $flags
+fi
+
+if [[ -n "$push_tags" ]]; then
+    git push --tags
 fi
