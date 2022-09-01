@@ -17,6 +17,10 @@ alias vimrc='nv "$bashrc_dir/../vim/.vimrc"'
 # To Clean Up
 # ------------------------------------------------------
 
+pathrg() {
+    echo $PATH | tr ':' '\n' | rg "$*"
+}
+
 alias g='echo "branches:" && git branch && echo "status:" && git status --short'
 
 # Tag a commit & push the tag
