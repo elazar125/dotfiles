@@ -1,13 +1,14 @@
 local wezterm = require 'wezterm';
+local act = wezterm.action;
 
 return {
     color_scheme = "Paper Color",
     font = wezterm.font("Gabriele Light Ribbon FG"),
     font_size = 14,
     default_prog = {"C:\\Program Files\\Git\\bin\\bash.exe", "-il"},
-    default_cwd = "C:\\Code",
+    default_cwd = "C:\\code",
     enable_tab_bar = false,
-    window_background_opacity = 0.7,
+    window_background_opacity = 0.9,
     window_padding = {
         left = 64,
         right = 64,
@@ -15,36 +16,36 @@ return {
         bottom = 64,
     },
     keys = {
-        {key="t", mods="ALT", action="ActivateLastTab"},
-        {key="t", mods="SHIFT|ALT", action=wezterm.action{SpawnTab="CurrentPaneDomain"}},
-        {key="h", mods="ALT", action=wezterm.action{ActivatePaneDirection="Left"}},
-        {key="l", mods="ALT", action=wezterm.action{ActivatePaneDirection="Right"}},
-        {key="k", mods="ALT", action=wezterm.action{ActivatePaneDirection="Up"}},
-        {key="j", mods="ALT", action=wezterm.action{ActivatePaneDirection="Down"}},
-        {key="l", mods="ALT|SHIFT", action=wezterm.action{SplitHorizontal={domain="CurrentPaneDomain"}}},
-        {key="j", mods="ALT|SHIFT", action=wezterm.action{SplitVertical={domain="CurrentPaneDomain"}}},
-        {key="v", mods="ALT", action=wezterm.action{PasteFrom="Clipboard"}},
-        {key="c", mods="ALT", action=wezterm.action{CopyTo="Clipboard"}},
-        {key="w", mods="ALT", action=wezterm.action{CloseCurrentPane={confirm=false}}},
-        {key="w", mods="ALT|SHIFT", action=wezterm.action{CloseCurrentTab={confirm=false}}},
-        {key="r", mods="ALT", action=wezterm.action{ActivateKeyTable={name="resize_pane",one_shot=false}}},
+        {key="t", mods="ALT", action=act.ActivateLastTab},
+        {key="t", mods="SHIFT|ALT", action=act.SpawnTab "CurrentPaneDomain"},
+        {key="h", mods="ALT", action=act.ActivatePaneDirection "Left"},
+        {key="l", mods="ALT", action=act.ActivatePaneDirection "Right"},
+        {key="k", mods="ALT", action=act.ActivatePaneDirection "Up"},
+        {key="j", mods="ALT", action=act.ActivatePaneDirection "Down"},
+        {key="l", mods="ALT|SHIFT", action=act.SplitHorizontal {domain="CurrentPaneDomain"}},
+        {key="j", mods="ALT|SHIFT", action=act.SplitVertical {domain="CurrentPaneDomain"}},
+        {key="v", mods="ALT", action=act.PasteFrom "Clipboard"},
+        {key="c", mods="ALT", action=act.CopyTo "Clipboard"},
+        {key="w", mods="ALT", action=act.CloseCurrentPane {confirm=false}},
+        {key="w", mods="ALT|SHIFT", action=act.CloseCurrentTab {confirm=false}},
+        {key="r", mods="ALT", action=act.ActivateKeyTable {name="resize_pane",one_shot=false,until_unknown=true,replace_current=false}},
     },
     key_tables = {
         resize_pane = {
-            {key="LeftArrow", action=wezterm.action{AdjustPaneSize={"Left", 1}}},
-            {key="h", action=wezterm.action{AdjustPaneSize={"Left", 1}}},
+            {key="LeftArrow", action=act.AdjustPaneSize {"Left", 1}},
+            {key="h", action=act.AdjustPaneSize {"Left", 1}},
 
-            {key="RightArrow", action=wezterm.action{AdjustPaneSize={"Right", 1}}},
-            {key="l", action=wezterm.action{AdjustPaneSize={"Right", 1}}},
+            {key="RightArrow", action=act.AdjustPaneSize {"Right", 1}},
+            {key="l", action=act.AdjustPaneSize {"Right", 1}},
 
-            {key="UpArrow", action=wezterm.action{AdjustPaneSize={"Up", 1}}},
-            {key="k", action=wezterm.action{AdjustPaneSize={"Up", 1}}},
+            {key="UpArrow", action=act.AdjustPaneSize {"Up", 1}},
+            {key="k", action=act.AdjustPaneSize {"Up", 1}},
 
-            {key="DownArrow", action=wezterm.action{AdjustPaneSize={"Down", 1}}},
-            {key="j", action=wezterm.action{AdjustPaneSize={"Down", 1}}},
+            {key="DownArrow", action=act.AdjustPaneSize {"Down", 1}},
+            {key="j", action=act.AdjustPaneSize {"Down", 1}},
 
             -- Cancel the mode by pressing escape
-            {key="Escape", action="PopKeyTable"},
+            {key="Escape", action=act.PopKeyTable},
 
         },
     },

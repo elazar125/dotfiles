@@ -51,13 +51,14 @@ time="$font_green$left_char$back_green$font_black\A  $font_green$back_default
 prompt="$reset\n\$ "
 message="$back_grey$right_char$font_black \$picked_message"
 time_position="\[\e[\${COLUMNS}G\]\[\e[9D\]"
-background="$back_grey\$spaces\[\e[1G\]"
+background="$back_grey\${spaces}\[\e[1G\]"
 
 right="\n$background$directory"
 left="$message$time_position$time$prompt"
 format="$back_pink$right_char$font_black  %s$font_pink"
 
 PROMPT_COMMAND=' \
+    if [[ -z $COLUMNS ]]; then COLUMNS=$(tput cols); fi; \
     picked_message="${messages[$RANDOM % ${#messages[@]}]}"; \
     spaces="$(printf "%*s" $COLUMNS)"; \
     __git_ps1 "$right" "$left" "$format" \
