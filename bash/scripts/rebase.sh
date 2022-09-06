@@ -41,6 +41,14 @@ if [[ -z "$source_branch" ]]; then
     exit 1
 fi
 
+skipped_items=$(git ls-files -v -- $(git rev-parse --show-toplevel) | rg '^S' | cut -d ' ' -f 2)
+
+for item in $skipped_items
+do
+    echo "unskipping $item"
+    git update-index --no-skip-worktree $item
+done
+
 old_stash=$(git stash list --pretty="%H")
 git stash
 new_stash=$(git stash list --pretty="%H")
@@ -58,5 +66,11 @@ git push --force-with-lease
 if [[ "$old_stash" != "$new_stash" ]]; then
     git stash pop
 fi
+
+for item in $skipped_items
+do
+    echo "skipping $item"
+    git update-index --skip-worktree $item
+done
 
 echo Done

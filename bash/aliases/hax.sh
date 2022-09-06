@@ -10,4 +10,4 @@ unskip() {
     git status --short
 }
 
-alias check="git ls-files -v | rg '^S'"
+alias check="git ls-files -v -- \$(git rev-parse --show-toplevel) | rg '^S' | cut -d ' ' -f 2"
