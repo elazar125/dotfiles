@@ -25,6 +25,10 @@ set mouse=a
 
 highlight LineNr ctermfg=8
 highlight VertSplit cterm=NONE
+highlight DiffAdd ctermfg=10 ctermbg=8
+highlight DiffChange ctermfg=11 ctermbg=8
+highlight DiffDelete ctermfg=13 ctermbg=8
+highlight DiffText ctermfg=12 ctermbg=5
 set fillchars+=vert:\ 
 
 call plug#begin('~/AppData/Local/nvim/plugged')
