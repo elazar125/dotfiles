@@ -59,5 +59,11 @@ function bl() {
 }
 
 # fzf
-alias fp='fzf --preview "bat --color=always --line-range :100 {}"'
-export FZF_DEFAULT_COMMAND='fd --type f'
+fp() {
+    if (($# > 0)); then
+        fzf -q "$*" --preview "bat --color=always --line-range :100 {}"
+    else
+        fzf --preview "bat --color=always --line-range :100 {}"
+    fi
+}
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file="/c/code/dotfiles/fd/.fdignore"'

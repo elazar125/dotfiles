@@ -17,7 +17,8 @@ return {
     },
     keys = {
         {key="t", mods="ALT", action=act.ActivateLastTab},
-        {key="t", mods="SHIFT|ALT", action=act.SpawnTab "CurrentPaneDomain"},
+        {key="t", mods="SHIFT|ALT", action=act.SpawnCommandInNewTab { cwd="C:\\code" } },
+        {key="t", mods="SHIFT|CTRL", action=act.SpawnCommandInNewTab { cwd="C:\\code" } },
         {key="h", mods="ALT", action=act.ActivatePaneDirection "Left"},
         {key="l", mods="ALT", action=act.ActivatePaneDirection "Right"},
         {key="k", mods="ALT", action=act.ActivatePaneDirection "Up"},
