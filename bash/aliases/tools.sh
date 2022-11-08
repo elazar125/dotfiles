@@ -31,7 +31,7 @@ cht() {
 
 # https://github.com/gautamkrishnar/socli
 
-alias so='socli'
+# alias so='socli'
 
 # --------------------------------------------------
 # ddgr
@@ -39,7 +39,7 @@ alias so='socli'
 
 # https://github.com/jarun/ddgr
 
-alias dd='ddgr'
+# alias dd='ddgr'
 
 # --------------------------------------------------
 # HTTPie
@@ -47,7 +47,7 @@ alias dd='ddgr'
 
 # https://httpie.org/
 
-alias pi='http'
+# alias pi='http'
 
 # --------------------------------------------------
 # Other tools
