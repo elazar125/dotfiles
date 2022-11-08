@@ -66,4 +66,13 @@ fp() {
         fzf --preview "bat --color=always --line-range :100 {}"
     fi
 }
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file="/c/code/dotfiles/fd/.fdignore"'
+
+fv() {
+    if (($# > 0)); then
+        $EDITOR $(fzf -q "$*" --preview "bat --color=always --line-range :100 {}")
+    else
+        $EDITOR $(fzf --preview "bat --color=always --line-range :100 {}")
+    fi
+}
+
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file="$DOTFILES/fd/.fdignore"'
