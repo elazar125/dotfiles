@@ -1,5 +1,7 @@
+#!/bin/bash
+
 search_path() {
-    echo $PATH | tr ':' '\n' | rg "$*"
+    echo "$PATH" | tr ':' '\n' | rg "$*"
 }
 
 mass_rename() {
@@ -7,5 +9,6 @@ mass_rename() {
 }
 
 edit_search_results() {
-    $EDITOR $(rg $* -c | cut -f1 -d':')
+    # shellcheck disable=SC2046
+    $EDITOR $(rg "$@" -c | cut -f1 -d':' | sed -e "s/\(.*\)/\"\1\"/")
 }

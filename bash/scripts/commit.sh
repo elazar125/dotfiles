@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # ------------------------------------------------------------------------
 # commit: Git commit extended
 # ------------------------------------------------------------------------
@@ -20,9 +21,9 @@
 branch_name=""
 should_push="false"
 message=""
-push_flags=""
-commit_flags=""
-add_flags=""
+push_flags=()
+commit_flags=()
+add_flags=()
 
 while getopts "b:iaAem:pfh" OPTION
 do
@@ -31,16 +32,16 @@ do
             branch_name="$OPTARG"
             ;;
         i)
-            add_flags="$add_flags -p"
+            add_flags=("${add_flags[@]}" -p)
             ;;
         a)
-            add_flags="$add_flags -u"
+            add_flags=("${add_flags[@]}" -u)
             ;;
         A)
-            add_flags="$add_flags -A"
+            add_flags=("${add_flags[@]}" -A)
             ;;
         e)
-            commit_flags="$commit_flags --amend"
+            commit_flags=("${commit_flags[@]}" --amend)
             ;;
         m)
             message="$OPTARG"
@@ -50,7 +51,7 @@ do
             ;;
         f)
             should_push="true"
-            push_flags="$push_flags -f"
+            push_flags=("${push_flags[@]}" -f)
             ;;
         :)
             echo "Error: -${OPTARG} requires an argument."
@@ -76,19 +77,19 @@ done
 
 if [[ -n "$branch_name" ]]; then
     echo "git checkout -b $branch_name"
-    git checkout -b $branch_name
+    git checkout -b "$branch_name"
 fi
-if [[ -n "$add_flags" ]]; then
-    echo "git add $add_flags"
-    git add $add_flags
+if [[ "${#add_flags[@]}" -ne 0 ]]; then
+    echo "git add ${add_flags[*]}"
+    git add "${add_flags[@]}"
 fi
 
 if [[ -n "$message" ]]; then
-    echo "git commit $commit_flags -m \"$message\""
-    git commit $commit_flags -m "$message"
+    echo "git commit ${commit_flags[*]} -m \"$message\""
+    git commit "${commit_flags[@]}" -m "$message"
 else
-    echo "git commit $commit_flags"
-    git commit $commit_flags
+    echo "git commit ${commit_flags[*]}"
+    git commit "${commit_flags[@]}"
 fi
 
 # Get this file's parent directory's full path
@@ -97,5 +98,5 @@ script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if [[ "$should_push" == "true" ]]; then
     echo "pushing branch"
-    $script_dir/push.sh $push_flags
+    "$script_dir/push.sh" "${push_flags[@]}"
 fi

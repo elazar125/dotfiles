@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # --------------------------------------------------
 # VS Code
 # --------------------------------------------------
@@ -22,7 +24,7 @@ alias csi='/c/Program\ Files\ \(x86\)/Microsoft\ Visual\ Studio/2019/Professiona
 alias wttr='curl wttr.in/Winnipeg' # Get Weather
 cht() {
     # Query the cht.sh Cheat Sheet site for some info
-    curl cht.sh/$1
+    curl "cht.sh/$1"
 }
 
 # --------------------------------------------------
@@ -55,7 +57,7 @@ cht() {
 # bat: https://github.com/sharkdp/bat (cat but better)
 
 function bl() {
-    bat $1 --color=always | less -r
+    bat "$1" --color=always | less -r
 }
 
 # fzf
@@ -69,10 +71,10 @@ fp() {
 
 fv() {
     if (($# > 0)); then
-        $EDITOR $(fzf -q "$*" --preview "bat --color=always --line-range :100 {}")
+        $EDITOR "$(fzf -q "$*" --preview "bat --color=always --line-range :100 {}")"
     else
-        $EDITOR $(fzf --preview "bat --color=always --line-range :100 {}")
+        $EDITOR "$(fzf --preview "bat --color=always --line-range :100 {}")"
     fi
 }
 
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file="$DOTFILES/fd/.fdignore"'
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --ignore-file=\"$DOTFILES/fd/.fdignore\""

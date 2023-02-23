@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # --------------------------------------------------
 # Scripts - shortcuts to scripts in ../scripts
 # --------------------------------------------------
@@ -15,20 +17,20 @@ alias get_current_branch='git rev-parse --abbrev-ref HEAD'
 # Switch branches while keeping your current changes
 goto() {
     branch=${1:-$(get_current_branch)}
-    $scripts_dir/rebase.sh -s $branch
+    "$scripts_dir/rebase.sh" -s "$branch"
 }
 __git_complete goto _git_checkout
 
 # Git ReBase ON. Rebase your branch on another. WARNING: Watch out for that force-push part!
 grbon() {
-    $scripts_dir/rebase.sh -s $1 -t $2
+    "$scripts_dir/rebase.sh" -s "$1" -t "$2"
 }
 __git_complete grbon _git_rebase
 
 # PRE-Merge stuff when rebasing on develop. Pass in a branch or run against the current branch.
 prem() {
     branch=${1:-$(get_current_branch)}
-    grbon develop $branch
+    grbon develop "$branch"
 }
 __git_complete prem _git_rebase
 
@@ -36,7 +38,7 @@ __git_complete prem _git_rebase
 pom() {
     branch=${1:-$(get_current_branch)}
     goto develop
-    git branch -d $branch
+    git branch -d "$branch"
 }
 __git_complete pom _git_checkout
 

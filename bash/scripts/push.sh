@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # ------------------------------------------------------------------------
 # push: Git push with defaults
 # ------------------------------------------------------------------------
@@ -56,12 +57,12 @@ if [[ -z "$remote_name" ]]; then
 	remote_name=origin
 fi
 
-if [[ -z "$(git config branch.$branch_name.remote)" ]]; then
+if [[ -z "$(git config branch."$branch_name".remote)" ]]; then
     echo "git push --set-upstream $remote_name $branch_name $flags"
-    git push --set-upstream $remote_name $branch_name $flags
+    git push --set-upstream "$remote_name" "$branch_name" "$flags"
 else
     echo "git push $flags"
-    git push $flags
+    git push "$flags"
 fi
 
 if [[ -n "$push_tags" ]]; then
