@@ -24,4 +24,6 @@ alias h="hx --config \"\$DOTFILES/helix/config.toml\""
 alias nv="SHELL= nvim"
 
 alias edit='$EDITOR "$DOTFILES"'
+alias reload='source "$DOTFILES/bash/.bashrc"'
+alias dtf='cd "$DOTFILES"'
 alias vimrc='$EDITOR "$DOTFILES/vim/.vimrc"'
