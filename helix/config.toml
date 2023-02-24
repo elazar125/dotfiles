@@ -3,6 +3,7 @@ theme = "base16_transparent"
 [editor]
 line-number = "relative"
 color-modes = true
+bufferline = "multiple"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -13,5 +14,10 @@ select = "underline"
 hidden = false
 
 [editor.statusline]
-left = ["mode", "file-name"]
-right = ["file-type", "spinner"]
+left = []
+right = ["mode"]
+mode.normal = "ﮂ "
+mode.insert = "פֿ "
+mode.select = "﬍ "
+# left = ["mode", "file-name"]
+# right = ["file-type", "spinner"]
