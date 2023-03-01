@@ -19,5 +19,20 @@ right = ["mode"]
 mode.normal = "ﮂ "
 mode.insert = "פֿ "
 mode.select = "﬍ "
-# left = ["mode", "file-name"]
-# right = ["file-type", "spinner"]
+
+[editor.lsp]
+display-messages = true
+
+[keys.insert]
+"C-ret" = ["goto_line_end_newline", "insert_newline"]
+"C-S-ret" = ["goto_line_start", "insert_newline", "move_line_up"]
+"C-left" = ["move_prev_word_start", "collapse_selection"]
+"C-right" = ["move_next_word_start", "move_char_right"]
+"C-backspace" = "delete_word_backward"
+"C-del" = "delete_word_forward"
+
+[keys.normal]
+X = "extend_line_above"
+C-d = ["search_selection", "select_mode", "extend_search_next", "normal_mode"]
+L = "extend_char_right"
+H = "extend_char_left"
