@@ -27,6 +27,17 @@ Install-IfNeeded -Command fd -Package fd
 
 refreshenv
 
+$gitUserName = git config --global user.name
+$gitUserEmail = git config --global user.email
+
+if ($null -ine $gitUserName) {
+    git config --global user.name "Ezra Lazar"
+}
+if ($null -ine $gitUserEmail) {
+    git config --global user.email "elazar125@gmail.com"
+}
+git config --global push.default "current"
+
 if (-not (Test-Path -Path "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -PathType Leaf)) {
     iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
         ni "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -Force

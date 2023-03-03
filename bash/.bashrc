@@ -20,7 +20,7 @@ done
 export EDITOR="hx --config $DOTFILES/helix/config.toml"
 # export EDITOR='SHELL= nvim'
 
-alias h="hx --config \"\$DOTFILES/helix/config.toml\""
+alias h='hx --config "$DOTFILES/helix/config.toml"'
 alias nv="SHELL= nvim"
 
 alias edit='$EDITOR "$DOTFILES"'

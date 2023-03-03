@@ -9,8 +9,6 @@ alias_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 scripts_dir="$alias_dir/../scripts"
 
 alias c='$scripts_dir/commit.sh'
-alias p='$scripts_dir/push.sh'
-__git_complete p _git_push
 
 alias get_current_branch='git rev-parse --abbrev-ref HEAD'
 

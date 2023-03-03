@@ -51,7 +51,7 @@ do
             ;;
         f)
             should_push="true"
-            push_flags=("${push_flags[@]}" -f)
+            push_flags=("${push_flags[@]}" --force-with-lease)
             ;;
         :)
             echo "Error: -${OPTARG} requires an argument."
@@ -79,6 +79,7 @@ if [[ -n "$branch_name" ]]; then
     echo "git checkout -b $branch_name"
     git checkout -b "$branch_name"
 fi
+
 if [[ "${#add_flags[@]}" -ne 0 ]]; then
     echo "git add ${add_flags[*]}"
     git add "${add_flags[@]}"
@@ -92,11 +93,7 @@ else
     git commit "${commit_flags[@]}"
 fi
 
-# Get this file's parent directory's full path
-# Allows us to reference other scripts in the same directory
-script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
 if [[ "$should_push" == "true" ]]; then
     echo "pushing branch"
-    "$script_dir/push.sh" "${push_flags[@]}"
+    git push "${push_flags[@]}"
 fi
