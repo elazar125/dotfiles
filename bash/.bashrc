@@ -15,7 +15,7 @@ done
 
 # don't have shellcheck follow path
 # shellcheck source=/dev/null
-. "$DOTFILES/bash/.profile"
+. "$DOTFILES/bash/prompts/multiline.prompt.sh"
 
 export EDITOR="hx --config $DOTFILES/helix/config.toml"
 # export EDITOR='SHELL= nvim'
