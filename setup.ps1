@@ -38,17 +38,17 @@ if ($null -ine $gitUserEmail) {
 }
 git config --global push.default "current"
 
-if (-not (Test-Path -Path "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -PathType Leaf)) {
-    iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
-        ni "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -Force
-}
-
 $folderPath = "C:\code"
 
 "source $folderPath\dotfiles\vim\.vimrc" | Set-Content -Path $env:LOCALAPPDATA/nvim/init.vim
 "source $($folderPath -replace "\\", "/")/dotfiles/bash/.bashrc" | Set-Content -Path $home/.bashrc
 [Environment]::SetEnvironmentVariable('WEZTERM_CONFIG_FILE', "$folderPath\dotfiles\wezterm\.wezterm.lua", 'User')
 [Environment]::SetEnvironmentVariable('BAT_CONFIG_PATH', "$folderPath\dotfiles\bat\config", 'User')
+
+if (-not (Test-Path -Path "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -PathType Leaf)) {
+    iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
+        ni "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -Force
+}
 
 nvim -c ":PlugInstall"
 

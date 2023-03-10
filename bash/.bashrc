@@ -1,12 +1,22 @@
 #!/bin/bash
 
 HISTCONTROL=ignoreboth
-# Get this file's parent directory's full path
-# Then source every file in ./bash/aliases
-bashrc_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null 2>&1 && pwd )"
-export DOTFILES="$bashrc_dir/.."
+export DOTFILES="$( cd "$( dirname $( dirname "${BASH_SOURCE[0]}" ) )" > /dev/null 2>&1 && pwd )"
 
-for alias_file in "$DOTFILES"/bash/aliases/*;
+export BAT_CONFIG_PATH="$DOTFILES\bat\config"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file="$DOTFILES/fd/.fdignore"'
+
+export EDITOR="hx --config $DOTFILES/helix/config.toml"
+# export EDITOR='SHELL= nvim'
+export VISUAL="$EDITOR"
+
+# Set up fzf keybindings
+. "$DOTFILES/fzf/fzf/shell/completion.bash"
+. "$DOTFILES/fzf/fzf/shell/key-bindings.bash"
+. "$DOTFILES/fzf/fzf-git.sh/fzf-git.sh"
+
+# Source every file in ./bash/aliases
+for alias_file in $(fd -t f . "$DOTFILES/bash/aliases/");
 do
     # don't have shellcheck follow path
     # shellcheck source=/dev/null
@@ -16,9 +26,6 @@ done
 # don't have shellcheck follow path
 # shellcheck source=/dev/null
 . "$DOTFILES/bash/prompts/multiline.prompt.sh"
-
-export EDITOR="hx --config $DOTFILES/helix/config.toml"
-# export EDITOR='SHELL= nvim'
 
 alias h='hx --config "$DOTFILES/helix/config.toml"'
 alias nv="SHELL= nvim"
