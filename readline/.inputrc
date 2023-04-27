@@ -1,18 +1,16 @@
 set colored-stats on
 set colored-completion-prefix on
-
-# none, visible or audible
+set show-all-if-ambiguous on
+set completion-ignore-case on
+set completion-map-case on
 set bell-style none
+
+Space:magic-space
 
 # Ask before displaying >40 items
 # Since $WINDIR $PATH var can be in $PATH, this could list
 # all window executables in C:\WINDOWS
 set completion-query-items 40
-
-# Ignore case for the command-line-completion functionality
-# on:  default on a Windows style console
-# off: default on a *nix style console
-set completion-ignore-case on
 
 # disable/enable 8bit input
 set input-meta on
@@ -25,8 +23,6 @@ set visible-stats off
 set mark-directories on
 set mark-symlinked-directories on
 
-# Beep first, show all only upon double-Tab
-set show-all-if-ambiguous off
 
 # MSYSTEM is emacs based
 $if mode=emacs

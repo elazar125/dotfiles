@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HISTCONTROL=ignoreboth
+HISTCONTROL="erasedups:ignoreboth"
 export DOTFILES="$( cd "$( dirname $( dirname "${BASH_SOURCE[0]}" ) )" > /dev/null 2>&1 && pwd )"
 
 export BAT_CONFIG_PATH="$DOTFILES\bat\config"
@@ -9,6 +9,9 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file="$DOTFILES/fd/.fd
 export EDITOR="hx --config $DOTFILES/helix/config.toml"
 # export EDITOR='SHELL= nvim'
 export VISUAL="$EDITOR"
+
+# Set shell options
+. "$DOTFILES/bash/shopt.sh"
 
 # Set up fzf keybindings
 . "$DOTFILES/fzf/fzf/shell/completion.bash"
