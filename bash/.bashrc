@@ -6,6 +6,7 @@ export DOTFILES="$( cd "$( dirname $( dirname "${BASH_SOURCE[0]}" ) )" > /dev/nu
 export BAT_CONFIG_PATH="$DOTFILES\bat\config"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --ignore-file="$DOTFILES/fd/.fdignore"'
 
+export LESS="$LESS -QRF"
 export EDITOR="hx --config $DOTFILES/helix/config.toml"
 # export EDITOR='SHELL= nvim'
 export VISUAL="$EDITOR"
@@ -35,5 +36,5 @@ alias nv="SHELL= nvim"
 
 alias edit='$EDITOR "$DOTFILES"'
 alias reload='source "$DOTFILES/bash/.bashrc"'
-alias dtf='cd "$DOTFILES"'
+alias .f='cd "$DOTFILES"'
 alias vimrc='$EDITOR "$DOTFILES/vim/.vimrc"'

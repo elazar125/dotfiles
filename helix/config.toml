@@ -4,6 +4,7 @@ theme = "base16_transparent"
 line-number = "relative"
 color-modes = true
 bufferline = "multiple"
+gutters = ["diagnostics", "spacer", "line-numbers", "spacer"]
 
 [editor.cursor-shape]
 insert = "bar"
