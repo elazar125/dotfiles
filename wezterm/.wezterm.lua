@@ -1,24 +1,32 @@
 local wezterm = require 'wezterm';
 local act = wezterm.action;
 
+local default_directory = "~";
+local default_program = "bash";
+
+if os.getenv("OS") == "Windows_NT" then
+    default_directory = "C:\\code";
+    default_program = "C:\\Program Files\\Git\\bin\\bash.exe";
+end
+
 return {
     color_scheme = "Paper Color",
     font = wezterm.font("Gabriele Light Ribbon FG"),
     font_size = 14,
-    default_prog = {"C:\\Program Files\\Git\\bin\\bash.exe", "-il"},
-    default_cwd = "C:\\code",
+    default_prog = {default_program, "-il"},
+    default_cwd = default_directory,
     enable_tab_bar = false,
     window_background_opacity = 0.9,
     window_padding = {
-        left = 64,
-        right = 64,
-        top = 64,
-        bottom = 64,
+        left = 48,
+        right = 48,
+        top = 48,
+        bottom = 48,
     },
     keys = {
         {key="t", mods="ALT", action=act.ActivateLastTab},
-        {key="t", mods="SHIFT|ALT", action=act.SpawnCommandInNewTab { cwd="C:\\code" } },
-        {key="t", mods="SHIFT|CTRL", action=act.SpawnCommandInNewTab { cwd="C:\\code" } },
+        {key="t", mods="SHIFT|ALT", action=act.SpawnCommandInNewTab { cwd=default_directory } },
+        {key="t", mods="SHIFT|CTRL", action=act.SpawnCommandInNewTab { cwd=default_directory } },
         {key="h", mods="ALT", action=act.ActivatePaneDirection "Left"},
         {key="l", mods="ALT", action=act.ActivatePaneDirection "Right"},
         {key="k", mods="ALT", action=act.ActivatePaneDirection "Up"},

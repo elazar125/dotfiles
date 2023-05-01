@@ -14,6 +14,8 @@ export VISUAL="$EDITOR"
 # Set shell options
 . "$DOTFILES/bash/shopt.sh"
 
+. "/usr/share/bash-completion/completions/git"
+
 # Set up fzf keybindings
 . "$DOTFILES/fzf/fzf/shell/completion.bash"
 . "$DOTFILES/fzf/fzf/shell/key-bindings.bash"
