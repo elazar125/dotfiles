@@ -2,7 +2,7 @@ local wezterm = require 'wezterm';
 local act = wezterm.action;
 
 local default_directory = "~";
-local default_program = "bash";
+local default_program = "/usr/bin/bash";
 
 if os.getenv("OS") == "Windows_NT" then
     default_directory = "C:\\code";
