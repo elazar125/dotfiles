@@ -1,0 +1,9 @@
+[user]
+	name = Ezra Lazar
+	email = elazar125@gmail.com
+[diff]
+	tool = nvimdiff
+[push]
+	default = current
+[pull]
+	rebase = true
