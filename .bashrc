@@ -7,6 +7,8 @@ export LESS="$LESS -QRF"
 export EDITOR="hx"
 # export EDITOR='nvim'
 export VISUAL="$EDITOR"
+alias h='hx'
+alias nv="nvim"
 
 if [ -d "/usr/share/bash-completion/completions" ] ; then
     . "/usr/share/bash-completion/completions/git"
@@ -20,7 +22,7 @@ fi
 # . "$HOME/dotfiles/fzf/fzf/shell/key-bindings.bash"
 # . "$HOME/dotfiles/fzf/fzf-git.sh/fzf-git.sh"
 
-# Source every file in ./bash/aliases
+# Source every file in .config/bash/aliases
 for alias_file in $(fd -t f . "$HOME/.config/bash/aliases/");
 do
     # don't have shellcheck follow path
@@ -31,9 +33,3 @@ done
 # don't have shellcheck follow path
 # shellcheck source=/dev/null
 . "$HOME/.config/bash/prompts/multiline.prompt.sh"
-
-alias h='hx'
-alias nv="nvim"
-
-alias .cfg='cd "$HOME/.config/"'
-alias config='git --git-dir="$HOME/dotfiles" --work-tree="$HOME"'
