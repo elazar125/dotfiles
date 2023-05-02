@@ -2,14 +2,15 @@
 
 HISTCONTROL="erasedups:ignoreboth"
 
-export BAT_CONFIG_PATH="$HOME/.config/bat/config"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 export LESS="$LESS -QRF"
 export EDITOR="hx"
 # export EDITOR='nvim'
 export VISUAL="$EDITOR"
 
-. "/usr/share/bash-completion/completions/git"
+if [ -d "/usr/share/bash-completion/completions" ] ; then
+    . "/usr/share/bash-completion/completions/git"
+fi
 
 # Set shell options
 . "$HOME/.config/bash/shopt.sh"
@@ -34,9 +35,5 @@ done
 alias h='hx'
 alias nv="nvim"
 
-alias edit='$EDITOR "$HOME"'
-alias reload='source $HOME/.bashrc"'
-alias .f='cd'
-alias vimrc='$EDITOR "$HOME/vim/.vimrc"'
-
+alias .cfg='cd "$HOME/.config/"'
 alias config='git --git-dir="$HOME/dotfiles" --work-tree="$HOME"'

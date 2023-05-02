@@ -32,7 +32,7 @@ highlight DiffText ctermfg=12 ctermbg=5
 highlight NormalFloat ctermbg=NONE
 set fillchars+=vert:\ 
 
-call plug#begin('~/AppData/Local/nvim/plugged')
+call plug#begin()
 
 Plug 'preservim/nerdtree'
 Plug 'itchyny/vim-gitbranch'
@@ -48,7 +48,7 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'kamykn/CCSpellCheck.vim'
 Plug 'APZelos/blamer.nvim'
 " Plug 'chentau/marks.nvim'
-Plug 'neovim/nvim-lspconfig'
+" Plug 'neovim/nvim-lspconfig'
 Plug 'justinmk/vim-sneak'
 " Plug 'NLKNguyen/papercolor-theme'
 
@@ -82,8 +82,6 @@ function! ModeColor()
   elseif l:mode == 'v'
     let l:prefix .= 'Boolean#'
   elseif l:mode == 'V'
-    let l:prefix .= 'Boolean#'
-  elseif l:mode == ''
     let l:prefix .= 'Boolean#'
   elseif l:mode == 't'
     let l:prefix .= 'Constant#'
