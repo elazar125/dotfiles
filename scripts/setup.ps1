@@ -1,4 +1,4 @@
-﻿# Prior to running, use `Set-ExecutionPolicy Bypass -Scope Process`
+# Prior to running, use `Set-ExecutionPolicy Bypass -Scope Process`
 
 if((Get-Command choco -ErrorAction SilentlyContinue) -eq $null){
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
@@ -27,23 +27,17 @@ Install-IfNeeded -Command fd -Package fd
 
 refreshenv
 
-$gitUserName = git config --global user.name
-$gitUserEmail = git config --global user.email
+git clone --bare https://github.com/elazar125/dotfiles.git $env:Home/dotfiles
+git --git-dir="$env:Home/dotfiles" --work-tree="$env:Home" config --local status.showUntrackedFiles no
+# TODO: Change branch after merge
+git --git-dir="$env:Home/dotfiles" --work-tree="$env:Home" checkout linux
 
-if ($null -ine $gitUserName) {
-    git config --global user.name "Ezra Lazar"
-}
-if ($null -ine $gitUserEmail) {
-    git config --global user.email "elazar125@gmail.com"
-}
-git config --global push.default "current"
-
-$folderPath = "C:\code"
-
-"source $folderPath\dotfiles\vim\.vimrc" | Set-Content -Path $env:LOCALAPPDATA/nvim/init.vim
-"source $($folderPath -replace "\\", "/")/dotfiles/bash/.bashrc" | Set-Content -Path $home/.bashrc
-[Environment]::SetEnvironmentVariable('WEZTERM_CONFIG_FILE', "$folderPath\dotfiles\wezterm\.wezterm.lua", 'User')
-[Environment]::SetEnvironmentVariable('BAT_CONFIG_PATH', "$folderPath\dotfiles\bat\config", 'User')
+mkdir $env:AppData\bat
+New-Item -Path $env:AppData\bat\config -ItemType SymbolicLink -Value $env:Home\.config\bat\config
+mkdir $env:AppData\fd
+New-Item -Path $env:AppData\fd\ignore -ItemType SymbolicLink -Value $env:Home\.config\fd\ignore
+mkdir $env:LocalAppData\nvim
+New-Item -Path $env:LocalAppData\nvim\init.vim -ItemType SymbolicLink -Value $env:Home\.config\nvim\init.vim
 
 if (-not (Test-Path -Path "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -PathType Leaf)) {
     iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
@@ -52,8 +46,8 @@ if (-not (Test-Path -Path "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -PathType L
 
 nvim -c ":PlugInstall"
 
-Expand-Archive -Path './font/gabriele.zip' -DestinationPath './font/gabriele'
-foreach ($font in Get-ChildItem -Path './font/gabriele/gabriele_ribbon_fg' -Exclude '*.txt' -File) {
+Expand-Archive -Path '$env:Home/extras/font/gabriele.zip' -DestinationPath '$env:Home/extras/font/gabriele'
+foreach ($font in Get-ChildItem -Path '$env:Home/extras/font/gabriele/gabriele_ribbon_fg' -Exclude '*.txt' -File) {
     $dest = "C:\Windows\Fonts\$font"
     if (Test-Path -Path $dest) {
         "Font $font already installed."
