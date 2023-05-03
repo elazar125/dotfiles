@@ -11,7 +11,7 @@ export EDITOR="hx"
 export VISUAL="$EDITOR"
 alias h='hx'
 
-if [[ "$OS" -eq "Windows_NT" ]]; then
+if [[ "$OS" = "Windows_NT" ]]; then
     alias nv="SHELL= nvim"
     alias tree='cmd //c tree //f'
 else
