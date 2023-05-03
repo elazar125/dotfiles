@@ -2,20 +2,25 @@
 
 HISTCONTROL="erasedups:ignoreboth"
 
+# Set shell options
+. "$HOME/.config/bash/shopt.sh"
+
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 export LESS="$LESS -QRF"
 export EDITOR="hx"
-# export EDITOR='nvim'
 export VISUAL="$EDITOR"
 alias h='hx'
-alias nv="nvim"
 
-if [ -d "/usr/share/bash-completion/completions" ] ; then
-    . "/usr/share/bash-completion/completions/git"
+if [[ "$OS" -eq "Windows_NT" ]]; then
+    alias nv="SHELL= nvim"
+    alias tree='cmd //c tree //f'
+else
+    alias nv="nvim"
+
+    if [ -d "/usr/share/bash-completion/completions" ] ; then
+        . "/usr/share/bash-completion/completions/git"
+    fi
 fi
-
-# Set shell options
-. "$HOME/.config/bash/shopt.sh"
 
 # Set up fzf keybindings
 # . "$HOME/dotfiles/fzf/fzf/shell/completion.bash"
@@ -29,7 +34,3 @@ do
     # shellcheck source=/dev/null
     . "$alias_file"
 done
-
-# don't have shellcheck follow path
-# shellcheck source=/dev/null
-. "$HOME/.config/bash/prompts/multiline.prompt.sh"

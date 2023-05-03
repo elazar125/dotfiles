@@ -38,6 +38,8 @@ mkdir $env:AppData\fd
 New-Item -Path $env:AppData\fd\ignore -ItemType SymbolicLink -Value $env:Home\.config\fd\ignore
 mkdir $env:LocalAppData\nvim
 New-Item -Path $env:LocalAppData\nvim\init.vim -ItemType SymbolicLink -Value $env:Home\.config\nvim\init.vim
+mkdir $env:AppData\helix
+New-Item -Path $env:AppData\helix\config.toml -ItemType SymbolicLink -Value $env:Home\.config\helix\config.toml
 
 if (-not (Test-Path -Path "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -PathType Leaf)) {
     iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
