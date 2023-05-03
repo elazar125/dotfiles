@@ -27,10 +27,7 @@ Install-IfNeeded -Command fd -Package fd
 
 refreshenv
 
-git clone --bare https://github.com/elazar125/dotfiles.git $env:Home/dotfiles
-git --git-dir="$env:Home/dotfiles" --work-tree="$env:Home" config --local status.showUntrackedFiles no
-# TODO: Change branch after merge
-git --git-dir="$env:Home/dotfiles" --work-tree="$env:Home" checkout linux
+git clone --bare --config status.showUntrackedFiles=no https://github.com/elazar125/dotfiles.git $env:Home/dotfiles
 
 mkdir $env:AppData\bat
 New-Item -Path $env:AppData\bat\config -ItemType SymbolicLink -Value $env:Home\.config\bat\config

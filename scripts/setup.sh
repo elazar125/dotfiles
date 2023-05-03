@@ -6,7 +6,7 @@ sudo apt install -y curl build-essential git \
                     fd-find ripgrep bat fzf jq \
                     neovim awesome compton rofi
 
-git clone --bare git@github.com:elazar125/dotfiles.git ~/dotfiles
+git clone --bare --config status.showUntrackedFiles=no git@github.com:elazar125/dotfiles.git ~/dotfiles
 pushd ~/dotfiles
 git checkout
 git submodule init
