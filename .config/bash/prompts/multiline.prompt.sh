@@ -4,6 +4,8 @@
 # PS1 Setup
 # ---------------------------------------------------------
 
+# shellcheck disable=SC2034
+
 font_black="\[\e[38;5;0m\]"
 font_red="\[\e[38;5;1m\]"
 font_green="\[\e[38;5;2m\]"

@@ -5,6 +5,7 @@ HISTCONTROL="erasedups:ignoreboth"
 # Set shell options
 . "$HOME/.config/bash/shopt.sh"
 
+export SHELLCHECK_OPTS="--color -e SC1091 -e SC1017"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 export LESS="$LESS -QRF"
 export EDITOR="hx"
@@ -30,7 +31,6 @@ fi
 # Source every file in .config/bash/aliases
 for alias_file in $(fd -t f . "$HOME/.config/bash/aliases/");
 do
-    # don't have shellcheck follow path
-    # shellcheck source=/dev/null
+    # shellcheck disable=SC1090
     . "$alias_file"
 done

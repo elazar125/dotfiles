@@ -1,3 +1,5 @@
+#!/bin/bash
+
 shopt -s cdspell 2>/dev/null
 shopt -s checkwinsize 2>/dev/null
 shopt -s cmdhist 2>/dev/null

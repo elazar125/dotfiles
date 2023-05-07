@@ -24,6 +24,7 @@ Install-IfNeeded -Command fzf -Package fzf
 Install-IfNeeded -Command rg -Package ripgrep
 Install-IfNeeded -Command jq -Package jq
 Install-IfNeeded -Command fd -Package fd
+Install-IfNeeded -Command fd -Package shellcheck
 
 refreshenv
 

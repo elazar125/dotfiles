@@ -14,8 +14,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 
     if [ -d "$HOME/.config/bash/prompts" ]; then
-        # don't have shellcheck follow path
-        # shellcheck source=/dev/null
         . "$HOME/.config/bash/prompts/multiline.prompt.sh"
     fi
 fi

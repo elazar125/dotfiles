@@ -4,9 +4,6 @@
 # VS Code
 # --------------------------------------------------
 
-# Get this file's directory so that we can find .extensions
-tools_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
 alias save-ext='code --list-extensions | xargs -L 1 echo code --install-extension > "$HOME/extras/vscode/.extensions"'
 alias see-ext='bat "$HOME/extras/vscode/.extensions"'
 alias install-ext='source "$HOME/extras/vscode/.extensions"'
