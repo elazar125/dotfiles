@@ -1,5 +1,3 @@
-# Prior to running, use `Set-ExecutionPolicy Bypass -Scope Process`
-
 if((Get-Command choco -ErrorAction SilentlyContinue) -eq $null){
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
     iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
@@ -24,11 +22,10 @@ Install-IfNeeded -Command fzf -Package fzf
 Install-IfNeeded -Command rg -Package ripgrep
 Install-IfNeeded -Command jq -Package jq
 Install-IfNeeded -Command fd -Package fd
-Install-IfNeeded -Command fd -Package shellcheck
+Install-IfNeeded -Command shellcheck -Package shellcheck
+Install-IfNeeded -Command helix -Package helix
 
 refreshenv
-
-git clone --bare --config status.showUntrackedFiles=no https://github.com/elazar125/dotfiles.git $env:Home/dotfiles
 
 mkdir $env:AppData\bat
 New-Item -Path $env:AppData\bat\config -ItemType SymbolicLink -Value $env:Home\.config\bat\config

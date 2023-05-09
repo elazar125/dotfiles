@@ -4,9 +4,40 @@ Here's my dotfiles collection, all my config files for the various tools I use.
 
 ## Installation
 
-If you want your `~/` to look like this, try one of the setup scripts in `./scripts`, it might even work.
+If you want your `~/` to look like this, try one of the setup scripts in `./setup`, it might even work.
 
-Make sure you clone the repo using `git clone --bare --config status.showUntrackedFiles=no` in `~/`, and one alias in `~/.config/bash/alias/config.sh` expects the directory name for this repo to be `dotfiles` (the scripts do this)
+Before running the scripts, you need to do a few things:
+- Install git
+- Set up GitHub SSH credentials as needed
+- Run the following commands:
+
+```bash
+git clone --bare --config status.showUntrackedFiles=no git@github.com:elazar125/dotfiles.git ~/dotfiles
+alias config='git --git-dir="$HOME/dotfiles" --work-tree="$HOME"'
+config checkout master
+config submodule update --init
+```
+
+You may get errors checking out master, backup the offending files, delete them, then try again.
+
+One alias in `~/.config/bash/alias/config.sh` expects the directory name for this repo to be `dotfiles`, but otherwise you can clone the repo to whatever directory you want.
+
+### Windows
+
+- Run PowerShell as administrator
+- Run `Set-ExecutionPolicy Bypass -Scope Process`
+- Run `~/setup/windows.ps1`
+
+### Ubuntu
+
+- Check the versions of Wezterm & Tailscale line up with your version of Ubuntu in the script
+- Run `~/setup/ubuntu.sh`
+
+### Arch
+
+- Enable multilib: [https://wiki.archlinux.org/title/Official_repositories#multilib](https://wiki.archlinux.org/title/Official_repositories#multilib)
+- Run `~/setup/arch.sh`
+
 
 ## Tools
 
@@ -30,14 +61,7 @@ Linux only tools:
 
 ## Contributing:
 
-This needs to pass:
+Make sure your thing works, ideally on all platforms, and this needs to pass:
 ```bash
-shellcheck ~/.bashrc ~/.config/bash/**/*.sh
+shellcheck ~/.bashrc ~/setup/*.sh ~/.config/bash/**/*.sh
 ```
-
-## Notes
-
-- For Windows, use powershell running as admin, and set your execution policy correctly
-- For Debian/Ubuntu, you may have to tweak the version of Wezterm installed, but otherwise it should work
-- For Arch, maybe a script is coming soon, we'll see how my distro hopping goes
-- For Gentoo, you're probably smart enough to compile it on your own

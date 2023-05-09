@@ -1,6 +1,6 @@
-[submodule "fzf/fzf"]
-	path = fzf/fzf
+[submodule "modules/fzf"]
+	path = modules/fzf
 	url = https://github.com/junegunn/fzf.git
-[submodule "fzf/fzf-git.sh"]
-	path = fzf/fzf-git.sh
+[submodule "modules/fzf-git.sh"]
+	path = modules/fzf-git.sh
 	url = https://github.com/junegunn/fzf-git.sh.git
