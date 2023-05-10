@@ -7,6 +7,10 @@ sudo pacman -S curl git tailscale \
            neovim rofi wezterm \
            shellcheck helix wine
 
+mkdir -p ~/modules
+git clone https://github.com/junegunn/fzf.git ~/modules/fzf
+git clone https://github.com/junegunn/fzf-git.sh.git ~/modules/fzf-git.sh
+
 unzip ~/extras/font/gabriele.zip -ud ~/extras/font
 mkdir -p ~/.local/share/fonts/gabriele
 cp ~/extras/font/gabriele_ribbon_fg/*.ttf ~/.local/share/fonts/gabriele

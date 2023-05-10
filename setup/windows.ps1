@@ -27,6 +27,10 @@ Install-IfNeeded -Command helix -Package helix
 
 refreshenv
 
+mkdir -p $env:Home/modules
+git clone https://github.com/junegunn/fzf.git $env:Home/modules/fzf
+git clone https://github.com/junegunn/fzf-git.sh.git $env:Home/modules/fzf-git.sh
+
 mkdir $env:AppData\bat
 New-Item -Path $env:AppData\bat\config -ItemType SymbolicLink -Value $env:Home\.config\bat\config
 mkdir $env:AppData\fd

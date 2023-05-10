@@ -1,6 +1,0 @@
-[submodule "modules/fzf"]
-	path = modules/fzf
-	url = https://github.com/junegunn/fzf.git
-[submodule "modules/fzf-git.sh"]
-	path = modules/fzf-git.sh
-	url = https://github.com/junegunn/fzf-git.sh.git

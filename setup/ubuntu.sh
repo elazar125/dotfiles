@@ -9,6 +9,10 @@ sudo apt install -y curl build-essential git \
                     neovim awesome compton rofi \
                     shellcheck helix wine32 wine64
 
+mkdir -p ~/modules
+git clone https://github.com/junegunn/fzf.git ~/modules/fzf
+git clone https://github.com/junegunn/fzf-git.sh.git ~/modules/fzf-git.sh
+
 sudo curl -fLo ~/Downloads/wezterm.deb \
     https://github.com/wez/wezterm/releases/download/20221119-145034-49b9839f/wezterm-20221119-145034-49b9839f.Ubuntu22.04.deb
 sudo apt install -y ~/Downloads/wezterm.deb

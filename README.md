@@ -15,7 +15,6 @@ Before running the scripts, you need to do a few things:
 git clone --bare --config status.showUntrackedFiles=no git@github.com:elazar125/dotfiles.git ~/dotfiles
 alias config='git --git-dir="$HOME/dotfiles" --work-tree="$HOME"'
 config checkout master
-config submodule update --init
 ```
 
 You may get errors checking out master, backup the offending files, delete them, then try again.
