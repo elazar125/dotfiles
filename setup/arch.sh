@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo pacman -Syu
 
 sudo pacman -S curl git tailscale \
@@ -5,12 +7,10 @@ sudo pacman -S curl git tailscale \
            neovim rofi wezterm \
            shellcheck helix wine
 
-pushd ~/extras/font/
-unzip gabriele.zip
-mkdir ~/.local/share/fonts/gabriele
-cp gabriele_ribbon_fg/*.ttf ~/.local/share/fonts/gabriele
+unzip ~/extras/font/gabriele.zip -ud ~/extras/font
+mkdir -p ~/.local/share/fonts/gabriele
+cp ~/extras/font/gabriele_ribbon_fg/*.ttf ~/.local/share/fonts/gabriele
 fc-cache
-popd
 
 curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

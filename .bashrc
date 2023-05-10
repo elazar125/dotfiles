@@ -5,9 +5,9 @@ HISTCONTROL="erasedups:ignoreboth"
 # Set shell options
 . "$HOME/.config/bash/shopt.sh"
 
-if [ $(command -v helix) ]; then alias hx='helix'; fi
-if [ $(command -v batcat) ]; then alias bat='batcat'; fi
-if [ $(command -v fdfind) ]; then alias fd='fdfind'; fi
+if [ "$(command -v helix)" ]; then alias hx='helix'; fi
+if [ "$(command -v batcat)" ]; then alias bat='batcat'; fi
+if [ "$(command -v fdfind)" ]; then alias fd='fdfind'; fi
 
 export SHELLCHECK_OPTS="--color -e SC1091 -e SC1017"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
