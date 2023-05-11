@@ -27,7 +27,7 @@ else
     fi
 
     if [ -d "/usr/share/git" ] ; then
-        . "/usr/share/git/git-promt.sh"
+        . "/usr/share/git/git-prompt.sh"
     fi
 fi
 

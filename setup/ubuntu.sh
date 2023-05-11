@@ -7,7 +7,7 @@ sudo apt update
 sudo apt install -y curl build-essential git \
                     fd-find ripgrep bat fzf jq \
                     neovim awesome compton rofi \
-                    shellcheck helix wine32 wine64
+                    shellcheck helix wine32 wine64 exa
 
 mkdir -p ~/modules
 git clone https://github.com/junegunn/fzf.git ~/modules/fzf
@@ -17,7 +17,7 @@ sudo curl -fLo ~/Downloads/wezterm.deb \
     https://github.com/wez/wezterm/releases/download/20221119-145034-49b9839f/wezterm-20221119-145034-49b9839f.Ubuntu22.04.deb
 sudo apt install -y ~/Downloads/wezterm.deb
 
-unzip ~/extras/font/gabriele.zip -ud ~/extras/font
+unzip ~/extras/font/gabriele.zip -d ~/extras/font
 mkdir -p ~/.local/share/fonts/gabriele
 cp ~/extras/font/gabriele_ribbon_fg/*.ttf ~/.local/share/fonts/gabriele
 fc-cache

@@ -9,14 +9,9 @@ alias glv="nv -R -c ':terminal git log --oneline --graph' -c 'set filetype=git'"
 alias gla='gl --all'
 alias gl20='gl -n 20'
 alias gla20='gla -n 20'
-alias lg='gl'
-alias lga='gla'
-alias lg20='gl20'
-alias lga20='gla20'
 
 # Show commit-by-commit changes
 alias glp='git log -p'
-alias lgp='glp'
 
 # ------------------------------------------------------
 # reflog - See the history of a refernce (HEAD by default)
