@@ -50,23 +50,15 @@ do
     git update-index --no-skip-worktree "$item"
 done
 
-old_stash=$(git stash list --pretty="%H")
-git stash
-new_stash=$(git stash list --pretty="%H")
-
-git fetch -p &&
+git fetch &&
 git checkout "$source_branch" &&
-git pull --rebase &&
+git pull &&
 # Skip out of this chain if only one branch was given
 [[ -n "$target_branch" ]] &&
 git checkout "$target_branch" &&
-git pull --rebase &&
+git pull &&
 git rebase -i "$source_branch" &&
 git push --force-with-lease
-
-if [[ "$old_stash" != "$new_stash" ]]; then
-    git stash pop
-fi
 
 for item in $skipped_items
 do

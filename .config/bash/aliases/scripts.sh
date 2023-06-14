@@ -15,7 +15,21 @@ alias get_current_branch='git rev-parse --abbrev-ref HEAD'
 # Switch branches while keeping your current changes
 goto() {
     branch=${1:-$(get_current_branch)}
-    "$scripts_dir/rebase.sh" -s "$branch"
+    skipped_items=$(git ls-files -v -- "$(git rev-parse --show-toplevel)" | rg '^S' | cut -d ' ' -f 2)
+
+    for item in $skipped_items
+    do
+        echo "unskipping $item"
+        git update-index --no-skip-worktree "$item"
+    done
+
+    git checkout "$branch" && git pull
+
+    for item in $skipped_items
+    do
+        echo "skipping $item"
+        git update-index --skip-worktree "$item"
+    done
 }
 __git_complete goto _git_checkout
 
@@ -42,5 +56,5 @@ __git_complete pom _git_checkout
 
 alias master='goto master'
 alias develop='goto develop'
-alias pull='goto'
+alias pull='git pull'
 __git_complete pull _git_checkout

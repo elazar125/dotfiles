@@ -7,7 +7,7 @@
 alias .cfg='cd "$HOME/.config/"'
 alias config='git --git-dir="$HOME/dotfiles" --work-tree="$HOME"'
 
-alias cfgs='config status --short'
+alias cfgs='config status'
 alias cfgd='config diff'
 alias cfga='config add'
 alias cfgrs='config reset'

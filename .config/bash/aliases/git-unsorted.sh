@@ -8,7 +8,7 @@ alias g='echo "branches:" && git branch && echo "status:" && git status --short'
 
 # Tag a commit & push the tag
 gtp() {
-    git tag "$1" && git push "$1"
+    git tag "$1" && git push --tags
 }
 
 # Git Edit Commit, pass in a hash and it'll let you revert whatever part of the commit you shouldn't have made
@@ -17,9 +17,9 @@ gec() {
     git revert --no-commit "$commit_hash" && git reset
 }
 
-alias gf='git fetch -p'
-alias gpl='git pull --rebase'
-alias gr='git rebase -i'
+alias gf='git fetch'
+alias gpl='git pull'
+alias gr='git rebase --interactive'
 alias grc='git rebase --continue'
 alias gra='git rebase --abort'
 __git_complete gr _git_rebase

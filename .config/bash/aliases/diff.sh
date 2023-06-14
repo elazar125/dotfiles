@@ -15,6 +15,6 @@ __git_complete gdc _git_diff
 __git_complete gdcw _git_diff
 __git_complete gds _git_diff
 
-alias gs='git status --short'
+alias gs='git status'
 
 alias gsh='git show'

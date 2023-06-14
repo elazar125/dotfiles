@@ -1,10 +1,21 @@
 [user]
 	name = Ezra Lazar
 	email = elazar125@gmail.com
-[diff]
-	tool = nvimdiff
 [push]
 	default = current
 	autoSetupRemote = true
 [pull]
-	rebase = true
+	rebase = interactive
+[diff]
+	tool = nvimdiff
+[merge]
+	tool = nvimdiff
+	ff = false
+	autostash = true
+[rebase]
+	autostash = true
+[fetch]
+	prune = true
+	pruneTags = true
+[status]
+	short = true
