@@ -25,51 +25,25 @@ cht() {
 }
 
 # --------------------------------------------------
-# SoCLI
+# FZF
 # --------------------------------------------------
 
-# https://github.com/gautamkrishnar/socli
+# https://github.com/junegunn/fzf
 
-# alias so='socli'
+export PATH="$PATH:$HOME/modules/fzf/bin"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden'
+export FZF_DEFAULT_OPTS='-1 --preview "bat --color=always --line-range :100 {}"'
 
-# --------------------------------------------------
-# ddgr
-# --------------------------------------------------
-
-# https://github.com/jarun/ddgr
-
-# alias dd='ddgr'
-
-# --------------------------------------------------
-# HTTPie
-# --------------------------------------------------
-
-# https://httpie.org/
-
-# alias pi='http'
-
-# --------------------------------------------------
-# Other tools
-# --------------------------------------------------
-# bat: https://github.com/sharkdp/bat (cat but better)
-
-function bl() {
-    bat "$1" --color=always | less -r
-}
-
-# fzf
-fp() {
-    if (($# > 0)); then
-        fzf -q "$*" --preview "bat --color=always --line-range :100 {}"
-    else
-        fzf --preview "bat --color=always --line-range :100 {}"
-    fi
-}
+# Set up fzf keybindings
+. "$HOME/modules/fzf/shell/completion.bash"
+. "$HOME/modules/fzf/shell/key-bindings.bash"
+. "$HOME/modules/fzf-git.sh/fzf-git.sh"
 
 fv() {
-    if (($# > 0)); then
-        $EDITOR "$(fzf -q "$*" --preview "bat --color=always --line-range :100 {}")"
-    else
-        $EDITOR "$(fzf --preview "bat --color=always --line-range :100 {}")"
-    fi
+    local file="$(fzf -q "$*")"
+    [ -n "$file" ] && "$EDITOR" "$file"
 }
+
+
+export SHELLCHECK_OPTS="--color -e SC1091 -e SC1017"
+export LESS="$LESS -QRFX"
