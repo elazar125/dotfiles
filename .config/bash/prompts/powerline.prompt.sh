@@ -48,7 +48,7 @@ messages=( \
 # GIT_PS1_SHOWUNTRACKEDFILES=y
 # GIT_PS1_SHOWUPSTREAM="git verbose"
 
-directory="$back_default$font_teal$left_char$font_black$back_tealﱮ \w$font_teal"
+directory="$back_default$font_teal$left_char$font_black$back_teal \w$font_teal"
 time="$font_green$left_char$back_green$font_black\A  $font_green$back_default$right_char"
 prompt="$reset\n\$ "
 message="$back_grey$right_char$font_black \$picked_message"

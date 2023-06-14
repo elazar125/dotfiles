@@ -50,7 +50,7 @@ messages=( \
     "Make today an amazing day!" \
 )
 
-directory="$font_cyan_actually_orangeﱮ \w"
+directory="$font_cyan_actually_orange \w"
 time="$font_red \A"
 message="$reset\n├ $font_light_yellow_actually_purple\$picked_message"
 prompt="$reset\n  "

@@ -17,9 +17,9 @@ hidden = false
 [editor.statusline]
 left = []
 right = ["mode"]
-mode.normal = "ﮂ "
-mode.insert = "פֿ "
-mode.select = "﬍ "
+mode.normal = "󰚄 "
+mode.insert = "󰙏 "
+mode.select = "󰘎 "
 
 [editor.lsp]
 display-messages = true
