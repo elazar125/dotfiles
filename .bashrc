@@ -44,5 +44,5 @@ do
 done
 
 if [ -d "$HOME/.config/bash/prompts" ]; then
-    . "$HOME/.config/bash/prompts/multiline.prompt.sh"
+    . "$HOME/.config/bash/prompts/vimode.prompt.sh"
 fi
