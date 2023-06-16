@@ -4,6 +4,7 @@ HISTCONTROL="erasedups:ignoreboth"
 
 # Set shell options
 . "$HOME/.config/bash/shopt.sh"
+export INPUTRC="$HOME/.config/readline/inputrc"
 
 if [ "$(command -v helix)" ]; then alias hx='helix'; fi
 if [ "$(command -v batcat)" ]; then alias bat='batcat'; fi
