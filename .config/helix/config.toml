@@ -1,4 +1,4 @@
-theme = "base16_transparent"
+theme = "ezra"
 
 [editor]
 line-number = "relative"
@@ -35,5 +35,13 @@ display-messages = true
 [keys.normal]
 X = "extend_line_above"
 C-d = ["search_selection", "select_mode", "extend_search_next", "normal_mode"]
+C = ["select_mode", "goto_line_end", "change_selection"]
+D = ["select_mode", "goto_line_end", "delete_selection"]
+"C-A-up" = "copy_selection_on_prev_line"
+"C-A-k" = "copy_selection_on_prev_line"
+"C-A-down" = "copy_selection_on_next_line"
+"C-A-j" = "copy_selection_on_next_line"
 L = "extend_char_right"
+C-l = ["select_mode", "goto_line_end", "normal_mode"]
 H = "extend_char_left"
+C-h = ["select_mode", "goto_line_start", "normal_mode"]
