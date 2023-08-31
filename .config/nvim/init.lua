@@ -95,6 +95,12 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  'tpope/vim-surround',
+  'tpope/vim-commentary',
+  'mg979/vim-visual-multi',
+  'chaoren/vim-wordmotion',
+  'kamykn/CCSpellCheck.vim',
+
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
   {
@@ -132,25 +138,25 @@ require('lazy').setup({
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
-  {
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-      on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
-        vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
-        vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
-      end,
-    },
-  },
+  -- {
+  --   -- Adds git related signs to the gutter, as well as utilities for managing changes
+  --   'lewis6991/gitsigns.nvim',
+  --   opts = {
+  --     -- See `:help gitsigns.txt`
+  --     signs = {
+  --       add = { text = '+' },
+  --       change = { text = '~' },
+  --       delete = { text = '_' },
+  --       topdelete = { text = '‾' },
+  --       changedelete = { text = '~' },
+  --     },
+  --     on_attach = function(bufnr)
+  --       vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+  --       vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
+  --       vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+  --     end,
+  --   },
+  -- },
 
   {
     -- Theme inspired by Atom
@@ -288,6 +294,16 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+-- Don't show "--Insert--" in the message bar when inserting
+vim.o.showmode = false
+
+-- Don't show number of chars/lines in the bottom in Visual mode
+vim.o.showcmd = false
+
+-- Split in the direction I expect
+vim.o.splitbelow = true
+vim.o.splitright = true
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -295,7 +311,33 @@ vim.o.termguicolors = true
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Clear search highlight
-vim.keymap.set({ 'n' }, '<Esc><Esc>', ':nohls<CR>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Esc><Esc>', ':nohls<CR>', { silent = true })
+
+-- System clipboard bindings
+vim.keymap.set({ 'n', 'v' }, '<Leader>p', '"+p', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Leader>P', '"+P', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Leader>y', '"+y', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Leader>Y', '"+Y', { silent = true })
+
+-- Change/delete without yanking
+vim.keymap.set({ 'n', 'v' }, '<Leader>c', '"_c', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Leader>C', '"_C', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Leader>d', '"_d', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Leader>D', '"_D', { silent = true })
+
+-- Bigger movements on bigger hjkl (rebind J as its default is useful)
+vim.keymap.set({ 'n' }, '<C-j>', 'J', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'H', '^', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'J', '<C-f>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'K', '<C-b>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'L', '$', { silent = true })
+
+-- Make Y work like D and C
+vim.keymap.set({ 'n', 'v' }, 'Y', 'y$', { silent = true })
+
+-- Switch buffers
+vim.keymap.set({ 'n' }, '<BS>', ':b#<CR>', { silent = true })
+vim.keymap.set({ 'n' }, '<leader><BS>', ':bn<CR>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
