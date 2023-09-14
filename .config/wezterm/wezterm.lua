@@ -12,7 +12,7 @@ end
 return {
     color_scheme = "Paper Color",
     font = wezterm.font("Gabriele Light Ribbon FG"),
-    font_size = 14,
+    font_size = 12,
     default_prog = {default_program, "-il"},
     default_cwd = default_directory,
     enable_tab_bar = false,

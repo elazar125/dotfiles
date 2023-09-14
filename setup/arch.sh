@@ -5,7 +5,7 @@ sudo pacman -Syu
 sudo pacman -S curl git tailscale \
            fd ripgrep bat fzf jq \
            neovim rofi wezterm \
-           shellcheck helix wine exa
+           shellcheck helix wine eza
 
 mkdir -p ~/modules
 git clone https://github.com/junegunn/fzf.git ~/modules/fzf

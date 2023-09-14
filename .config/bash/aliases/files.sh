@@ -4,8 +4,8 @@
 # files- aliases for working with the file system
 # ------------------------------------------------------
 
-if [ "$(command -v exa)" ]; then
-  alias ls='exa -Fa --icons --group-directories-first --color="auto"'
+if [ "$(command -v eza)" ]; then
+  alias ls='eza -Fa --icons --group-directories-first --color="auto"'
   alias ll='ls --long --no-user'
   alias lg='ll --git'
 else

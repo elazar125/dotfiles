@@ -7,7 +7,7 @@ sudo apt update
 sudo apt install -y curl build-essential git \
                     fd-find ripgrep bat fzf jq \
                     neovim awesome compton rofi \
-                    shellcheck helix wine32 wine64 exa
+                    shellcheck helix wine32 wine64 eza
 
 mkdir -p ~/modules
 git clone https://github.com/junegunn/fzf.git ~/modules/fzf

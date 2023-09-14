@@ -19,3 +19,5 @@
 	pruneTags = true
 [status]
 	short = true
+[init]
+	defaultBranch = main

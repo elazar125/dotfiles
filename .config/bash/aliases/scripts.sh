@@ -55,6 +55,7 @@ pom() {
 __git_complete pom _git_checkout
 
 alias master='goto master'
+alias main='goto main'
 alias develop='goto develop'
 alias pull='git pull'
 __git_complete pull _git_checkout
