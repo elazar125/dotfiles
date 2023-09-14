@@ -10,7 +10,8 @@ if [ "$(command -v helix)" ]; then alias hx='helix'; fi
 if [ "$(command -v batcat)" ]; then alias bat='batcat'; fi
 if [ "$(command -v fdfind)" ]; then alias fd='fdfind'; fi
 
-export EDITOR="hx"
+# export EDITOR="hx"
+export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export MANPAGER="nvim +Man!"
 export XDG_CONFIG_HOME="$HOME/.config"
