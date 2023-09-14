@@ -39,3 +39,5 @@ done
 if [ -d "$HOME/.config/bash/prompts" ]; then
     . "$HOME/.config/bash/prompts/vimode.prompt.sh"
 fi
+
+krabby random --no-title 1-3

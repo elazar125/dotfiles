@@ -5,7 +5,15 @@ sudo pacman -Syu
 sudo pacman -S curl git tailscale \
            fd ripgrep bat fzf jq \
            neovim rofi wezterm \
-           shellcheck helix wine eza
+           shellcheck helix wine eza \
+           base-devel
+
+git clone https://aur.archlinux.org/paru.git
+pushd paru || exit
+makepkg -si
+popd || exit
+
+paru -S krabby-bin
 
 mkdir -p ~/modules
 git clone https://github.com/junegunn/fzf.git ~/modules/fzf
