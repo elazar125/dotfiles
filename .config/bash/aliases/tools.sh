@@ -12,7 +12,7 @@ alias install-ext='source "$HOME/extras/vscode/.extensions"'
 # C# Interactive
 # --------------------------------------------------
 
-alias csi='/c/Program\ Files\ \(x86\)/Microsoft\ Visual\ Studio/2019/Professional/MSBuild/Current/Bin/Roslyn/csi.exe'
+alias csi='/c/Program\ Files/Microsoft\ Visual\ Studio/2022/Professional/MSBuild/Current/Bin/Roslyn/csi.exe'
 
 # --------------------------------------------------
 # websites
