@@ -1,23 +1,52 @@
+; That's me!
 [user]
 	name = Ezra Lazar
 	email = elazar125@gmail.com
+
 [push]
+; Set sensible push defaults,
+; always push the current branch
+; to a remote branch with the same
+; name, and create that remote if needed
 	default = current
 	autoSetupRemote = true
+
 [pull]
+; I always want to choose what
+; I'm doing when dealing with
+; messy pulls
 	rebase = interactive
+
+; Use neovim as appropriate
 [diff]
 	tool = nvimdiff
+
 [merge]
 	tool = nvimdiff
+
+; I prefer merge commits
 	ff = false
+
+; This lets me pull/merge/rebase
+; without worrying, docs say it's
+; experimental but I haven't had a
+; problem
 	autostash = true
+
 [rebase]
 	autostash = true
+
 [fetch]
+; Clean up old remote branches
+; and tags by default
 	prune = true
 	pruneTags = true
+
 [status]
+; I don't like that whole long message
+; git prints on 'git status', this just
+; shows the important stuff
 	short = true
+
 [init]
 	defaultBranch = main

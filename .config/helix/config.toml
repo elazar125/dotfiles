@@ -1,29 +1,47 @@
+# Set the theme to my custom version of base16_transparent
 theme = "ezra"
 
 [editor]
+# Saves me from counting for motions
 line-number = "relative"
+# Colours are a little more noticable
 color-modes = true
+# I want as little as possible on screen
+# but like seeing open file names when relevant
 bufferline = "multiple"
+# Minimal stuff in the gutter
 gutters = ["diagnostics", "spacer", "line-numbers", "spacer"]
 
+# Make the modes just a little more noticable
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
 
+# I needed this otherwise git files
+# kept showing up in the file picker
 [editor.file-picker]
 hidden = false
 
+# I like a minimal status line,
+# I just want the mode, and just as an icon
 [editor.statusline]
 left = []
 right = ["mode"]
+# Requires NerdFonts (bundled with WezTerm)
 mode.normal = "󰚄 "
 mode.insert = "󰙏 "
 mode.select = "󰘎 "
 
+# Shows when my LSP bugs out, some LSPs (OmniSharp)
+# seem a little flaky
 [editor.lsp]
 display-messages = true
 
+# I want a few ways of navigating faster
+# in insert mode. It's not "the Helix way",
+# but is way faster than switching to normal
+# mode for some of my most frequent motions
 [keys.insert]
 "C-ret" = ["goto_line_end_newline", "insert_newline"]
 "C-S-ret" = ["goto_line_start", "insert_newline", "move_line_up"]
@@ -33,15 +51,18 @@ display-messages = true
 "C-del" = "delete_word_forward"
 
 [keys.normal]
+# Just a few things that make more sense to me
 X = "extend_line_above"
-C-d = ["search_selection", "select_mode", "extend_search_next", "normal_mode"]
-C = ["select_mode", "goto_line_end", "change_selection"]
-D = ["select_mode", "goto_line_end", "delete_selection"]
-"C-A-up" = "copy_selection_on_prev_line"
-"C-A-k" = "copy_selection_on_prev_line"
-"C-A-down" = "copy_selection_on_next_line"
-"C-A-j" = "copy_selection_on_next_line"
 L = "extend_char_right"
 C-l = ["select_mode", "goto_line_end", "normal_mode"]
 H = "extend_char_left"
 C-h = ["select_mode", "goto_line_start", "normal_mode"]
+# Vim-like editing until end of line, v-t-enter annoyed me
+C = ["select_mode", "goto_line_end", "change_selection"]
+D = ["select_mode", "goto_line_end", "delete_selection"]
+# A few holdovers from VS Code
+C-d = ["search_selection", "select_mode", "extend_search_next", "normal_mode"]
+"C-A-up" = "copy_selection_on_prev_line"
+"C-A-k" = "copy_selection_on_prev_line"
+"C-A-down" = "copy_selection_on_next_line"
+"C-A-j" = "copy_selection_on_next_line"

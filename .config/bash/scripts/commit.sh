@@ -59,7 +59,7 @@ do
             ;;
         ?)
             echo "
-commit: git commit with Jira extentions.
+commit: git commit with built-in branching & pushing
     -b    Create a new branch with the given name, and commit to it
     -a    Add all tracked changes
     -A    Add all changes (including untracked)

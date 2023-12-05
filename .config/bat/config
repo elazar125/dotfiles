@@ -1,5 +1,10 @@
---theme=ansi
+# Use the terminal's theme
+--theme=base16
+
+# Show line number and git changes
+--style "numbers,changes"
+
+# A few custom syntax highlights
 --map-syntax "*.csproj:XML"
 --map-syntax "*.config:XML"
 --map-syntax "*.vb:ASP"
---style "numbers,changes"

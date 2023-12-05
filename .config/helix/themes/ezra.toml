@@ -1,3 +1,5 @@
+# I like base16_transparent, using my terminal colours,
+# but the line numbers were way too bright & distracting
 inherits = "base16_transparent"
 
 "ui.linenr" = { fg = "gray" }

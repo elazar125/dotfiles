@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm';
 local act = wezterm.action;
 
+-- Use a bit of logic here to change up how I do things
+-- on Windows & Linux
 local default_directory = "~";
 local default_program = "/usr/bin/bash";
 
@@ -10,13 +12,19 @@ if os.getenv("OS") == "Windows_NT" then
 end
 
 return {
+    -- Use the right bash & directory per OS
+    default_prog = {default_program, "-il"},
+    default_cwd = default_directory,
+    -- Basic colours and font stuff
     color_scheme = "Paper Color",
     font = wezterm.font("Gabriele Light Ribbon FG"),
     font_size = 12,
-    default_prog = {default_program, "-il"},
-    default_cwd = default_directory,
+    -- Hide the UI, I just want the terminal itself
     enable_tab_bar = false,
+    -- A bit of transparency to see my neat desktop backgrounds
     window_background_opacity = 0.9,
+    -- I like having my terminal full-screen but with the
+    -- contents off of the edges by a bit
     window_padding = {
         left = 48,
         right = 48,
@@ -24,22 +32,19 @@ return {
         bottom = 48,
     },
     keys = {
-        {key="t", mods="ALT", action=act.ActivateLastTab},
-        {key="t", mods="SHIFT|ALT", action=act.SpawnCommandInNewTab { cwd=default_directory } },
-        {key="t", mods="SHIFT|CTRL", action=act.SpawnCommandInNewTab { cwd=default_directory } },
+        -- Add vim-ish directions for moving between splits
         {key="h", mods="ALT", action=act.ActivatePaneDirection "Left"},
         {key="l", mods="ALT", action=act.ActivatePaneDirection "Right"},
         {key="k", mods="ALT", action=act.ActivatePaneDirection "Up"},
         {key="j", mods="ALT", action=act.ActivatePaneDirection "Down"},
+        -- Also vim-ish directions for creating new splits
         {key="l", mods="ALT|SHIFT", action=act.SplitHorizontal {domain="CurrentPaneDomain"}},
         {key="j", mods="ALT|SHIFT", action=act.SplitVertical {domain="CurrentPaneDomain"}},
-        {key="v", mods="ALT", action=act.PasteFrom "Clipboard"},
-        {key="c", mods="ALT", action=act.CopyTo "Clipboard"},
-        {key="w", mods="ALT", action=act.CloseCurrentPane {confirm=false}},
-        {key="w", mods="ALT|SHIFT", action=act.CloseCurrentTab {confirm=false}},
+        -- Add a resize "mode", there is native resizing but I find this easier
         {key="r", mods="ALT", action=act.ActivateKeyTable {name="resize_pane",one_shot=false,until_unknown=true,replace_current=false}},
     },
     key_tables = {
+        -- Resize "mode", use h/j/k/l or arrows, no chords required
         resize_pane = {
             {key="LeftArrow", action=act.AdjustPaneSize {"Left", 1}},
             {key="h", action=act.AdjustPaneSize {"Left", 1}},
@@ -59,6 +64,7 @@ return {
         },
     },
     color_schemes = {
+        -- I mostly stole this colour scheme from somewhere, I don't remember where
         ["Paper Color"] = {
             -- The default text color
             foreground = "silver",

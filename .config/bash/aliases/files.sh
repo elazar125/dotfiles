@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ------------------------------------------------------
-# files- aliases for working with the file system
+# files - aliases for working with the file system
 # ------------------------------------------------------
 
 if [ "$(command -v eza)" ]; then
