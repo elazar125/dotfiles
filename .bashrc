@@ -12,11 +12,12 @@ if [ "$(command -v fdfind)" ]; then alias fd='fdfind'; fi
 
 export EDITOR="hx"
 export VISUAL="$EDITOR"
+export MANPAGER="nvim +Man!"
+export XDG_CONFIG_HOME="$HOME/.config"
 alias h='hx'
 
 if [[ "$OS" = "Windows_NT" ]]; then
     alias nv="SHELL= nvim"
-    alias tree='cmd //c tree //f'
 else
     alias nv="nvim"
 fi

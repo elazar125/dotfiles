@@ -6,8 +6,8 @@
 
 if [ "$(command -v eza)" ]; then
   alias ls='eza -Fa --icons --group-directories-first --color="auto"'
-  alias ll='ls --long --no-user'
-  alias lg='ll --git'
+  alias ll='ls --git --long --no-user'
+  alias tree='ll --tree'
 else
   alias ls='ls -FAbc --group-directories-first --color'
   alias ll='ls -hog'
