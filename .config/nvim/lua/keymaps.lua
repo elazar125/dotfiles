@@ -64,7 +64,7 @@ end, { desc = '[/] Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<Leader>f', function()
   -- Use fd instead of the default as it picks up my ~/.config/fd/ignore (ignores .git/)
-  require('telescope.builtin').find_files({ find_command = { 'fd' }, hidden = true })
+  require('telescope.builtin').find_files({ find_command = { 'fd', '--type', 'f' }, hidden = true })
 end, { desc = 'Search [F]iles' })
 
 vim.keymap.set('n', '<Leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
