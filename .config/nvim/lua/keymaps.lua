@@ -1,5 +1,3 @@
-local M = {}
-
 -- [[ Basic Keymaps ]]
 
 -- See `:help vim.keymap.set()`
@@ -24,9 +22,12 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>D', '"_D', { desc = '[D]elete to end of li
 vim.keymap.set({ 'n' }, '<C-j>', 'J', { desc = '[J]oin lines', silent = true })
 vim.keymap.set({ 'n' }, '<C-k>', 'K', { desc = '[K]eyword program', silent = true })
 vim.keymap.set({ 'n', 'v' }, 'H', '^', { desc = 'Go to first character (bigger h)', silent = true })
-vim.keymap.set({ 'n', 'v' }, 'J', '<C-f>', { desc = 'Page down (bigger j)', silent = true })
-vim.keymap.set({ 'n', 'v' }, 'K', '<C-b>', { desc = 'Page up (bigger k)', silent = true })
+vim.keymap.set({ 'n' }, 'J', '<C-f>', { desc = 'Page down (bigger j)', silent = true })
+vim.keymap.set({ 'n' }, 'K', '<C-b>', { desc = 'Page up (bigger k)', silent = true })
 vim.keymap.set({ 'n', 'v' }, 'L', '$', { desc = 'Go to end (bigger l)', silent = true })
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 -- Make Y work like D and C
 vim.keymap.set({ 'n', 'v' }, 'Y', 'y$', { desc = '[Y]ank until end of line', silent = true })
@@ -77,46 +78,42 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
-function M.lsp_on_attach(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
+-- LSP Keymaps
+-- Load these only when the LSP is active
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(event)
+    local nmap = function(keys, func, desc)
+      if desc then
+        desc = 'LSP: ' .. desc
+      end
+
+      vim.keymap.set('n', keys, func, { buffer = event.buf, desc = desc })
     end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    nmap('<Leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+    nmap('<Leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+    nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+    nmap('<Leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+
+    -- See `:help K` for why this keymap
+    nmap('<C-k>', vim.lsp.buf.hover, 'Hover Documentation')
+
+    -- Lesser used LSP functionality
+    nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+    nmap('<Leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+    nmap('<Leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+    nmap('<Leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+    nmap('<Leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+    nmap('<Leader>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, '[W]orkspace [L]ist Folders')
+
+    -- Create a command `:Format` local to the LSP buffer
+    vim.api.nvim_buf_create_user_command(event.buf, 'Format', function(_)
+      vim.lsp.buf.format()
+    end, { desc = 'Format current buffer with LSP' })
   end
-
-  nmap('<Leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<Leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('<Leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-
-  -- See `:help K` for why this keymap
-  nmap('<C-k>', vim.lsp.buf.hover, 'Hover Documentation')
-
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<Leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<Leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-  nmap('<Leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<Leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<Leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-end
-
-return M
+})

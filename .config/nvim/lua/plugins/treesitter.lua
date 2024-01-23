@@ -1,6 +1,4 @@
-local M = {}
-
-M.settings = {
+return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
@@ -8,14 +6,10 @@ M.settings = {
   },
   build = ':TSUpdate',
   event = { 'BufReadPre', 'BufNewFile' },
-}
-
-function M.setup()
-  -- [[ Configure Treesitter ]]
-  -- See `:help nvim-treesitter`
-  require('nvim-treesitter.configs').setup {
+  main = 'nvim-treesitter.configs',
+  opts = {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'go', 'lua', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+    ensure_installed = { 'bash', 'css', 'html', 'go', 'lua', 'rust', 'sql', 'typescript', 'vim', 'regex', 'markdown', 'markdown_inline' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -80,6 +74,4 @@ function M.setup()
       },
     },
   }
-end
-
-return M
+}

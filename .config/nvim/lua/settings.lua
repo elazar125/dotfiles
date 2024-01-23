@@ -15,6 +15,9 @@ vim.o.mouse = 'a'
 -- Wordwrap
 vim.o.wrap = false
 
+-- Spell check (modern neovim skips spell-checking code by default)
+vim.o.spell = true
+
 -- Enable break indent
 vim.o.breakindent = true
 
@@ -33,7 +36,8 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+-- vim.opt.shortmess:append('c')
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
