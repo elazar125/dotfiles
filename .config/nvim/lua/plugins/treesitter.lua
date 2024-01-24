@@ -11,23 +11,19 @@ return {
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { 'bash', 'css', 'html', 'go', 'lua', 'rust', 'sql', 'typescript', 'vim', 'regex', 'markdown', 'markdown_inline' },
 
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+    -- Autoinstall languages that are not installed
     auto_install = false,
 
     ignore_install = {},
     modules = {},
     sync_install = false,
 
-    highlight = { enable = true },
-    indent = { enable = true },
-    incremental_selection = {
+    highlight = {
       enable = true,
-      keymaps = {
-        init_selection = '<c-space>',
-        node_incremental = '<c-space>',
-        scope_incremental = '<c-s>',
-        node_decremental = '<M-space>',
-      },
+      additional_vim_regex_highlighting = { 'markdown' },
+    },
+    indent = {
+      enable = true,
     },
     textobjects = {
       select = {
@@ -41,26 +37,37 @@ return {
           ['if'] = '@function.inner',
           ['ac'] = '@class.outer',
           ['ic'] = '@class.inner',
+          ['i?'] = '@conditional.inner',
+          ['a?'] = '@conditional.outer',
+          ['il'] = '@loop.inner',
+          ['al'] = '@loop.outer',
+          ['a/'] = '@comment.outer',
         },
       },
       move = {
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
+          [']f'] = '@function.outer',
+          [']c'] = '@class.outer',
+          [']?'] = '@conditional.outer',
+          [']l'] = '@loop.outer',
         },
         goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
+          [']F'] = '@function.outer',
+          [']C'] = '@class.outer',
+          [']L'] = '@loop.outer',
         },
         goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
+          ['[f'] = '@function.outer',
+          ['[c'] = '@class.outer',
+          ['[?'] = '@conditional.outer',
+          ['[l'] = '@loop.outer',
         },
         goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
+          ['[F'] = '@function.outer',
+          ['[C'] = '@class.outer',
+          ['[L'] = '@loop.outer',
         },
       },
       swap = {
