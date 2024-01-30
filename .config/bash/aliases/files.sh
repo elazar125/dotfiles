@@ -13,9 +13,12 @@ else
   alias ll='ls -hog'
 fi
 
-mkcd() {
+# function & alias so `alias` provides a description
+# of the function
+make_dir_and_cd() {
   mkdir "$1" && cd "$1" || return
 }
+alias mkcd='make_dir_and_cd'
 
 alias d='cd'
 alias ..='cd ..'

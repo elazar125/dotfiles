@@ -11,15 +11,15 @@ font_red="\[\e[38;5;1m\]"
 font_green="\[\e[38;5;2m\]"
 font_yellow="\[\e[38;5;3m\]"
 font_blue="\[\e[38;5;4m\]"
-font_purple_actually_grey="\[\e[38;5;5m\]"
-font_cyan_actually_orange="\[\e[38;5;6m\]"
+font_purple="\[\e[38;5;5m\]"
+font_cyan="\[\e[38;5;6m\]"
 font_white="\[\e[38;5;7m\]"
 font_grey="\[\e[38;5;8m\]"
-font_light_red_actually_green="\[\e[38;5;9m\]"
-font_light_green_actually_lime="\[\e[38;5;10m\]"
-font_light_yellow_actually_purple="\[\e[38;5;11m\]"
-font_light_blue_actually_orange="\[\e[38;5;12m\]"
-font_light_purple_actually_pink="\[\e[38;5;13m\]"
+font_light_red="\[\e[38;5;9m\]"
+font_light_green="\[\e[38;5;10m\]"
+font_light_yellow="\[\e[38;5;11m\]"
+font_light_blue="\[\e[38;5;12m\]"
+font_light_purple="\[\e[38;5;13m\]"
 font_light_cyan="\[\e[38;5;14m\]"
 font_light_grey="\[\e[38;5;15m\]"
 reset="\[\e[0m\]"
@@ -50,14 +50,14 @@ messages=( \
     "Make today an amazing day!" \
 )
 
-directory="$font_cyan_actually_orange \w"
+directory="$font_cyan \w"
 time="$font_red \A"
-message="$reset\n├ $font_light_yellow_actually_purple\$picked_message"
+message="$reset\n├ $font_yellow\$picked_message"
 prompt="$reset\n  "
 
 left="$reset\n╭ $time $directory"
 right="$message$prompt"
-format=" $font_light_blue_actually_orange %s"
+format=" $font_light_yellow %s"
 
 PROMPT_COMMAND=' \
     picked_message="${messages[$RANDOM % ${#messages[@]}]}"; \

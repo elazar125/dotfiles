@@ -1,61 +1,51 @@
 #!/bin/bash
 
 # --------------------------------------------------
-# Scripts - shortcuts to scripts in ../scripts
+# Scripts - shortcuts to scripts in ~/.config/bash/scripts
 # --------------------------------------------------
 
-# Get this file's directory so we can find all the scripts
-alias_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-scripts_dir="$alias_dir/../scripts"
+scripts_dir="$XDG_CONFIG_HOME/bash/scripts"
 
 alias c='$scripts_dir/commit.sh'
 
-alias get_current_branch='git rev-parse --abbrev-ref HEAD'
+# One-liners
+# Named and aliased so running `alias` acts like documentation
 
-# Switch branches while keeping your current changes
-goto() {
-    branch=${1:-$(get_current_branch)}
-    skipped_items=$(git ls-files -v -- "$(git rev-parse --show-toplevel)" | rg '^S' | cut -d ' ' -f 2)
-
-    for item in $skipped_items
-    do
-        echo "unskipping $item"
-        git update-index --no-skip-worktree "$item"
-    done
-
-    git checkout "$branch" && git pull
-
-    for item in $skipped_items
-    do
-        echo "skipping $item"
-        git update-index --skip-worktree "$item"
-    done
+find_file_and_edit() {
+    local file
+    file="$(fzf -q "$*")"
+    [ -n "$file" ] && "$EDITOR" "$file"
 }
-__git_complete goto _git_checkout
+alias fv='find_file_and_edit'
 
-# Git ReBase ON. Rebase your branch on another. WARNING: Watch out for that force-push part!
-grbon() {
-    "$scripts_dir/rebase.sh" -s "$1" -t "$2"
+search_path() {
+    echo "$PATH" | tr ':' '\n' | rg "$*"
 }
-__git_complete grbon _git_rebase
+alias sp='search_path'
 
-# PRE-Merge stuff when rebasing on develop. Pass in a branch or run against the current branch.
-prem() {
-    branch=${1:-$(get_current_branch)}
-    grbon develop "$branch"
+mass_rename() {
+    fd --type f | xargs -I % sh -c "mv % \$(echo % | sed 's/$1/$2/')"
 }
-__git_complete prem _git_rebase
+alias mmv='mass_rename'
 
-# POst-Merge stuff after merging to develop, pull develop and delete the branch. Pass in a branch or run against the current branch.
-pom() {
-    branch=${1:-$(get_current_branch)}
-    goto develop
-    git branch -d "$branch"
+edit_search_results() {
+    # shellcheck disable=SC2046
+    # We can't wrap the $() in quotes, it'll screw up the file name
+    "$EDITOR" $(rg "$@" -c | cut -f 1 -d ':')
 }
-__git_complete pom _git_checkout
+alias esr='edit_search_results'
 
-alias master='goto master'
-alias main='goto main'
-alias develop='goto develop'
-alias pull='git pull'
-__git_complete pull _git_checkout
+# TODO: this is still a work in progress
+gfv() {
+    local file
+    file=$(rg --color=always --line-number --no-heading --smart-case "${*:-}" |
+        fzf \
+            --ansi \
+            --multi \
+            --color "h1:-1:underline,hl+:-1:underline:reverse" \
+            --delimiter : \
+            --preview 'bat --color=always {1} --highlight-line {2}' \
+            --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' |
+        cut -f 1 -d ':')
+    [ -n "$file" ] && "$EDITOR" "$file"
+}
