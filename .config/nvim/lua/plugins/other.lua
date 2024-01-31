@@ -11,15 +11,18 @@ return {
   -- Use ctrl+n to select the next instance of text
   { 'mg979/vim-visual-multi', keys = '<C-n>' },
 
-  -- { 'chaoren/vim-wordmotion', event = { 'BufReadPre', 'BufNewFile' } },
-  -- 'kamykn/CCSpellCheck.vim', -- TODO: This isn't working
+  -- Move in sub-words (camelCase snake_case etc.)
+  { 'chaoren/vim-wordmotion', keys = { '\\' } },
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {}, event = 'VeryLazy' },
+  -- 'kamykn/CCSpellCheck.vim', -- TODO: This isn't working
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {}, keys = 'gc' },
 
   -- Add fun icons
   'nvim-tree/nvim-web-devicons',
+
+  -- Show inline git blame
+  -- Not lazy loaded, something about it causes issues
+  'tveskag/nvim-blame-line',
 }

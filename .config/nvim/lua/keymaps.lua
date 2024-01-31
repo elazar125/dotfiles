@@ -18,6 +18,9 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>C', '"_C', { desc = '[C]hange to end of li
 vim.keymap.set({ 'n', 'v' }, '<Leader>d', '"_d', { desc = '[D]elete without yanking', silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Leader>D', '"_D', { desc = '[D]elete to end of line without yanking', silent = true })
 
+vim.keymap.set({ 'n', 'v' }, 'S', 'H', { desc = 'Move cursor to [S]creen top', silent = true })
+vim.keymap.set({ 'n', 'v' }, 's', 'L', { desc = 'Move cursor to [s]creen bottom', silent = true })
+
 -- Bigger movements on bigger hjkl (rebind J and K as their defaults are useful)
 vim.keymap.set({ 'n' }, '<C-j>', 'J', { desc = '[J]oin lines', silent = true })
 vim.keymap.set({ 'n' }, '<C-k>', 'K', { desc = '[K]eyword program', silent = true })
@@ -52,6 +55,12 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>l', '<C-w>l', { desc = 'Switch windows rig
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Enable tveskag/nvim-blame-line
+vim.keymap.set({ 'n', 'v' }, '<Leader>gb', '<CMD>ToggleBlameLine<CR>', { desc = 'Show inline [g]it [b]lame', silent = true })
+
+-- Not a normal keymap, but set a prefix for chaoren/vim-wordmotion
+vim.g.wordmotion_prefix = '\\'
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<Leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
