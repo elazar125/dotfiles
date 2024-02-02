@@ -30,24 +30,9 @@ require('lazy').setup({
 
 require("settings")
 require("keymaps")
+require("autocmds")
 
-require('onedark').load()
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
-vim.api.nvim_create_autocmd({"BufNewFile", "BufEnter", "BufWinEnter"}, {
-  pattern = "*.md",
-  command = "setlocal wrap",
-})
+vim.cmd 'colorscheme base16-atelier-forest'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

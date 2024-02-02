@@ -19,6 +19,18 @@ local mode_map = {
   ['MORE'] = 'M',
 }
 
+local colours = require('colours')
+
+local colours = {
+  command = { a = { fg = colours.gui01, bg = colours.gui08 } },
+  insert = { a = { fg = colours.gui01, bg = colours.gui0B } },
+  replace = { a = { fg = colours.gui01, bg = colours.gui0E } },
+  terminal = { a = { fg = colours.gui01, bg = colours.gui09 } },
+  visual = { a = { fg = colours.gui01, bg = colours.gui0F } },
+  inactive = { c = { fg = colours.gui05, bg = colours.gui00 } },
+  normal = { a = { fg = colours.gui01, bg = colours.gui0D }, c = { fg = colours.gui05, bg = colours.gui01 } }
+}
+
 return {
   -- Set lualine as statusline
   'nvim-lualine/lualine.nvim',
@@ -26,9 +38,9 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = 'onedark',
+      theme = colours,
       component_separators = '',
-      section_separators = { left = '', right = ''},
+      section_separators = { left = '', right = ''},
     },
     sections = {
       lualine_a = {},

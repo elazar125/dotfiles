@@ -52,7 +52,7 @@ messages=( \
 
 directory="$font_cyan \w"
 time="$font_red \A"
-message="$reset\n├ $font_yellow\$picked_message"
+message="$reset\n├ $font_green\$picked_message"
 prompt="$reset\n  "
 
 left="$reset\n╭ $time $directory"
