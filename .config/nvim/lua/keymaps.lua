@@ -77,6 +77,13 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 
+-- Debugger keymaps
+vim.keymap.set('n', '<F5>', '<CMD>DapContinue<CR>', { desc = 'Debug: Start/Continue' })
+vim.keymap.set('n', '<F1>', '<CMD>DapStepInto<CR>', { desc = 'Debug: Step Into' })
+vim.keymap.set('n', '<F2>', '<CMD>DapStepOver<CR>', { desc = 'Debug: Step Over' })
+vim.keymap.set('n', '<F3>', '<CMD>DapStepOut<CR>', { desc = 'Debug: Step Out' })
+vim.keymap.set('n', '<F9>', '<CMD>DapToggleBreakpoint<CR>', { desc = 'Debug: Toggle Breakpoint' })
+
 -- LSP Keymaps
 -- Load these only when the LSP is active
 vim.api.nvim_create_autocmd('LspAttach', {
