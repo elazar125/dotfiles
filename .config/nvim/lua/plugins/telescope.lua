@@ -18,7 +18,27 @@ return {
     },
   },
   config = function ()
-    pcall(require('telescope').load_extension, 'fzf')
+    require('telescope').setup({
+      defaults = {
+        mappings = {
+          i = {
+            ["<esc>"] = require("telescope.actions").close,
+          },
+        },
+      },
+      pickers = {
+        -- Use fd instead of the default as it gets all files (including hidden) except .git/
+        find_files = {
+          find_command = { "fd", "--type", "f" },
+          hidden = true,
+        },
+        -- Use a theme that only displays file contents once, in order
+        current_buffer_fuzzy_find = require('telescope.themes').get_dropdown {
+          previewer = false,
+        },
+      },
+    })
+    require('telescope').load_extension('fzf')
   end,
   cmd = 'Telescope',
 }
