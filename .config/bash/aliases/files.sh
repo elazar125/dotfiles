@@ -5,7 +5,7 @@
 # ------------------------------------------------------
 
 if [ "$(command -v eza)" ]; then
-  alias ls='eza -Fa --icons --group-directories-first --color="auto"'
+  alias ls='eza -F=always -a --icons --group-directories-first --color="auto"'
   alias ll='ls --git --long --no-user'
   alias tree='ll --tree'
 else
