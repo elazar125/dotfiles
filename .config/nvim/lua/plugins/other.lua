@@ -22,7 +22,5 @@ return {
   -- Add fun icons
   'nvim-tree/nvim-web-devicons',
 
-  -- Show inline git blame
-  -- Not lazy loaded, something about it causes issues
-  'tveskag/nvim-blame-line',
+  { 'APZelos/blamer.nvim', cmd = 'BlamerToggle' },
 }

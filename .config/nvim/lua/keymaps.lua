@@ -56,8 +56,8 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>l', '<C-w>l', { desc = 'Switch windows rig
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Enable tveskag/nvim-blame-line
-vim.keymap.set({ 'n', 'v' }, '<Leader>gb', '<CMD>ToggleBlameLine<CR>', { desc = 'Show inline [g]it [b]lame', silent = true })
+-- Enable APZelos/blamer.nvim
+vim.keymap.set({ 'n', 'v' }, '<Leader>gb', '<CMD>BlamerToggle<CR>', { desc = 'Show inline [g]it [b]lame', silent = true })
 
 -- Not a normal keymap, but set a prefix for chaoren/vim-wordmotion
 vim.g.wordmotion_prefix = '\\'
