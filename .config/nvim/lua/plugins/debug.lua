@@ -19,42 +19,12 @@ return {
   },
   cmd = { 'DapToggleBreakpoint', 'DapContinue' },
   config = function()
-    local dap = require 'dap'
-    local dapui = require 'dapui'
+    require('dapui').setup()
 
-    -- Basic debugging keymaps, feel free to change to your liking!
-    vim.keymap.set('n', '<F10>', function()
-      dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-    end, { desc = 'Debug: Set Breakpoint' })
-
-    -- Dap UI setup
-    -- For more information, see |:help nvim-dap-ui|
-    dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-      controls = {
-        icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
-        },
-      },
-    }
-
-    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
-
-    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    -- Set dapui to run when dap runs
+    require('dap').listeners.after.event_initialized['require("dapui")_config'] = require('dapui').open
+    require('dap').listeners.before.event_terminated['require("dapui")_config'] = require('dapui').close
+    require('dap').listeners.before.event_exited['require("dapui")_config'] = require('dapui').close
 
     -- Install golang specific config
     require('dap-go').setup()

@@ -83,6 +83,12 @@ vim.keymap.set('n', '<F1>', '<CMD>DapStepInto<CR>', { desc = 'Debug: Step Into' 
 vim.keymap.set('n', '<F2>', '<CMD>DapStepOver<CR>', { desc = 'Debug: Step Over' })
 vim.keymap.set('n', '<F3>', '<CMD>DapStepOut<CR>', { desc = 'Debug: Step Out' })
 vim.keymap.set('n', '<F9>', '<CMD>DapToggleBreakpoint<CR>', { desc = 'Debug: Toggle Breakpoint' })
+vim.keymap.set('n', '<F10>', function()
+  require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+end, { desc = 'Debug: Set Breakpoint' })
+-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+vim.keymap.set('n', '<F7>', '<CMD>lua require("dapui").toggle<CR>', { desc = 'Debug: See last session result.' })
+
 
 -- LSP Keymaps
 -- Load these only when the LSP is active
