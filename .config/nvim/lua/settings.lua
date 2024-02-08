@@ -34,7 +34,6 @@ vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
--- vim.opt.shortmess:append('c')
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
@@ -54,3 +53,8 @@ vim.o.laststatus = 3
 
 -- Remove the  ~'s from the end of files
 vim.o.fillchars = "eob: "
+
+-- Set default indentation
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.expandtab = true

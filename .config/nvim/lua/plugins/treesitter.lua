@@ -52,6 +52,7 @@ return {
           [']c'] = '@class.outer',
           [']?'] = '@conditional.outer',
           [']l'] = '@loop.outer',
+          [']/'] = '@comment.outer',
         },
         goto_next_end = {
           [']F'] = '@function.outer',
@@ -63,6 +64,7 @@ return {
           ['[c'] = '@class.outer',
           ['[?'] = '@conditional.outer',
           ['[l'] = '@loop.outer',
+          ['[/'] = '@comment.outer',
         },
         goto_previous_end = {
           ['[F'] = '@function.outer',
