@@ -11,6 +11,10 @@
 	default = current
 	autoSetupRemote = true
 
+; automatically push tags
+; EXPERIMENTAL - I haven't tried it yet
+	followTags = true
+
 [pull]
 ; I always want to choose what
 ; I'm doing when dealing with
@@ -26,6 +30,14 @@
 
 ; I prefer merge commits
 	ff = false
+
+; Stop making .orig files on merge conflicts
+; EXPERIMENTAL - I haven't tried it yet
+	keepbackup = false
+
+; View the original state in conflicts
+; EXPERIMENTAL - I haven't tried it yet
+	conflictstyle = zdiff3
 
 ; This lets me pull/merge/rebase
 ; without worrying, docs say it's
@@ -50,3 +62,20 @@
 
 [init]
 	defaultBranch = main
+
+[branch]
+; Sort branches a way that I'll
+; find easier to search
+; EXPERIMENTAL - I haven't tried it yet
+	sort = -committerdate
+
+[help]
+; Prompt for autocorrect
+; EXPERIMENTAL - I haven't tried it yet
+	autocorrect = prompt
+
+[rerere]
+; Record conflict resolution and
+; automatically replay them
+; EXPERIMENTAL - I haven't tried it yet
+	enabled = true
