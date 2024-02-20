@@ -21,14 +21,14 @@ local mode_map = {
 
 local colours = require('colours')
 
-local colours = {
-  command = { a = { fg = colours.gui01, bg = colours.gui08 } },
-  insert = { a = { fg = colours.gui01, bg = colours.gui0B } },
-  replace = { a = { fg = colours.gui01, bg = colours.gui0E } },
-  terminal = { a = { fg = colours.gui01, bg = colours.gui09 } },
-  visual = { a = { fg = colours.gui01, bg = colours.gui0F } },
+local theme = {
+  command = {z= { fg = colours.gui01, bg = colours.gui08 } },
+  insert = {z= { fg = colours.gui01, bg = colours.gui0B } },
+  replace = {z= { fg = colours.gui01, bg = colours.gui0E } },
+  terminal = {z= { fg = colours.gui01, bg = colours.gui09 } },
+  visual = {z= { fg = colours.gui01, bg = colours.gui0F } },
   inactive = { c = { fg = colours.gui05, bg = colours.gui00 } },
-  normal = { a = { fg = colours.gui01, bg = colours.gui0D }, c = { fg = colours.gui05, bg = colours.gui01 } }
+  normal = {z= { fg = colours.gui01, bg = colours.gui0D }, c = { fg = colours.gui05, bg = colours.gui01 } }
 }
 
 return {
@@ -38,7 +38,7 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = colours,
+      theme = theme,
       component_separators = '',
       section_separators = { left = '', right = ''},
     },
@@ -51,5 +51,5 @@ return {
       lualine_z = {{'mode', fmt = function(s) return mode_map[s] or s end}},
     }
   },
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = { 'UIEnter' },
 }
