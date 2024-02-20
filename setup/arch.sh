@@ -6,7 +6,7 @@ sudo pacman -S curl git tailscale \
            fd ripgrep bat fzf jq \
            neovim rofi wezterm \
            shellcheck helix wine eza \
-           base-devel
+           git-delta base-devel
 
 git clone https://aur.archlinux.org/paru.git
 pushd paru || exit

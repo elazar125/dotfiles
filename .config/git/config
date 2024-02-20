@@ -21,8 +21,12 @@
 ; messy pulls
 	rebase = interactive
 
-; Use neovim as appropriate
 [diff]
+; Highlight moved lines differently than
+; additions/deletions
+	colorMoved = default
+
+; Use neovim as appropriate
 	tool = nvimdiff
 
 [merge]
@@ -79,3 +83,19 @@
 ; automatically replay them
 ; EXPERIMENTAL - I haven't tried it yet
 	enabled = true
+
+; Delta - improved diff view
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+; Use 'n' to go to next file
+	navigate = true
+	line-numbers = true
+; I don't find hunk headers useful
+	hunk-header-style = omit
+; Bat theme - see $XDG_CONFIG_HOME/bat/README.md
+	syntax-theme = base16
