@@ -18,13 +18,18 @@ find_file_and_edit() {
 }
 alias fv='find_file_and_edit'
 
+follow_logs_with_syntax() {
+    tail -f "$1" | bat --paging=never --language log
+}
+alias batl='follow_logs_with_syntax'
+
 search_path() {
     echo "$PATH" | tr ':' '\n' | rg "$*"
 }
 alias sp='search_path'
 
 mass_rename() {
-    fd --type f | xargs -I % sh -c "mv % \$(echo % | sed 's/$1/$2/')"
+    fd --type f "$1" | xargs -I % sh -c "mv % \$(echo % | sed 's/$1/$2/')"
 }
 alias mmv='mass_rename'
 
