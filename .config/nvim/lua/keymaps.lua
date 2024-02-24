@@ -29,8 +29,8 @@ vim.keymap.set({ 'n' }, 'J', '<C-f>', { desc = 'Page down (bigger j)', silent = 
 vim.keymap.set({ 'n' }, 'K', '<C-b>', { desc = 'Page up (bigger k)', silent = true })
 vim.keymap.set({ 'n', 'v' }, 'L', '$', { desc = 'Go to end (bigger l)', silent = true })
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 -- Make Y work like D and C
 vim.keymap.set({ 'n', 'v' }, 'Y', 'y$', { desc = '[Y]ank until end of line', silent = true })

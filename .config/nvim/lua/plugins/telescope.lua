@@ -22,14 +22,14 @@ return {
       defaults = {
         mappings = {
           i = {
-            ["<esc>"] = require("telescope.actions").close,
+            ['<esc>'] = require('telescope.actions').close,
           },
         },
       },
       pickers = {
         -- Use fd instead of the default as it gets all files (including hidden) except .git/
         find_files = {
-          find_command = { "fd", "--type", "f" },
+          find_command = { 'fd', '--type', 'f' },
           hidden = true,
         },
         -- Use a theme that only displays file contents once, in order

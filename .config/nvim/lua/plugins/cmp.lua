@@ -5,7 +5,7 @@ return {
     -- Adds LSP completion capabilities
     'hrsh7th/cmp-nvim-lsp',
     'saadparwaiz1/cmp_luasnip',
-    { 'L3MON4D3/LuaSnip', build = "make install_jsregexp" },
+    { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' },
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-buffer',
@@ -28,11 +28,11 @@ return {
       window = {
         completion = cmp.config.window.bordered({
           scrollbar = false,
-          winhighlight = "Normal:Normal,FloatBorder:None,CursorLine:Visual,Search:None",
+          winhighlight = 'Normal:Normal,FloatBorder:None,CursorLine:Visual,Search:None',
         }),
         documentation = cmp.config.window.bordered({
           scrollbar = false,
-          winhighlight = "Normal:Normal,FloatBorder:None,CursorLine:Visual,Search:None",
+          winhighlight = 'Normal:Normal,FloatBorder:None,CursorLine:Visual,Search:None',
         }),
       },
       mapping = cmp.mapping.preset.insert {
@@ -46,8 +46,8 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-        { name = "buffer" },
-        { name = "path" },
+        { name = 'buffer' },
+        { name = 'path' },
       },
     }
   end,

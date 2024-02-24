@@ -1,60 +1,60 @@
 -- [[ Setting options ]]
--- See `:help vim.o`
+-- See `:help vim.opt`
 
 -- Set highlight on search
-vim.o.hlsearch = true
-vim.o.incsearch = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.opt.mouse = 'a'
 
 -- Wordwrap
-vim.o.wrap = false
+vim.opt.wrap = false
 
 -- Spell check (modern neovim skips spell-checking code by default)
-vim.o.spell = true
+vim.opt.spell = true
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+vim.opt.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
 -- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
--- Don't show "--Insert--" in the message bar when inserting
-vim.o.showmode = false
+-- Don't show '--Insert--' in the message bar when inserting
+vim.opt.showmode = false
 
 -- Don't show number of chars/lines in the bottom in Visual mode
-vim.o.showcmd = false
+vim.opt.showcmd = false
 
 -- Split in the direction I expect
-vim.o.splitbelow = true
-vim.o.splitright = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 -- Set global status bar (not one per window)
-vim.o.laststatus = 3
+vim.opt.laststatus = 3
 
 -- Remove the  ~'s from the end of files
-vim.o.fillchars = "eob: "
+vim.opt.fillchars = 'eob: '
 
 -- Set default indentation
-vim.o.shiftwidth = 2
-vim.o.tabstop = 2
-vim.o.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.expandtab = true
