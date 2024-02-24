@@ -11,10 +11,6 @@
 	default = current
 	autoSetupRemote = true
 
-; automatically push tags
-; EXPERIMENTAL - I haven't tried it yet
-	followTags = true
-
 [pull]
 ; I always want to choose what
 ; I'm doing when dealing with
@@ -70,12 +66,10 @@
 [branch]
 ; Sort branches a way that I'll
 ; find easier to search
-; EXPERIMENTAL - I haven't tried it yet
 	sort = -committerdate
 
 [help]
 ; Prompt for autocorrect
-; EXPERIMENTAL - I haven't tried it yet
 	autocorrect = prompt
 
 [rerere]
@@ -99,3 +93,6 @@
 	hunk-header-style = omit
 ; Bat theme - see $XDG_CONFIG_HOME/bat/README.md
 	syntax-theme = base16
+; Fix styling to look good
+	blame-code-style = syntax
+	blame-palette = normal
