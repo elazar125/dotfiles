@@ -4,7 +4,10 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Clear search highlight
-vim.keymap.set({ 'n', 'v' }, '<Esc><Esc>', '<CMD>nohls<CR>', { desc = 'Clear highlights', silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Esc>', '<CMD>nohls<CR>', { desc = 'Clear highlights', silent = true })
+
+-- Exit Insert mode easier
+vim.keymap.set({ 'i' }, 'jk', '<Esc>', { desc = 'Quit Insert mode without reaching' })
 
 -- System clipboard bindings
 vim.keymap.set({ 'n', 'v' }, '<Leader>p', '"+p', { desc = '[P]aste from system clipboard', silent = true })
