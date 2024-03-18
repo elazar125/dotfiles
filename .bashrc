@@ -39,8 +39,9 @@ export VISUAL="$EDITOR"
 export MANPAGER="nvim +Man!"
 
 # Set default flags for some tools
-export FZF_DEFAULT_COMMAND='fd --type f --hidden'
-export FZF_DEFAULT_OPTS='-1 --preview "bat --color=always --line-range :100 {}"'
+export FZF_ALT_C_OPTS='--preview "eza --level=1 --color=always --git --long --no-user {}"'
+export FZF_MARKS_FILE="$XDG_CONFIG_HOME/fzf/marks"
+export FZF_MARKS_COMMAND='fzf --height 40% --reverse --preview "eza --level=1 --color=always --git --long --no-user {3}"'
 export SHELLCHECK_OPTS="--color -e SC1091 -e SC1017"
 export LESS="$LESS -QRFX"
 
@@ -53,12 +54,7 @@ if [ "$(command -v batcat)" ]; then alias bat='batcat'; fi
 if [ "$(command -v fdfind)" ]; then alias fd='fdfind'; fi
 
 alias h='hx'
-
-if [[ "$OS" = "Windows_NT" ]]; then
-    alias nv="SHELL= nvim"
-else
-    alias nv="nvim"
-fi
+alias nv="nvim"
 
 # ------------------------------------------------------
 # Source files needed by other tools
@@ -73,7 +69,8 @@ if [ -f "/usr/share/git/git-prompt.sh" ] ; then
 fi
 
 # Set up fzf keybindings
-source "$HOME/modules/fzf/shell/completion.bash"
+eval "$(fzf --bash)"
+source "$HOME/modules/fzf-marks/fzf-marks.plugin.bash"
 source "$HOME/modules/fzf/shell/key-bindings.bash"
 source "$HOME/modules/fzf-git.sh/fzf-git.sh"
 
