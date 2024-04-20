@@ -12,9 +12,11 @@ alias c='$scripts_dir/commit.sh'
 # Named and aliased so running `alias` acts like documentation
 
 find_file_and_edit() {
-    local file
-    file="$(fzf -q "$*")"
-    [ -n "$file" ] && "$EDITOR" "$file"
+    fzf \
+        --multi \
+        -q "$*" \
+        --bind 'enter:become("$EDITOR" {+}),ctrl-b:execute(bat --paging=always {+})' \
+        --preview 'bat --color=always {}'
 }
 alias fv='find_file_and_edit'
 
