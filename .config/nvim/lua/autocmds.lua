@@ -7,3 +7,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
   pattern = '*',
 })
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+  command = [[%s/\s\+$//e]],
+  pattern = '*',
+})
