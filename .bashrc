@@ -42,6 +42,14 @@ export MANPAGER="nvim +Man!"
 export FZF_ALT_C_OPTS='--preview "eza --level=1 --color=always --git --long --no-user {}"'
 export FZF_MARKS_FILE="$XDG_CONFIG_HOME/fzf/marks"
 export FZF_MARKS_COMMAND='fzf --height 40% --reverse --preview "eza --level=1 --color=always --git --long --no-user {3}"'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:-1,fg+:8,bg:-1,bg+:-1
+  --color=hl:6,hl+:14,info:3,marker:10
+  --color=prompt:1,spinner:5,pointer:5,header:6
+  --color=border:7,label:-1,query:-1
+  --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="󰍉 "
+  --marker=" " --pointer=" " --separator="─" --scrollbar=" "
+  --info="right"'
 export SHELLCHECK_OPTS="--color -e SC1091 -e SC1017"
 export LESS="$LESS -QRFX"
 
