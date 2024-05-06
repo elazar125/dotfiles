@@ -27,28 +27,27 @@ alias gcb='git checkout -b'
 alias gc='git checkout'
 __git_complete gc _git_checkout
 
-alias master='goto master'
-alias main='goto main'
-alias develop='goto develop'
+alias master='goto "^master$"'
+alias main='goto "^main$"'
+alias develop='goto "^develop$"'
 
 # Switch branches while keeping your current changes
 goto() {
-    branch=${1:-$(git rev-parse --abbrev-ref HEAD)}
-    skipped_items=$(git ls-files -v -- "$(git rev-parse --show-toplevel)" | rg '^S' | cut -d ' ' -f 2)
+    git fetch
 
-    for item in $skipped_items
-    do
-        echo "unskipping $item"
-        git update-index --no-skip-worktree "$item"
-    done
+    branch=$(git branch --all | rg -v HEAD | sed -E 's#^[* ] (remotes/)?##' | sort | uniq | fzf --height 40% --reverse -1 -0 +m -q "$1")
+    if [[ -z "$branch" ]]; then
+        return
+    fi
 
-    git checkout "$branch" && git pull
+    remote="$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}")"
+    git checkout "$branch"
 
-    for item in $skipped_items
-    do
-        echo "skipping $item"
-        git update-index --skip-worktree "$item"
-    done
+    if [[ $(git merge-base --is-ancestor "$branch" "$remote") -eq 0 ]]; then
+        git merge --ff-only "$remote"
+    else
+        git rebase --interactive "$remote"
+    fi
 }
 __git_complete goto _git_checkout
 
