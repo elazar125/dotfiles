@@ -20,6 +20,9 @@ make_dir_and_cd() {
 }
 alias mkcd='make_dir_and_cd'
 
+# quick fzm for fuzzy finding common directories
+alias f='fzm'
+
 alias d='cd'
 alias ..='cd ..'
 alias ...='cd ../..'

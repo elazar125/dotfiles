@@ -4,8 +4,12 @@
 # Config - support for the 'bare repository' dotfiles model
 # ---------------------------------------------------------
 
-alias .cfg='cd "$HOME/.config/"'
+alias .cfg='cd "$XDG_CONFIG_HOME"'
 alias config='git --git-dir="$HOME/dotfiles" --work-tree="$HOME"'
+
+alias edit_nvim='nvim "$XDG_CONFIG_HOME/nvim"'
+alias edit_bash='nvim "$XDG_CONFIG_HOME/bash"'
+alias edit_bashrc='nvim "$HOME/.bashrc"'
 
 alias cfgs='config status'
 alias cfgd='config diff'
