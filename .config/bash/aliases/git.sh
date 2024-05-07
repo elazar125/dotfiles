@@ -27,6 +27,7 @@ alias gcb='git checkout -b'
 alias gc='git checkout'
 __git_complete gc _git_checkout
 
+# Wrap with ^ and $ to ensure fuzzy finding doesn't trigger
 alias master='goto "^master$"'
 alias main='goto "^main$"'
 alias develop='goto "^develop$"'
@@ -35,13 +36,13 @@ alias develop='goto "^develop$"'
 goto() {
     git fetch
 
-    branch=$(git branch --all | rg -v HEAD | sed -E 's#^[* ] (remotes/)?##' | sort | uniq | fzf --height 40% --reverse -1 -0 +m -q "$1")
+    branch=$(git branch --all | rg -v HEAD | sed -E 's#^[* ] (remotes/\w+/)?##' | sort | uniq | fzf --height 40% --reverse -1 -0 +m -q "$1")
     if [[ -z "$branch" ]]; then
         return
     fi
 
-    remote="$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}")"
     git checkout "$branch"
+    remote="$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}")"
 
     if [[ $(git merge-base --is-ancestor "$branch" "$remote") -eq 0 ]]; then
         git merge --ff-only "$remote"
