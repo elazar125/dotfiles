@@ -44,7 +44,7 @@ goto() {
     git checkout "$branch"
     remote="$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}")"
 
-    if [[ $(git merge-base --is-ancestor "$branch" "$remote") -eq 0 ]]; then
+    if [[ $(git merge-base --is-ancestor "$branch" "$remote" ; echo $?) -eq 0 ]]; then
         git merge --ff-only "$remote"
     else
         git rebase --interactive "$remote"

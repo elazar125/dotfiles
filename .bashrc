@@ -79,7 +79,6 @@ fi
 # Set up fzf keybindings
 eval "$(fzf --bash)"
 source "$HOME/modules/fzf-marks/fzf-marks.plugin.bash"
-source "$HOME/modules/fzf/shell/key-bindings.bash"
 source "$HOME/modules/fzf-git.sh/fzf-git.sh"
 
 # ------------------------------------------------------
