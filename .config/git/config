@@ -84,6 +84,9 @@
 
 [interactive]
 	diffFilter = delta --color-only
+; Turn off Delta for interactive patches on Windows
+; see https://github.com/dandavison/delta/issues/1318
+	; diffFilter = cat
 
 [delta]
 ; Use 'n' to go to next file

@@ -1,54 +1,43 @@
-if((Get-Command choco -ErrorAction SilentlyContinue) -eq $null){
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-}
+# TODO: Install LSPs
+# - omnisharp
+# - netcoredbg - currently only compile from source
+# - powershell-es - currently only compile from source
+#
+# - rust (for krabby) (manually download & run rustup)
+# - krabby (cargo install krabby)
 
-function Install-IfNeeded {
-    param (
-        $Command,
-        $Package
-    )
 
-    if((Get-Command $command -ErrorAction SilentlyContinue) -eq $null){
-        choco install $package
-    }
-}
+winget install chocolatey.chocolatey
+winget install wez.wezterm
+winget install Helix.Helix
+winget install fzf
+winget install BurntSushi.ripgrep.MSVC
+winget install Neovim.Neovim
+winget install sharkdp.bat
+winget install jqlang.jq
+winget install sharkdp.fd
+winget install Git.Git
+winget install koalaman.shellcheck
+winget install eza-community.eza
+winget install dandavison.delta
 
-Install-IfNeeded -Command wezterm -Package wezterm
-Install-IfNeeded -Command git -Package git
-Install-IfNeeded -Command nvim -Package neovim
-Install-IfNeeded -Command bat -Package bat
-Install-IfNeeded -Command fzf -Package fzf
-Install-IfNeeded -Command rg -Package ripgrep
-Install-IfNeeded -Command jq -Package jq
-Install-IfNeeded -Command fd -Package fd
-Install-IfNeeded -Command shellcheck -Package shellcheck
-Install-IfNeeded -Command helix -Package helix
+winget install Microsoft.Powershell
 
-refreshenv
+choco upgrade -y mingw
 
-mkdir -p $env:Home/modules
-git clone https://github.com/junegunn/fzf.git $env:Home/modules/fzf
-git clone https://github.com/junegunn/fzf-git.sh.git $env:Home/modules/fzf-git.sh
+winget install hurl
+winget install Bruno.Bruno
 
-mkdir $env:AppData\bat
-New-Item -Path $env:AppData\bat\config -ItemType SymbolicLink -Value $env:Home\.config\bat\config
-mkdir $env:AppData\fd
-New-Item -Path $env:AppData\fd\ignore -ItemType SymbolicLink -Value $env:Home\.config\fd\ignore
-mkdir $env:LocalAppData\nvim
-New-Item -Path $env:LocalAppData\nvim\init.vim -ItemType SymbolicLink -Value $env:Home\.config\nvim\init.vim
-mkdir $env:AppData\helix
-New-Item -Path $env:AppData\helix\config.toml -ItemType SymbolicLink -Value $env:Home\.config\helix\config.toml
+winget install OpenJS.NodeJS.LTS
+npm install --global bash-language-server
+npm install --global typescript-language-server typescript
+npm install --global vscode-langservers-extracted
+npm install --global vls
 
-if (-not (Test-Path -Path "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -PathType Leaf)) {
-    iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
-        ni "$env:LOCALAPPDATA/nvim/autoload/plug.vim" -Force
-}
+nvim --headless "+Lazy! sync" +qa
 
-nvim -c ":PlugInstall"
-
-Expand-Archive -Path '$env:Home/extras/font/gabriele.zip' -DestinationPath '$env:Home/extras/font/gabriele'
-foreach ($font in Get-ChildItem -Path '$env:Home/extras/font/gabriele/gabriele_ribbon_fg' -Exclude '*.txt' -File) {
+Expand-Archive -Force -Path "$env:Home/extras/font/gabriele.zip" -DestinationPath "$env:Home/extras/font/gabriele"
+foreach ($font in Get-ChildItem -Path "$env:Home/extras/font/gabriele/gabriele_ribbon_fg" -Exclude '*.txt' -File) {
     $dest = "C:\Windows\Fonts\$font"
     if (Test-Path -Path $dest) {
         "Font $font already installed."

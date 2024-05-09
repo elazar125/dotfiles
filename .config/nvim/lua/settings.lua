@@ -58,3 +58,14 @@ vim.opt.fillchars = 'eob: '
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
+
+if vim.fn.has('win32') then
+  vim.opt.shell = 'bash.exe'
+  vim.opt.shellcmdflag = '-c'
+  vim.opt.shellredir = '>%s 2>&1'
+  vim.opt.shellpipe = '2>&1| tee'
+  vim.opt.shellquote = ''
+  vim.opt.shellxescape = ''
+  vim.opt.shellxquote = ''
+  vim.fn.setenv('TMP', '/tmp')
+end
