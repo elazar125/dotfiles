@@ -5,9 +5,9 @@
 # ------------------------------------------------------
 
 alias ga='git add'
-alias gaa='git add -A'
-alias gap='git add -p'
-alias gaap='git add -Ap'
+alias gaa='git add --all'
+alias gap='git add --patch'
+alias gaap='git add --all --patch'
 __git_complete ga _git_add
 __git_complete gap _git_add
 
@@ -16,8 +16,8 @@ __git_complete gap _git_add
 # ------------------------------------------------------
 
 alias gb='git branch'
-alias gbd='git branch -d'
-alias gbD='git branch -D'
+alias gbd='git branch --delete'
+alias gbD='git branch --delete --force'
 alias gbl='git branch --list'
 __git_complete gb _git_branch
 __git_complete gbd _git_branch
@@ -36,7 +36,14 @@ alias develop='goto "^develop$"'
 goto() {
     git fetch
 
-    branch=$(git branch --all | rg -v HEAD | sed -E 's#^[* ] (remotes/\w+/)?##' | sort | uniq | fzf --height 40% --reverse -1 -0 +m -q "$1")
+    branch=$( \
+        git branch --all | \
+        rg --invert-match HEAD | \
+        sed --regexp-extended 's#^[* ] (remotes/\w+/)?##' | \
+        sort | \
+        uniq | \
+        fzf --height 40% --reverse --select-1 --exit-0 --no-multi --query "$1" \
+    )
     if [[ -z "$branch" ]]; then
         return
     fi
@@ -57,9 +64,9 @@ __git_complete goto _git_checkout
 # ------------------------------------------------------
 
 alias gd='git diff'
-alias gdw='git diff -w'
+alias gdw='git diff --ignore-all-space'
 alias gdc='git diff --staged'
-alias gdcw='git diff --staged -w'
+alias gdcw='git diff --staged --ignore-all-space'
 alias gds='git diff --name-status'
 __git_complete gd _git_diff
 __git_complete gdw _git_diff
@@ -77,7 +84,7 @@ alias gsh='git show'
 
 # Git Edit Commit, pass in a hash and it'll let you revert whatever part of the commit you shouldn't have made
 gec() {
-    commit_hash=${1:-$(git log -n 1 --pretty=format:"%H")}
+    commit_hash=${1:-$(git log --max-count 1 --pretty=format:"%H")}
     git revert --no-commit "$commit_hash" && git reset
 }
 
@@ -95,17 +102,17 @@ alias gchp='git cherry-pick'
 alias gl='git log  --pretty=format:"%C(auto) %h %C(green) %an %C(magenta) %ar %C(auto) %s %D" --graph'
 alias glv="nv -R -c ':terminal git log --oneline --graph' -c 'set filetype=git'"
 alias gla='gl --all'
-alias gl20='gl -n 20'
-alias gla20='gla -n 20'
+alias gl20='gl --max-count 20'
+alias gla20='gla --max-count 20'
 
 # Show commit-by-commit changes
-alias glp='git log -p'
+alias glp='git log --patch'
 
 # ------------------------------------------------------
 # reflog - See the history of a refernce (HEAD by default)
 # ------------------------------------------------------
 
-alias grfl='git log -g --pretty=format:"%C(yellow) %h %C(cyan) %gd %C(magenta) %ar %Creset %n %m %gs %n %m %s %n"'
+alias grfl='git log --walk-reflogs --pretty=format:"%C(yellow) %h %C(cyan) %gd %C(magenta) %ar %Creset %n %m %gs %n %m %s %n"'
 
 # ------------------------------------------------------
 # pushing & pulling
@@ -131,8 +138,8 @@ __git_complete grsh _git_reset
 __git_complete grss _git_reset
 
 alias gc.='git checkout .'
-alias gcp='git checkout -p'
-alias gcp.='git checkout -p .'
+alias gcp='git checkout --patch'
+alias gcp.='git checkout --patch .'
 __git_complete gcp _git_checkout
 
 # ------------------------------------------------------
@@ -140,12 +147,12 @@ __git_complete gcp _git_checkout
 # ------------------------------------------------------
 
 alias gst='git stash'
-alias gstm='git stash push -m'
-alias gstch='git stash -p'
+alias gstm='git stash push --message'
+alias gstch='git stash --patch'
 alias gstk='git stash drop'
 alias gstl='git stash list --pretty=format:"%C(yellow) %h %C(magenta) %ar %Creset %s"'
 alias gstp='git stash pop'
 alias gsts='git stash show'
-alias gstd='git stash show -p'
-alias gsta='git add -A && git stash --no-keep-index'
-alias gstam='git add -A && git stash push --no-keep-index -m'
+alias gstd='git stash show --patch'
+alias gsta='git add --all && git stash --no-keep-index'
+alias gstam='git add --all && git stash push --no-keep-index --message'

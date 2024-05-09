@@ -5,12 +5,12 @@
 # ------------------------------------------------------
 
 if [ "$(command -v eza)" ]; then
-  alias ls='eza -F=always -a --icons --group-directories-first --color="auto"'
+  alias ls='eza --classify=always --all --icons --group-directories-first --color="auto"'
   alias ll='ls --git --long --no-user'
   alias tree='ll --tree'
 else
-  alias ls='ls -FAbc --group-directories-first --color'
-  alias ll='ls -hog'
+  alias ls='ls -c --classify --almost-all --escape --group-directories-first --color'
+  alias ll='ls --human-readable -og'
 fi
 
 # function & alias so `alias` provides a description

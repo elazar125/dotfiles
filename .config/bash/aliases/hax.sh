@@ -17,4 +17,4 @@ unskip() {
     git status
 }
 
-alias check="git ls-files -v -- \$(git rev-parse --show-toplevel) | rg '^S' | cut -d ' ' -f 2"
+alias check="git ls-files -v -- \$(git rev-parse --show-toplevel) | rg '^S' | cut --delimiter ' ' --fields 2"
