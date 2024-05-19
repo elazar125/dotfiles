@@ -14,9 +14,11 @@ alias c='$scripts_dir/commit.sh'
 find_file_and_edit() {
     fzf \
         --multi \
-        --select-1 \
         --query "$*" \
-        --bind 'enter:become("$EDITOR" {+}),ctrl-b:execute(bat --paging=always {+})' \
+        --bind 'enter:become("$EDITOR" {+})' \
+        --bind 'one:become("$EDITOR" {})' \
+        --bind 'change:unbind:one' \
+        --bind 'ctrl-b:execute(bat --paging=always {+})' \
         --preview 'bat --color=always {}'
 }
 alias fv='find_file_and_edit'
