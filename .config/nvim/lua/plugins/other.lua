@@ -16,9 +16,6 @@ return {
 
   -- 'kamykn/CCSpellCheck.vim', -- TODO: This isn't working
 
-  -- 'gc' to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {}, keys = 'gc' },
-
   -- Add fun icons
   'nvim-tree/nvim-web-devicons',
 

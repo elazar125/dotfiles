@@ -35,9 +35,6 @@ vim.opt.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
--- NOTE: You should make sure your terminal supports this
-vim.opt.termguicolors = true
-
 -- Don't show '--Insert--' in the message bar when inserting
 vim.opt.showmode = false
 
