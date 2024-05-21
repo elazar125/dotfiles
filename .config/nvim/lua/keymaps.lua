@@ -66,6 +66,9 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>gb', '<CMD>BlamerToggle<CR>', { desc = 'Sh
 -- use Oil.nvim
 vim.keymap.set({ 'n' }, '-', '<CMD>Oil<CR>', { desc = 'Open parent directory', silent = true })
 
+-- Use Dadbod
+vim.keymap.set({ 'v' }, '<Leader>x', 'db#op_exec()', { desc = 'Execute selected query' })
+
 -- Not a normal keymap, but set a prefix for chaoren/vim-wordmotion
 vim.g.wordmotion_prefix = '\\'
 

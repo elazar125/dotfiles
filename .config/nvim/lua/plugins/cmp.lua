@@ -14,9 +14,9 @@ return {
     local cmp = require('cmp')
     local luasnip = require('luasnip')
     require('luasnip.loaders.from_vscode').lazy_load()
-    luasnip.config.setup {}
+    luasnip.config.setup({})
 
-    cmp.setup {
+    cmp.setup({
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -35,21 +35,27 @@ return {
           winhighlight = 'Normal:Normal,FloatBorder:None,CursorLine:Visual,Search:None',
         }),
       },
-      mapping = cmp.mapping.preset.insert {
+      mapping = cmp.mapping.preset.insert({
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-p>'] = cmp.mapping.select_prev_item(),
         ['<Tab>'] = cmp.mapping.confirm {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-      },
+      }),
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
       },
-    }
+    })
+    cmp.setup.filetype({ 'sql' }, {
+      sources = {
+        { name = 'vim-dadbod-completion' },
+        { name = 'buffer' },
+      },
+    })
   end,
   event = 'InsertEnter',
 }
