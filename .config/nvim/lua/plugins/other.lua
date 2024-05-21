@@ -14,8 +14,6 @@ return {
   -- Move in sub-words (camelCase snake_case etc.)
   { 'chaoren/vim-wordmotion', keys = { '\\' } },
 
-  -- 'kamykn/CCSpellCheck.vim', -- TODO: This isn't working
-
   -- Add fun icons
   'nvim-tree/nvim-web-devicons',
 

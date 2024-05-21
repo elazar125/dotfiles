@@ -9,8 +9,9 @@ vim.keymap.set({ 'n' }, '<Esc>', '<CMD>nohls<CR>', { desc = 'Clear highlights', 
 -- Exit Insert mode easier
 vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { desc = 'Quit Insert mode without reaching' })
 
--- Quicker save
+-- Quicker save/exit
 vim.keymap.set({ 'n', 'v' }, '<Leader>w', '<CMD>w<CR>', { desc = 'Write file' })
+vim.keymap.set({ 'n', 'v' }, '<Leader>q', '<CMD>q<CR>', { desc = 'Quick file' })
 
 -- System clipboard bindings
 vim.keymap.set({ 'n', 'v' }, '<Leader>p', '"+p', { desc = '[P]aste from system clipboard', silent = true })
@@ -38,9 +39,6 @@ vim.keymap.set({ 'n', 'v' }, 'L', '$', { desc = 'Go to end (bigger l)', silent =
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
--- Make Y work like D and C
-vim.keymap.set({ 'n', 'v' }, 'Y', 'y$', { desc = '[Y]ank until end of line', silent = true })
-
 -- Switch buffers
 vim.keymap.set({ 'n' }, '<BS>', '<CMD>b#<CR>', { desc = 'Go back to previous buffer', silent = true })
 vim.keymap.set({ 'n' }, ']b', '<CMD>bnext<CR>', { desc = 'Go to next buffer (in list order)', silent = true })
@@ -64,6 +62,9 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Enable APZelos/blamer.nvim
 vim.keymap.set({ 'n', 'v' }, '<Leader>gb', '<CMD>BlamerToggle<CR>', { desc = 'Show inline [g]it [b]lame', silent = true })
+
+-- use Oil.nvim
+vim.keymap.set({ 'n' }, '-', '<CMD>Oil<CR>', { desc = 'Open parent directory', silent = true })
 
 -- Not a normal keymap, but set a prefix for chaoren/vim-wordmotion
 vim.g.wordmotion_prefix = '\\'
