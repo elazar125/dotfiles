@@ -10,8 +10,12 @@ vim.keymap.set({ 'n' }, '<Esc>', '<CMD>nohls<CR>', { desc = 'Clear highlights', 
 vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { desc = 'Quit Insert mode without reaching' })
 
 -- Quicker save/exit
-vim.keymap.set({ 'n', 'v' }, '<Leader>w', '<CMD>w<CR>', { desc = 'Write file' })
-vim.keymap.set({ 'n', 'v' }, '<Leader>q', '<CMD>q<CR>', { desc = 'Quick file' })
+vim.keymap.set({ 'n', 'v' }, ';w', '<CMD>w<CR>', { desc = 'Write file' })
+vim.keymap.set({ 'n', 'v' }, ';q', '<CMD>q<CR>', { desc = 'Quit file' })
+vim.keymap.set({ 'n', 'v' }, ';qa', '<CMD>qa<CR>', { desc = 'Quit all files' })
+vim.keymap.set({ 'n', 'v' }, ';qf', '<CMD>q!<CR>', { desc = 'Quit file (force)' })
+vim.keymap.set({ 'n', 'v' }, ';qaf', '<CMD>qa!<CR>', { desc = 'Quit all files (force)' })
+vim.keymap.set({ 'n', 'v' }, ';x', '<CMD>x<CR>', { desc = 'Save and quit file' })
 
 -- System clipboard bindings
 vim.keymap.set({ 'n', 'v' }, '<Leader>p', '"+p', { desc = '[P]aste from system clipboard', silent = true })
