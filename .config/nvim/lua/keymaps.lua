@@ -9,6 +9,9 @@ vim.keymap.set({ 'n' }, '<Esc>', '<CMD>nohls<CR>', { desc = 'Clear highlights', 
 -- Exit Insert mode easier
 vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { desc = 'Quit Insert mode without reaching' })
 
+-- Exit Terminal mode easier
+vim.keymap.set({ 't' }, 'jk', '<C-\\><C-n>', { desc = 'Quit Terminal mode without reaching' })
+
 -- Quicker save/exit
 vim.keymap.set({ 'n', 'v' }, ';w', '<CMD>w<CR>', { desc = 'Write file' })
 vim.keymap.set({ 'n', 'v' }, ';q', '<CMD>q<CR>', { desc = 'Quit file' })
@@ -71,7 +74,8 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>gb', '<CMD>BlamerToggle<CR>', { desc = 'Sh
 vim.keymap.set({ 'n' }, '-', '<CMD>Oil<CR>', { desc = 'Open parent directory', silent = true })
 
 -- Use Dadbod
-vim.keymap.set({ 'v' }, '<Leader>x', 'db#op_exec()', { desc = 'Execute selected query' })
+vim.keymap.set({ 'n' }, '<Leader>td', '<CMD>DBUI_Toggle<CR>', { desc = 'Toggle Dadbod UI' })
+vim.keymap.set({ 'v' }, '<Leader>x', '<Plug>(DBUI_ExecuteQuery)', { desc = 'Execute selected query' })
 
 -- Not a normal keymap, but set a prefix for chaoren/vim-wordmotion
 vim.g.wordmotion_prefix = '\\'
