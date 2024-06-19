@@ -12,7 +12,7 @@ if os.getenv('OS') == 'Windows_NT' then
 end
 
 -- I like this colour scheme but want a black background for contrast
-local atelier_forest = wezterm.color.get_builtin_schemes()['Atelier Forest (base16)']
+local atelier_forest = wezterm.color.get_builtin_schemes()['Atelier Cave (base16)']
 atelier_forest.background = 'black'
 
 return {
