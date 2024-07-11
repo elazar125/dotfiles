@@ -5,16 +5,6 @@
 " Scheme author: Bram de Haan (http://atelierbramdehaan.nl)
 " Template author: Tinted Theming (https://github.com/tinted-theming)
 
-" This enables the coresponding base16-shell script to run so that
-" :colorscheme works in terminals supported by base16-shell scripts
-" User must set this variable in .vimrc
-"   let g:base16_shell_path=base16-builder/output/shell/
-if !has("gui_running")
-  if exists("g:base16_shell_path")
-    execute "silent !/bin/sh ".g:base16_shell_path."/base16-atelier-cave.sh"
-  endif
-endif
-
 " GUI color definitions
 let s:gui00        = "19171c"
 let g:base16_gui00 = "19171c"
@@ -237,8 +227,8 @@ call <sid>hi("NonText",       s:gui03, "", s:cterm03, "", "", "")
 call <sid>hi("Whitespace",    s:gui03, "", s:cterm03, "", "", "")
 call <sid>hi("LineNr",        s:gui03, "none", s:cterm03, "none", "", "")
 call <sid>hi("SignColumn",    s:gui03, "none", s:cterm03, "none", "", "")
-call <sid>hi("StatusLine",    s:gui04, s:gui01, s:cterm04, s:cterm01, "none", "")
-call <sid>hi("StatusLineNC",  s:gui03, s:gui01, s:cterm03, s:cterm01, "none", "")
+call <sid>hi("StatusLine",    s:gui02, "none", "", "", "strikethrough", "")
+call <sid>hi("StatusLineNC",  s:gui02, "none", "", "", "strikethrough", "")
 call <sid>hi("VertSplit",     s:gui01, s:guibg, s:cterm01, s:ctermbg, "none", "")
 call <sid>hi("ColorColumn",   "", s:gui01, "", s:cterm01, "none", "")
 call <sid>hi("CursorColumn",  "", s:gui01, "", s:cterm01, "none", "")

@@ -46,7 +46,8 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- Set global status bar (not one per window)
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0
+vim.opt.statusline = ' '
 
 -- Remove the  ~'s from the end of files
 vim.opt.fillchars = 'eob: '
