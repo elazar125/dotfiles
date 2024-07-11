@@ -74,7 +74,7 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>gb', '<CMD>BlamerToggle<CR>', { desc = 'Sh
 vim.keymap.set({ 'n' }, '-', '<CMD>Oil<CR>', { desc = 'Open parent directory', silent = true })
 
 -- Use Dadbod
-vim.keymap.set({ 'n' }, '<Leader>td', '<CMD>DBUI_Toggle<CR>', { desc = 'Toggle Dadbod UI' })
+vim.keymap.set({ 'n' }, '<Leader>td', '<CMD>DBUIToggle<CR>', { desc = 'Toggle Dadbod UI' })
 vim.keymap.set({ 'v' }, '<Leader>x', '<Plug>(DBUI_ExecuteQuery)', { desc = 'Execute selected query' })
 
 -- Not a normal keymap, but set a prefix for chaoren/vim-wordmotion
