@@ -1,3 +1,12 @@
+--[[
+
+Set up autocommands here
+
+These are functions that run on various events, allowing
+tons of customization for things smaller than a plugin
+
+--]]
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -8,6 +17,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- Remove trailing whitespace on save
 vim.api.nvim_create_autocmd('BufWritePre', {
   command = [[%s/\s\+$//e]],
   pattern = '*',
