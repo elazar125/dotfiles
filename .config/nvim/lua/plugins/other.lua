@@ -18,4 +18,10 @@ return {
   'nvim-tree/nvim-web-devicons',
 
   { 'APZelos/blamer.nvim', cmd = 'BlamerToggle' },
+
+  { 'chrisgrieser/nvim-spider', opts = {}, event = 'VeryLazy' },
+
+  { 'chrisgrieser/nvim-various-textobjs', event = 'VeryLazy', opts = { useDefaultKeymaps = true }, },
+
+  { 'nacro90/numb.nvim', event = 'VeryLazy', opts = { show_cursorline = false } },
 }

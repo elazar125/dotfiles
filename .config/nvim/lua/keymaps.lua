@@ -20,6 +20,11 @@ vim.keymap.set({ 'n', 'v' }, ';qf', '<CMD>q!<CR>', { desc = 'Quit file (force)' 
 vim.keymap.set({ 'n', 'v' }, ';qaf', '<CMD>qa!<CR>', { desc = 'Quit all files (force)' })
 vim.keymap.set({ 'n', 'v' }, ';x', '<CMD>x<CR>', { desc = 'Save and quit file' })
 
+-- nvim-spider: move by subword by default
+vim.keymap.set( { 'n', 'o', 'x' }, 'w', '<cmd>lua require("spider").motion("w")<CR>', { desc = 'Spider-w' })
+vim.keymap.set( { 'n', 'o', 'x' }, 'e', '<cmd>lua require("spider").motion("e")<CR>', { desc = 'Spider-e' })
+vim.keymap.set( { 'n', 'o', 'x' }, 'b', '<cmd>lua require("spider").motion("b")<CR>', { desc = 'Spider-b' })
+
 -- System clipboard bindings
 vim.keymap.set({ 'n', 'v' }, '<Leader>p', '"+p', { desc = '[P]aste from system clipboard', silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Leader>P', '"+P', { desc = '[P]aste before cursor from system clipboard', silent = true })
@@ -62,6 +67,10 @@ vim.keymap.set({ 'n', 'v' }, '<Leader>h', '<C-w>h', { desc = 'Switch windows lef
 vim.keymap.set({ 'n', 'v' }, '<Leader>j', '<C-w>j', { desc = 'Switch windows down', silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Leader>k', '<C-w>k', { desc = 'Switch windows up', silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Leader>l', '<C-w>l', { desc = 'Switch windows right', silent = true })
+
+-- Easily edit macros (saved to "q)
+-- Stolen from Hillel Wayne: https://buttondown.email/hillelwayne/archive/keep-perfecting-your-config/
+vim.keymap.set('n', '<leader>Q', ':let @q = input("Edit macro:", @q)<CR>', { desc = 'Edit a macro saved to "q' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
