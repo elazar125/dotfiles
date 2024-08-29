@@ -77,25 +77,3 @@
 ; automatically replay them
 ; EXPERIMENTAL - I haven't tried it yet
 	enabled = true
-
-; Delta - improved diff view
-[core]
-	pager = delta
-
-[interactive]
-	diffFilter = delta --color-only
-; Turn off Delta for interactive patches on Windows
-; see https://github.com/dandavison/delta/issues/1318
-	; diffFilter = cat
-
-[delta]
-; Use 'n' to go to next file
-	navigate = true
-	line-numbers = true
-; I don't find hunk headers useful
-	hunk-header-style = omit
-; Bat theme - see $XDG_CONFIG_HOME/bat/README.md
-	syntax-theme = base16
-; Fix styling to look good
-	blame-code-style = syntax
-	blame-palette = normal
