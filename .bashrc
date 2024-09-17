@@ -100,4 +100,7 @@ fi
 # ------------------------------------------------------
 
 # Make a pokémon (one from when I was a kid)
-krabby random --no-mega --no-gmax --no-regional 1-3
+alias poke="krabby random --no-mega --no-gmax --no-regional 1-3"
+# Also let me easily clear the screen and have a new pokémon show up
+alias clr="clear ; poke"
+poke

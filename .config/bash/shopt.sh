@@ -18,6 +18,7 @@ shopt -s hostcomplete 2>/dev/null
 shopt -s interactive_comments 2>/dev/null
 shopt -s nocaseglob 2>/dev/null
 shopt -s nocasematch 2>/dev/null
+shopt -s nullglob 2>/dev/null
 shopt -s patsub_replacement 2>/dev/null
 shopt -s progcomp 2>/dev/null
 shopt -s promptvars 2>/dev/null
