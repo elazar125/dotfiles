@@ -22,3 +22,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   command = [[%s/\s\+$//e]],
   pattern = '*',
 })
+
+vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
+  command = 'set spelloptions=camel',
+})

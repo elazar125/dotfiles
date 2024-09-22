@@ -13,7 +13,7 @@ return {
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
-    require('luasnip.loaders.from_vscode').lazy_load()
+    require('luasnip.loaders.from_vscode').lazy_load({ paths = { './snippets' } })
     luasnip.config.setup({})
 
     cmp.setup({
@@ -53,6 +53,7 @@ return {
     cmp.setup.filetype({ 'sql' }, {
       sources = {
         { name = 'vim-dadbod-completion' },
+        { name = 'luasnip' },
         { name = 'buffer' },
       },
     })

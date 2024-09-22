@@ -130,7 +130,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap('<Leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
     nmap('<Leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    nmap('gd', function()
+      if vim.o.filetype == 'cs' then
+        require('omnisharp_extended').telescope_lsp_definitions()
+      else
+        vim.lsp.buf.definition()
+      end
+    end, '[G]oto [D]efinition')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     nmap('<Leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')

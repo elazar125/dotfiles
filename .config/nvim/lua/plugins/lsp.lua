@@ -8,6 +8,9 @@ return {
 
     -- Additional lua configuration, makes nvim stuff amazing!
     -- 'folke/neodev.nvim',
+
+    -- Enable Go to Definition for external packages in C#
+    'Hoffs/omnisharp-extended-lsp.nvim'
   },
   event = 'BufReadPost',
   config = function()
@@ -31,7 +34,29 @@ return {
     --     },
     --   }
     -- })
-    require('lspconfig').gopls.setup({
+    require('lspconfig').omnisharp.setup({
+      cmd = { 'dotnet', '~/.config/dependencies/omnisharp/OmniSharp.dll' },
+      capabilities = capabilities,
+
+      -- Specifies whether 'using' directives should be grouped and sorted during
+      -- document formatting.
+      organize_imports_on_format = true,
+
+      -- Enables support for showing unimported types and unimported extension
+      -- methods in completion lists. When committed, the appropriate using
+      -- directive will be added at the top of the current file. This option can
+      -- have a negative impact on initial completion responsiveness,
+      -- particularly for the first few completion sessions after opening a
+      -- solution.
+      enable_import_completion = true,
+
+      -- Enable Go To Definition for external files
+      handlers = {
+        ['textDocument/definition'] = require('omnisharp_extended').handler,
+      },
+    })
+    require('lspconfig').powershell_es.setup({
+      bundle_path = '~/.config/dependencies/powershell-es/',
       capabilities = capabilities,
     })
     require('lspconfig').html.setup({

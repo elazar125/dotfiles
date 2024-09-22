@@ -1,4 +1,11 @@
 -- Fuzzy Finder (files, lsp, etc)
+
+-- Use a more complicated setup for make on Windows, as it doesn't have everything needed
+make_command = 'make'
+if vim.fn.has('win32') then
+  make_command = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+end
+
 return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
@@ -9,13 +16,8 @@ return {
     -- requirements installed.
     {
       'nvim-telescope/telescope-fzf-native.nvim',
-      -- NOTE: If you are having trouble with this installation,
-      --       refer to the README for telescope-fzf-native for more instructions.
-      build = 'make',
-      cond = function()
-        return vim.fn.executable 'make' == 1
-      end,
-    },
+      build = make_command
+    }
   },
   config = function ()
     require('telescope').setup({
