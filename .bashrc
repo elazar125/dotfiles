@@ -93,7 +93,7 @@ do
 done
 
 if [ -d "$XDG_CONFIG_HOME/bash/prompts" ]; then
-    source "$XDG_CONFIG_HOME/bash/prompts/vimode.prompt.sh"
+    source "$XDG_CONFIG_HOME/bash/prompts/gitstatus.prompt.sh"
 fi
 
 # ------------------------------------------------------
