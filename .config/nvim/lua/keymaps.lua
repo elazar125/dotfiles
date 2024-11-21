@@ -80,7 +80,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set({ 'n', 'v' }, '<Leader>gb', '<CMD>BlamerToggle<CR>', { desc = 'Show inline [g]it [b]lame', silent = true })
 
 -- use Oil.nvim
-vim.keymap.set({ 'n' }, '-', '<CMD>Oil<CR>', { desc = 'Open parent directory', silent = true })
+vim.keymap.set({ 'n' }, '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory', silent = true })
 
 -- Use Dadbod
 vim.keymap.set({ 'n' }, '<Leader>td', '<CMD>DBUIToggle<CR>', { desc = 'Toggle Dadbod UI' })

@@ -31,8 +31,6 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 source "$XDG_CONFIG_HOME/bash/shopt.sh"
 HISTCONTROL="erasedups:ignoreboth"
 
-export PATH="$PATH:$HOME/modules/fzf/bin"
-
 # Set up default editor
 export EDITOR="nvim" # or "hx" ("helix" on arch-based systems)
 export VISUAL="$EDITOR"
@@ -79,8 +77,7 @@ fi
 
 # Set up fzf keybindings
 eval "$(fzf --bash)"
-source "$HOME/modules/fzf-marks/fzf-marks.plugin.bash"
-source "$HOME/modules/fzf-git.sh/fzf-git.sh"
+source "$XDG_CONFIG_HOME/dependencies/fzf-marks.plugin.bash"
 
 # ------------------------------------------------------
 # Load my aliases and prompt text
