@@ -52,10 +52,16 @@ vim.opt.statusline = ' '
 -- Remove the  ~'s from the end of files
 vim.opt.fillchars = 'eob: '
 
+-- always show the sign column so things don't jump when errors are reported
+vim.opt.signcolumn = 'yes'
+
 -- Set default indentation
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
+
+-- Stop using shada since it just seems to cause problems without much value
+vim.opt.shadafile = "NONE"
 
 if vim.fn.has('win32') then
   vim.opt.shell = 'bash.exe'

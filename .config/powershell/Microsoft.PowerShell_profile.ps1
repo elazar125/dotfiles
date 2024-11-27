@@ -1,9 +1,8 @@
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\tokyonight_storm.omp.json" | Invoke-Expression
 
 Set-PSReadLineOption -BellStyle None
-Set-PSReadLineKeyHandler -Key Tab -Function Complete
-Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
-Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+Set-PSReadLineOption -EditMode Emacs
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 
 # Import the Chocolatey Profile that contains the necessary code to enable
 # tab-completions to function for `choco`.
