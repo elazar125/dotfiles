@@ -51,7 +51,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 export SHELLCHECK_OPTS="--color -e SC1091 -e SC1017"
 export LESS="$LESS -QRFX"
 export DOTNET_CLI_TELEMETRY_OPTOUT=true
+export RUSTUP_HOME="$XDG_CONFIG_HOME/rustup"
+export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
 
+export PATH="$PATH:$CARGO_HOME/bin:/usr/local/go/bin:$HOME/FOSS/fzf/bin"
 # ------------------------------------------------------
 # Set aliases for commands that misbehave on different OSes
 # ------------------------------------------------------

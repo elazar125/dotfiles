@@ -1,6 +1,8 @@
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 
+vim.opt.termguicolors = true
+
 -- Set highlight on search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true

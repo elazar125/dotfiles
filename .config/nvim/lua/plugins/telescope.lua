@@ -2,7 +2,7 @@
 
 -- Use a more complicated setup for make on Windows, as it doesn't have everything needed
 make_command = 'make'
-if vim.fn.has('win32') then
+if vim.fn.has('win32') == 1 then
   make_command = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
 end
 

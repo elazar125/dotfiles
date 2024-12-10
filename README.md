@@ -50,6 +50,8 @@ Tools I use on all platforms:
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [jq](https://stedolan.github.io/jq/)
 - [Shellcheck](https://www.shellcheck.net/)
+- [eza](https://github.com/eza-community/eza)
+- [fzf-marks](https://github.com/urbainvaes/fzf-marks)
 - The usual stuff like bash/git/etc
 
 Windows only tools:
