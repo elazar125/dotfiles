@@ -29,7 +29,7 @@ One alias in `~/.config/bash/alias/config.sh` expects the directory name for thi
 
 ### Ubuntu
 
-- Check the versions of Wezterm & Tailscale line up with your version of Ubuntu in the script
+- Check the version of Tailscale lines up with your version of Ubuntu in the script
 - Run `~/setup/ubuntu.sh`
 
 ### Arch

@@ -74,6 +74,7 @@ right="$message$prompt"
 format=" $font_yellow %s"
 
 PROMPT_COMMAND=' \
+    history -a; \
     picked_message="${messages[$RANDOM % ${#messages[@]}]}"; \
     __git_ps1 "$left" "$right" "$format$(compute_git_status)" \
 '

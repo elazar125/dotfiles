@@ -25,6 +25,7 @@ return {
     font_size = 12,
     -- Hide the UI, I just want the terminal itself
     enable_tab_bar = false,
+    window_decorations = "RESIZE",
     -- A bit of transparency to see my neat desktop backgrounds
     window_background_opacity = 0.9,
     -- I like having my terminal full-screen but with the
