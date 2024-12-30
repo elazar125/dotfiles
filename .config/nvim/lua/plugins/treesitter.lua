@@ -9,7 +9,7 @@ return {
   main = 'nvim-treesitter.configs',
   opts = {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'bash', 'css', 'html', 'go', 'lua', 'rust', 'sql', 'typescript', 'vim', 'regex', 'markdown', 'markdown_inline', 'c_sharp', 'vue', 'powershell' },
+    ensure_installed = { 'bash', 'css', 'html', 'go', 'lua', 'rust', 'sql', 'typescript', 'javascript', 'vim', 'regex', 'markdown', 'markdown_inline', 'c_sharp', 'vue', 'powershell' },
 
     -- Autoinstall languages that are not installed
     auto_install = false,

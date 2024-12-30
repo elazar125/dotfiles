@@ -54,8 +54,8 @@ compute_git_status() {
     is_git_work_tree=$(git rev-parse --is-inside-work-tree 2>/dev/null)
     if [[ "$is_git_work_tree" != "true" ]]; then return; fi
 
-    staged=$(git status --porcelain | cut -c1 | grep -v '[ ?]' | uniq -c | tr -d ' ' | paste -sd ' ')
-    unstaged=$(git status --porcelain | cut -c2 | grep -v '[ ]' | uniq -c | tr -d ' ' | paste -sd ' ')
+    staged=$(git status --porcelain | sort | cut -c1 | grep -v '[ ?]' | uniq -c | tr -d ' ' | paste -sd ' ')
+    unstaged=$(git status --porcelain | sort | cut -c2 | grep -v '[ ]' | uniq -c | tr -d ' ' | paste -sd ' ')
 
     if [[ -z "$staged" && -z "$unstaged" ]]; then return; fi
 
