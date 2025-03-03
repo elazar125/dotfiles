@@ -3,13 +3,21 @@
 	name = Ezra Lazar
 	email = elazar125@gmail.com
 
+[column]
+; Use multiple columns to display data,
+; not just one
+	ui = auto
+
 [push]
 ; Set sensible push defaults,
 ; always push the current branch
 ; to a remote branch with the same
 ; name, and create that remote if needed
-	default = current
+	default = simple
 	autoSetupRemote = true
+
+; automatically push tags when pushing
+	followTags = true
 
 [pull]
 ; I always want to choose what
@@ -25,6 +33,10 @@
 ; Use neovim as appropriate
 	tool = nvimdiff
 
+; Change the a/ and b/ in diffs to
+; something useful
+	mnemonicPrefix = true
+
 [merge]
 	tool = nvimdiff
 
@@ -32,11 +44,9 @@
 	ff = false
 
 ; Stop making .orig files on merge conflicts
-; EXPERIMENTAL - I haven't tried it yet
 	keepbackup = false
 
 ; View the original state in conflicts
-; EXPERIMENTAL - I haven't tried it yet
 	conflictstyle = zdiff3
 
 ; This lets me pull/merge/rebase
@@ -47,6 +57,11 @@
 
 [rebase]
 	autostash = true
+
+; Update child branches when rebasing a
+; parent branch
+; EXPERIMENTAL - I haven't tried it yet
+	updateRefs = true
 
 [fetch]
 ; Clean up old remote branches
@@ -68,6 +83,15 @@
 ; find easier to search
 	sort = -committerdate
 
+[tag]
+; Sort versions as versions, not alphabetically
+	sort = version:refname
+
+[commit]
+; Show diff in the hints at the bottom
+; of the commit file
+	verbose = true
+
 [help]
 ; Prompt for autocorrect
 	autocorrect = prompt
@@ -75,5 +99,5 @@
 [rerere]
 ; Record conflict resolution and
 ; automatically replay them
-; EXPERIMENTAL - I haven't tried it yet
 	enabled = true
+	autoupdate = true
