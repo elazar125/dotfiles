@@ -63,6 +63,8 @@ if [ "$(command -v helix)" ]; then alias hx='helix'; fi
 if [ "$(command -v batcat)" ]; then alias bat='batcat'; fi
 if [ "$(command -v fdfind)" ]; then alias fd='fdfind'; fi
 
+alias rg='rg --smart-case --path-separator="//"'
+
 alias h='hx'
 alias nv="nvim"
 

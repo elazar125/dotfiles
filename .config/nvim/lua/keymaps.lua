@@ -12,6 +12,8 @@ vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>', { desc = 'Quit Insert mode without r
 -- Exit Terminal mode easier
 vim.keymap.set({ 't' }, 'jk', '<C-\\><C-n>', { desc = 'Quit Terminal mode without reaching' })
 
+vim.keymap.set({ 'n' }, '<Leader>r', 'yiw:%s/\\("\\)', { desc = 'Replace current word' })
+
 -- Quicker save/exit
 vim.keymap.set({ 'n', 'v' }, ';w', '<CMD>w<CR>', { desc = 'Write file' })
 vim.keymap.set({ 'n', 'v' }, ';q', '<CMD>q<CR>', { desc = 'Quit file' })
@@ -80,7 +82,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set({ 'n', 'v' }, '<Leader>gb', '<CMD>BlamerToggle<CR>', { desc = 'Show inline [g]it [b]lame', silent = true })
 
 -- use Oil.nvim
-vim.keymap.set({ 'n' }, '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory', silent = true })
+vim.keymap.set({ 'n' }, '-', '<CMD>Oil --float --preview<CR>', { desc = 'Open parent directory', silent = true })
 
 -- Use Dadbod
 vim.keymap.set({ 'n' }, '<Leader>td', '<CMD>DBUIToggle<CR>', { desc = 'Toggle Dadbod UI' })

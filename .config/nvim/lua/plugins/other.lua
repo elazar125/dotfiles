@@ -21,7 +21,7 @@ return {
 
   { 'chrisgrieser/nvim-spider', opts = {}, event = 'VeryLazy' },
 
-  { 'chrisgrieser/nvim-various-textobjs', event = 'VeryLazy', opts = { useDefaultKeymaps = true }, },
+  { 'chrisgrieser/nvim-various-textobjs', event = 'VeryLazy', opts = { keymaps = { useDefaults = true } }, },
 
   { 'nacro90/numb.nvim', event = 'VeryLazy', opts = { show_cursorline = false } },
 }
