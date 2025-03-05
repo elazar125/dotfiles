@@ -2,6 +2,9 @@
 
 # Debian/Ubuntu specific bit
 sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update
 sudo apt install -y curl build-essential git nodejs npm flatpak
 curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
 echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
@@ -13,20 +16,20 @@ sudo apt install -y wezterm jq wine32 wine64
 if [ ! -d "$HOME/FOSS" ]; then mkdir "$HOME/FOSS"; fi
 
 # Install neovim appimage
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage --output-dir "$HOME/Downloads"
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage --output-dir "$HOME/Downloads"
 pushd "$HOME/Downloads" || exit
-chmod +x nvim.appimage
-./nvim.appimage --appimage-extract
+chmod +x nvim-linux-x86_64.appimage
+./nvim-linux-x86_64.appimage --appimage-extract
 rm -rf "$HOME/FOSS/nvim"
 mv squashfs-root/ "$HOME/FOSS/nvim"
 sudo ln -s "$HOME/FOSS/nvim/AppRun" /usr/bin/nvim
-rm nvim.appimage
+rm nvim-linux-x86_64.appimage
 popd || exit
 
 # Install flatpaks
 flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo "Installing Zen"
-flatpak install --or-update --user flathub io.github.zen_browser.zen
+flatpak install --or-update --user flathub app.zen_browser.zen
 echo "Installing Discord"
 flatpak install --or-update --user flathub com.discordapp.Discord
 echo "Installing Spotify"
