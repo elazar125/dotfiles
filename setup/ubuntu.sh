@@ -86,6 +86,9 @@ popd || exit
 unzip -u ~/extras/font/gabriele.zip -d ~/extras/font
 mkdir -p ~/.local/share/fonts/gabriele
 cp ~/extras/font/gabriele_ribbon_fg/*.ttf ~/.local/share/fonts/gabriele
+unzip -u ~/extras/font/Nova.zip -d ~/extras/font
+mkdir -p ~/.local/share/fonts/Nova
+cp ~/extras/font/Nova/*.ttf ~/.local/share/fonts/Nova
 fc-cache
 
 # Set up neovim plugins

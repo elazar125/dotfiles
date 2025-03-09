@@ -21,7 +21,7 @@ return {
     default_cwd = default_directory,
     -- Basic colours and font stuff
     color_scheme = 'Atelier Forest Black',
-    font = wezterm.font('Gabriele Light Ribbon FG'),
+    font = wezterm.font('Nova Mono Nerdfont'),
     font_size = 12,
     -- Hide the UI, I just want the terminal itself
     enable_tab_bar = false,
