@@ -62,7 +62,8 @@ current_go_version="$(go version | cut -d' ' -f3)"
 
 if [[ "$latest_go_version" != "$current_go_version" ]]; then
   curl -OL "https://golang.org/dl/$latest_go_version.linux-amd64.tar.gz" --output-dir "$HOME/Downloads/"
-  rm -rf /usr/local/go && tar -C /usr/local -xzf "$HOME/Downloads/$latest_go_version.linux-amd64.tar.gz"
+  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf "$HOME/Downloads/$latest_go_version.linux-amd64.tar.gz"
+  rm "$HOME/Downloads/$latest_go_version.linux-amd64.tar.gz"
 fi
 
 pushd "$HOME/FOSS" || exit
