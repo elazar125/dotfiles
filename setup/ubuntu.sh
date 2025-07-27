@@ -42,6 +42,8 @@ echo "Installing Thunderbird"
 flatpak install --or-update --user flathub org.mozilla.Thunderbird
 echo "Installing MPV"
 flatpak install --or-update --user flathub io.mpv.Mpv
+echo "Installing qView"
+flatpak install --or-update --user com.interversehq.qView
 
 # Install Rust-based tools
 if [ "$(command -v rustup)" ]; then
@@ -103,3 +105,6 @@ nvim --headless "+Lazy! sync" +qa
 # sudo tailscale up
 
 xdg-settings set default-web-browser io.github.zen_browser.zen.desktop
+
+sudo apt upgrade
+sudo apt autoremove
