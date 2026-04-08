@@ -21,13 +21,14 @@ return {
     default_cwd = default_directory,
     -- Basic colours and font stuff
     color_scheme = 'Atelier Forest Black',
-    font = wezterm.font('Nova Mono Nerdfont'),
-    font_size = 12,
+    font = wezterm.font('SemiCoder Nerdfont Mono'),
+    enable_wayland = true,
+    font_size = 13,
     -- Hide the UI, I just want the terminal itself
     enable_tab_bar = false,
     window_decorations = "RESIZE",
     -- A bit of transparency to see my neat desktop backgrounds
-    window_background_opacity = 0.9,
+    window_background_opacity = 0.8,
     -- I like having my terminal full-screen but with the
     -- contents off of the edges by a bit
     window_padding = {

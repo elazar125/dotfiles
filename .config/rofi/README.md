@@ -2,4 +2,4 @@
 
 [https://github.com/davatorium/rofi](https://github.com/davatorium/rofi)
 
-Work in progress - I'm still experimenting here
+Use the Super key (Windows key) to pick applications to launch, with a fuzzy-finder

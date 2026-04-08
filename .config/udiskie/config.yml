@@ -1,0 +1,7 @@
+program_options:
+  tray: true
+  menu: flat
+  notify: true
+  automount: true
+  file_manager: xdg-open
+  terminal: wezterm

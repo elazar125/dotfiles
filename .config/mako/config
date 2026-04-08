@@ -1,0 +1,15 @@
+background-color=#0000008F
+border-radius=10
+border-size=2
+font=SemiCoder Nerdfont Mono
+default-timeout=0
+ignore-timeout=1
+padding=20
+outer-margin=10
+
+[urgency=critical]
+border-color=#D60020
+[urgency=normal]
+border-color=#3BAA00
+[urgency=low]
+border-color=#33CCFF

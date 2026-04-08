@@ -19,3 +19,6 @@ alias cfgc='config commit'
 alias cfgps='config push'
 alias cfgpl='config pull'
 alias cfgl='config log --pretty=format:"%C(auto) %h %C(green) %an %C(magenta) %ar %C(auto) %s %D" --graph'
+
+alias cargo_update='cargo install $(cargo install --list | grep "^[a-z0-9]*\s*v[0-9.]*:$" | cut -f1 -d" ")'
+alias arch_update='sudo pacman -Syu && flatpak update && rustup self update && cargo_update'
