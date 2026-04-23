@@ -63,7 +63,7 @@ if [ "$(command -v helix)" ]; then alias hx='helix'; fi
 if [ "$(command -v batcat)" ]; then alias bat='batcat'; fi
 if [ "$(command -v fdfind)" ]; then alias fd='fdfind'; fi
 
-if [[ "$OSTYPE" == "mysys" ]]; then
+if [[ "$OSTYPE" == "msys" ]]; then
     alias rg='rg --smart-case --path-separator="//"'
 else
     alias rg='rg --smart-case'

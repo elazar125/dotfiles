@@ -21,8 +21,8 @@ return {
     default_cwd = default_directory,
     -- Basic colours and font stuff
     color_scheme = 'Atelier Forest Black',
-    font = wezterm.font('SemiCoder Nerdfont Mono'),
-    enable_wayland = true,
+    font = wezterm.font('SemiCoder Nerd Font Mono'),
+    enable_wayland = false, -- copy/paste is broken on stable with wayland
     font_size = 13,
     -- Hide the UI, I just want the terminal itself
     enable_tab_bar = false,
