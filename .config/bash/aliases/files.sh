@@ -32,5 +32,18 @@ alias .-='cd -'
 
 alias bathelp='bat --plain --language=help'
 help() {
-    "$@" --help 2>&1 | bathelp
+  : Get the type
+  t=$(type -t "$1")
+  case "$t" in
+    "builtin" | "keyword")
+      command help "$1" | bathelp
+      ;;
+    "file")
+      "$1" --help 2>&1 | bathelp
+      ;;
+    *)
+      : "alias", "function", or ""
+      type "$1"
+      ;;
+  esac
 }

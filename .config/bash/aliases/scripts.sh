@@ -7,6 +7,7 @@
 scripts_dir="$XDG_CONFIG_HOME/bash/scripts"
 
 alias c='$scripts_dir/commit.sh'
+alias jqp='$scripts_dir/jq.sh'
 
 # One-liners
 # Named and aliased so running `alias` acts like documentation

@@ -55,6 +55,7 @@
 ; problem
 	autostash = true
 
+	guitool = nvimdiff
 [rebase]
 	autostash = true
 

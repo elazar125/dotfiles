@@ -51,31 +51,48 @@ messages=( \
 )
 
 compute_git_status() {
-    is_git_work_tree=$(git rev-parse --is-inside-work-tree 2>/dev/null)
-    if [[ "$is_git_work_tree" != "true" ]]; then return; fi
+    echo -n "$font_yellow %s"
 
-    status=$(git status --porcelain | sort)
-    staged=$(echo "$status" | grep -v "^$" | cut -c1 | grep -v '[ ?]' | uniq -c | tr -d ' ' | paste -sd ' ')
-    unstaged=$(echo "$status" | grep -v "^$" | cut -c2 | grep -v '[ ]' | uniq -c | tr -d ' ' | paste -sd ' ')
+    status=$(git status --porcelain --no-ahead-behind 2>/dev/null)
+    if [[ "$status" == "" ]]; then return; fi
 
-    if [[ -z "$staged" && -z "$unstaged" ]]; then return; fi
+    declare -A worktree
+    declare -A index
 
-    space=''
-    if [[ -n "$staged" && -n "$unstaged" ]]; then space=' '; fi
-    echo "$reset\n├ $font_purple($font_green$staged$space$font_red$unstaged$font_purple)"
+    IFS=''
+    while read -r line; do
+        indexChar="${line:0:1}"
+        if ! [[ "$indexChar" =~ [[:space:]?] ]]; then
+            ((index[$indexChar]++))
+        fi
+
+        worktreeChar="${line:1:1}"
+        if ! [[ "$worktreeChar" =~ [[:space:]] ]]; then
+            ((worktree[$worktreeChar]++))
+        fi
+    done <<< "$status"
+    unset IFS
+
+    echo -n "$reset\n├ $font_purple( $font_green"
+    for x in "${!index[@]}"; do echo -n "${index[$x]}$x " ; done
+    echo -n "$font_red"
+    for x in "${!worktree[@]}"; do echo -n "${worktree[$x]}$x " ; done
+    echo "$font_purple)"
 }
 
+init="$reset\n╭"
 directory="$font_cyan \w"
 time="$font_red \A"
 message="$reset\n├ $font_green\$picked_message"
 prompt="$reset\n╰   "
 
-left="$reset\n╭ $time $directory"
-right="$message$prompt"
-format=" $font_yellow %s"
+left="$init $time $directory "
+right="$message $prompt"
+format="$font_yellow %s"
 
 PROMPT_COMMAND=' \
     history -a; \
     picked_message="${messages[$RANDOM % ${#messages[@]}]}"; \
-    __git_ps1 "$left" "$right" "$format$(compute_git_status)" \
+    format="$(compute_git_status)" ; \
+    __git_ps1 "$left" "$right" "$format" \
 '
