@@ -12,16 +12,12 @@ if os.getenv('OS') == 'Windows_NT' then
     default_program = 'C:\\Program Files\\Git\\bin\\bash.exe';
 end
 
--- I like this colour scheme but want a black background for contrast
-local atelier_forest = wezterm.color.get_builtin_schemes()['Atelier Cave (base16)']
-atelier_forest.background = 'black'
-
 return {
     -- Use the right bash & directory per OS
     default_prog = {default_program, '-il'},
     default_cwd = default_directory,
     -- Basic colours and font stuff
-    color_scheme = 'Atelier Forest Black',
+    color_scheme = 'Peacock',
     font = wezterm.font('SemiCoder Nerd Font Mono'),
     enable_wayland = false, -- copy/paste is broken on stable with wayland
     font_size = 13,
@@ -73,7 +69,4 @@ return {
             {key='Escape', action=act.PopKeyTable},
         },
     },
-    color_schemes = {
-        ['Atelier Forest Black'] = atelier_forest,
-    }
 }

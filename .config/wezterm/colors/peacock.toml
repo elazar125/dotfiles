@@ -1,0 +1,34 @@
+[colors]
+ansi = [
+  "#1c0737", # Black
+  "#cd1281", # Red
+  "#097d1f", # Green
+  "#7f12d1", # Yellow (actually purple)
+  "#513bcf", # Blue
+  "#ac0dc5", # Magenta
+  "#039ca6", # Cyan
+  "#846da1", # Grey
+]
+brights = [
+  "#433555", # Light Grey
+  "#d94ca0", # Light Red
+  "#3bbc54", # Light Green
+  "#a75ae1", # Light Yellow (actually Light purple)
+  "#8270ee", # Light Blue
+  "#d73eef", # Light Magenta
+  "#3ec9d3", # Light Cyan
+  "#eddfff", # White
+]
+foreground = "#7bd0e7"
+background = "#000000"
+cursor_bg = "#7bd0e7"
+cursor_fg = "#000000"
+cursor_border = "#7bd0e7"
+selection_fg = "#000000"
+selection_bg = "#c089ea"
+split = "#1e3b2d"
+
+[metadata]
+author = "Ezra Lazar"
+name = "Peacock"
+
