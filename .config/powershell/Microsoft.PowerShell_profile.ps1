@@ -1,4 +1,11 @@
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\tokyonight_storm.omp.json" | Invoke-Expression
+function Prompt {
+  # Can't use NerdFonts, PowerShell 5.1 is ASCII-only
+  Write-Host ""
+  Write-Host -NoNewline -ForegroundColor Red "$(Get-Date -UFormat "%H:%M") "
+  Write-Host -NoNewline -ForegroundColor Cyan "$PWD "
+  Write-Host -ForegroundColor Yellow "$(git rev-parse --abbrev-ref HEAD)"
+  return "$ "
+}
 
 Set-PSReadLineOption -BellStyle None
 Set-PSReadLineOption -EditMode Emacs

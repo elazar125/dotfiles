@@ -48,6 +48,15 @@ goto() {
         return
     fi
 
+    oldStash=$(git stash list -n1 --pretty="%H")
+    git diff-index --quiet HEAD
+    hasChanges=$?
+    if [[ 0 -eq "$hasChanges" ]]; then
+        echo "Stashing..."
+        git stash push --include-untracked
+    fi
+    newStash=$(git stash list -n1 --pretty="%H")
+
     git checkout "$branch"
     remote="$(git rev-parse --abbrev-ref --symbolic-full-name "@{u}")"
 
@@ -55,6 +64,11 @@ goto() {
         git merge --ff-only "$remote"
     else
         git rebase --interactive "$remote"
+    fi
+
+    if [[ "$oldStash" != "$newStash" ]]; then
+        echo "Reapplying previously stashed changes - this may cause conflicts"
+        git stash pop
     fi
 }
 __git_complete goto _git_checkout
