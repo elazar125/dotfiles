@@ -1,0 +1,10 @@
+term=wezterm
+prompt=
+insensitive=true
+gtk_dark=true
+no_actions=true
+ignore_metadata=true
+allow_images=true
+hide_scroll=true
+key_down=Down,Ctrl-n
+key_up=Up,Ctrl-p

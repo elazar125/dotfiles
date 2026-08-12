@@ -52,8 +52,7 @@ export SHELLCHECK_OPTS="--color -e SC1091 -e SC1017"
 export LESS="$LESS -QRFX"
 export RUSTUP_HOME="$XDG_CONFIG_HOME/rustup"
 export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
-
-export PATH="$PATH:$CARGO_HOME/bin:/usr/local/go/bin:$HOME/FOSS/fzf/bin"
+export PATH="$PATH:$CARGO_HOME/bin:/usr/local/go/bin:$HOME/FOSS/fzf/bin:$HOME/bin"
 
 # ------------------------------------------------------
 # Disable telemetry

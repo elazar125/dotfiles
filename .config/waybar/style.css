@@ -1,0 +1,63 @@
+* {
+    font-family: SemiCoder NerdFont;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid rgba(219, 12, 177, 0.5);
+    border-left: 2px solid rgba(219, 12, 177, 0.5);
+    border-top: 2px solid rgba(219, 12, 177, 0.5);
+    color: #ffffff;
+    border-radius: 10px 0 0 10px;
+}
+
+menu {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: rgba(219, 12, 177, 0.5) solid 2px;
+}
+
+menuitem {
+    border-radius: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+menuitem:hover {
+    background-color: rgba(219, 12, 177, 0.5);
+}
+
+separator {
+    border-top: 2px solid rgba(219, 12, 177, 0.5);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* default hover on app icons is ugly */
+button:hover {
+    border: transparent;
+    background: inherit;
+    text-shadow: inherit;
+    box-shadow: inherit;
+    padding: 0 3px;
+}
+
+widget .module {
+    padding: 14px;
+}
+
+@keyframes blink {
+    to {
+        color: #ffffff;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}

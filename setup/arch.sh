@@ -7,14 +7,16 @@ sudo pacman -S base efibootmgr grub \
             intel-ucode iwd libnotify linux \
             linux-firmware man-db man-pages \
             pipewire-alsa pipewire-audio pipewire-pulse \
-            pkgstats sudo texinfo wireplumber
+            pkgstats sudo texinfo wireplumber \
+            bluez bluez-util exfat-utils ntfs-3g
 
 # echo "Installing Hyprland and accessories"
 sudo pacman -S brightnessctl hyprland \
             hyprpaper hyprpolkitagent mako \
             waybar xdg-desktop-portal-gtk \
             xdg-desktop-portal-hyprland xdg-user-dirs \
-            udiskie libappindicator-gtk3 rofi
+            udiskie libappindicator-gtk3 rofi \
+            hyprshutdown greetd
 
 # echo "Installing stuff I use"
 sudo pacman -S git tailscale \

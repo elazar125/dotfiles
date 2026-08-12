@@ -1,0 +1,11 @@
+[Default Applications]
+image/x-xcf=org.gimp.GIMP.desktop
+image/jpeg=com.interversehq.qView.desktop
+image/gif=com.interversehq.qView.desktop
+image/avif=com.interversehq.qView.desktop
+
+[Added Associations]
+image/x-xcf=org.gimp.GIMP.desktop;
+image/jpeg=com.interversehq.qView.desktop;
+image/gif=com.interversehq.qView.desktop;
+image/avif=com.interversehq.qView.desktop;

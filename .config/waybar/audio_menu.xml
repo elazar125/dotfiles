@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+      <object class="GtkRadioMenuItem" id="hdmi">
+        <property name="label">HDMI</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkRadioMenuItem" id="builtin">
+        <property name="label">Built-In</property>
+        <property name="group">hdmi</property>
+        <property name="active">true</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="menu-separator" />
+    </child>
+    <child>
+      <object class="GtkCheckMenuItem" id="mute">
+        <property name="label">Mute</property>
+      </object>
+    </child>
+  </object>
+</interface>
