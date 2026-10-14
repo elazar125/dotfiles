@@ -34,6 +34,10 @@ alias develop='goto "^develop$"'
 
 # Switch branches while keeping your current changes
 goto() {
+    if [[ -n "$TRACE" ]]; then
+        set -x
+    fi
+
     git fetch
 
     branch=$( \
@@ -51,7 +55,7 @@ goto() {
     oldStash=$(git stash list -n1 --pretty="%H")
     git diff-index --quiet HEAD
     hasChanges=$?
-    if [[ 0 -eq "$hasChanges" ]]; then
+    if [[ 1 -eq "$hasChanges" ]]; then
         echo "Stashing..."
         git stash push --include-untracked
     fi
@@ -69,6 +73,10 @@ goto() {
     if [[ "$oldStash" != "$newStash" ]]; then
         echo "Reapplying previously stashed changes - this may cause conflicts"
         git stash pop
+    fi
+
+    if [[ -n "$TRACE" ]]; then
+        set +x
     fi
 }
 __git_complete goto _git_checkout

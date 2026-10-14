@@ -19,7 +19,7 @@ brights = [
   "#3ec9d3", # Light Cyan
   "#eddfff", # White
 ]
-foreground = "#7bd0e7"
+foreground = "#a8e6f7"
 background = "#000000"
 cursor_bg = "#7bd0e7"
 cursor_fg = "#000000"

@@ -62,6 +62,15 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=true
 # if [ "$(command -v go)" ]; then go telemetry off; fi
 
 # ------------------------------------------------------
+# Short-circuit - skip out for non-interactive shells
+# ------------------------------------------------------
+
+case $- in
+  *i*)  ;;
+  *) return ;;
+esac
+
+# ------------------------------------------------------
 # Set aliases for commands that misbehave on different OSes
 # ------------------------------------------------------
 
@@ -69,7 +78,7 @@ if [ "$(command -v helix)" ]; then alias hx='helix'; fi
 if [ "$(command -v batcat)" ]; then alias bat='batcat'; fi
 if [ "$(command -v fdfind)" ]; then alias fd='fdfind'; fi
 
-if [[ "$OSTYPE" == "msys" ]]; then
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
     alias rg='rg --smart-case --path-separator="//"'
 else
     alias rg='rg --smart-case'
